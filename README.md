@@ -1,37 +1,49 @@
-# Vite + React + Typescript + Eslint + Prettier
+<h1 >
+  My personal website (www.tomblaymire.com)
+  <br>
+</h1>
 
-A starter for React with Typescript with the fast Vite and all static code testing with Eslint and formatting with Prettier.
+<h4>Latest 2022 website rebuild using Vite, Typescript & Styled Components.</h4>
 
-![Vite + React + Typescript + Eslint + Prettier](/resources/screenshot.png)
+## Live URL
 
-I found out about Vite and I wanted to have a boilerplate for the technologies that I use. You can find more about these in the following links: [Vite](https://github.com/vitejs/vite), [React](https://reactjs.org/), [Typescript](https://www.typescriptlang.org/), [Eslint](https://eslint.org/), [Prettier](https://prettier.io/).
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ccb8cf6e-bac5-4c77-a5f6-af33c76faa0c/deploy-status)](https://app.netlify.com/sites/tomblaymire/deploys)
 
-## Installation
+<strong>www.tomblaymire.com</strong>
 
-Clone the repo and run `yarn install`
+## Screenshot
 
-or Run command
+TBC
 
-```
-npx degit TheSwordBreaker/vite-reactts-eslint-prettier project-name
-```
+##  Built With
+- Vite
+- Typescript
+- React
+- Styled Components
 
-## Start
+## Future Plans
 
-After the successfull installation of the packages: `yarn dev`
+TBC
 
-## Steps in Vscode
+## How To Use
 
-#### (works with better with this template)
+To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
 
-1. Install Eslint and prettier extension for vs code.
-2. Make Sure Both are enabled
-3. Make sure all packages are Installed. (Mostly Eslint and prettier in node_modules)
-4. Enable formatOnSave of vs code
-5. Open a .tsx file and check if the bottom right corners of vs code have Eslint and Prettier with a double tick
+```bash
+# Clone this repository
+$ git clone https://github.com/thomasblaymire/tomblaymire.com
 
-![Screenshot (253)_LI](https://user-images.githubusercontent.com/52120562/162486286-7383a737-d555-4f9b-a4dd-c4a81deb7b96.jpg)
+# Go into the clientrepository
+$ cd tomblaymire.com
 
-If Everything is Good Then It Should Work, but let me new if something else happens
+# Install dependencies
+$ yarn
 
-Made with ❤️ by theSwordBreaker(we Destory all types of sword ⚡)
+# Run the web app
+$ yarn dev
+
+# Build the web app
+$ yarn build
+
+# Run ESLint
+$ yarn lint:fix
