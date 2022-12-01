@@ -1,23 +1,21 @@
-import { Meta } from "components/meta";
-import styles from "../styles/Home.module.css";
-import { heroDescription, heroTitle } from "content/home";
-import { HeroSection } from "components/sections/hero-section";
-import { HeaderSection } from "components/sections/header-section";
+import { ErrorBoundary } from 'react-error-boundary';
 
-export default function Home() {
+import { ErrorFallback } from '@/components/error-fallback';
+
+interface BaseAppProps {
+  toggleTheme?: string | boolean | (() => void);
+  theme: string | boolean | (() => void);
+}
+
+export function BaseApp({ toggleTheme, theme }: BaseAppProps): JSX.Element {
   return (
-    <div className={styles.container}>
-      <Meta />
-
-      <HeaderSection />
-
-      <HeroSection
-        title={heroTitle}
-        description={heroDescription}
-        socials={true}
-      />
-
-      <main className={styles.main}>MAIN BAY</main>
-    </div>
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
+      <Header toggleTheme={toggleTheme} theme={theme} />
+      <main>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <Router />
+        </ErrorBoundary>
+      </main>
+    </ErrorBoundary>
   );
 }
