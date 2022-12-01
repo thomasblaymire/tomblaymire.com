@@ -1,6 +1,12 @@
 import { useRoutes } from 'react-router-dom';
 
+import { About } from '@/pages/about';
+import { Articles } from '@/pages/articles';
+import { Contact } from '@/pages/contact';
 import { Home } from '@/pages/home';
+import { NotFound } from '@/pages/not-found';
+import { Projects } from '@/pages/projects';
+import { Uses } from '@/pages/uses';
 
 const Router = () => {
   const element = useRoutes([
@@ -19,15 +25,15 @@ const Router = () => {
     },
     {
       path: '/projects',
-      element: <About />,
+      element: <Projects />,
     },
     {
-      path: '/users',
-      element: <About />,
+      path: '/uses',
+      element: <Uses />,
     },
     {
       path: '/contact',
-      element: <About />,
+      element: <Contact />,
     },
     {
       path: '*',
