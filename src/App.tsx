@@ -12,14 +12,14 @@ enum THEME {
 }
 
 function App() {
-  const [theme, toggleTheme] = useLightMode();
+  const [theme] = useLightMode();
   const themePreference = theme === THEME.LIGHT ? lightTheme : darkTheme;
 
   return (
     <Suspense fallback={<Loading />}>
       <ThemeProvider theme={themePreference}>
         <GlobalStyle />
-        <BaseApp toggleTheme={toggleTheme} theme={theme} />
+        <BaseApp />
       </ThemeProvider>
     </Suspense>
   );

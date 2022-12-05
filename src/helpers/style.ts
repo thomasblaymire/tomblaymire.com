@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 interface ThemeType {
   body: string;
@@ -10,51 +10,62 @@ const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
   *::after,
   *::before {
     box-sizing: border-box;
+    border: 0 solid #e5e7eb;
+    margin: 0;
   }
 
   html {
     font-size: 10px;
-    font-family: sans-serif;
-    -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
+    line-height: 1.5;
+    tab-size: 4;
     height: 100vh;
   }
 
   body {
     padding: 0;
     margin: 0;
-    line-height: 2;
-    font-family: 'Poppins', sans-serif;
+    line-height: inherit;
+    tab-size: 4;
+    font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color emoji;
     color: #FFF;
-    height: inherit;
+    height: 100%;
     background: ${({ theme }) => theme.body};
     color: ${({ theme }) => theme.text};
+
 
   }
 
   a {
     line-height: 0;
+    color: inherit;
+    text-decoration: none;
   }
 
-  h3 {
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, p, pre {
     margin: 0;
   }
 `;
 
 export const lightTheme = {
-  body: "#e5e8ec",
-  text: "#363537",
-  toggleBorder: "#FFF",
-  gradient: "linear-gradient(#39598A, #79D7ED)",
+  body: 'rgb(0 0 0/ 1)',
+  text: '#a1a1aa',
+  toggleBorder: '#FFF',
+  gradient: 'linear-gradient(#39598A, #79D7ED)',
 
   colors: {
-    primary: "#FFFFFF",
-    secondary: "#000",
-    tertiary: "#13131c",
-    quaternary: "rgb(100, 107, 128)",
-    blue: "#1b6ad2",
-    textColorSub: "#a1a7bb",
-    textColor: "#fff",
+    primary: '#FFFFFF',
+    secondary: '#000',
+    // tertiary: '#18181b',
+    tertiary: '#eeee;',
+    quaternary: 'rgb(100, 107, 128)',
+    blue: '#1b6ad2',
+    textColorSub: '#a1a7bb',
+    textColor: '#fff',
     // control-border-color: #40424e;
     // control-background-color: #222531;
     // control-caret-color: #858ca2;
@@ -92,24 +103,24 @@ export const lightTheme = {
     // shadow-normal: 0px 4px 24px #171924,0px 1px 2px #171924;
   },
   borders: {
-    primary: "rgb(34, 37, 49)",
+    primary: 'rgb(34, 37, 49)',
   },
 };
 
 const darkTheme = {
-  body: "#1a1a25",
+  body: 'rgb(0 0 0/ 1)',
   colors: {
-    primary: "#13131c",
-    secondary: "#000",
-    tertiary: "#13131c",
-    quaternary: "rgb(100, 107, 128)",
-    blue: "#1b6ad2",
-    textColorSub: "#a1a7bb",
-    textColor: "#fff",
+    primary: '#18181b',
+    secondary: '#000',
+    tertiary: '#18181b',
+    quaternary: 'rgb(100, 107, 128)',
+    blue: '#1b6ad2',
+    textColorSub: '#a1a7bb',
+    textColor: '#fff',
   },
   borders: {
-    primary: "rgb(34, 37, 49)",
+    primary: 'rgb(34, 37, 49)',
   },
 };
 
-export { GlobalStyle, darkTheme };
+export { darkTheme, GlobalStyle };

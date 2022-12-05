@@ -8,7 +8,7 @@ import { NotFound } from '@/pages/not-found';
 import { Projects } from '@/pages/projects';
 import { Uses } from '@/pages/uses';
 
-const Router = () => {
+export const Router = () => {
   const element = useRoutes([
     {
       path: '/',
@@ -42,5 +42,3 @@ const Router = () => {
   ]);
   return element as React.ReactElement;
 };
-
-export { Router };
