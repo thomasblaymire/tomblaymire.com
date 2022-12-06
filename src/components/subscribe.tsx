@@ -1,29 +1,7 @@
 import styled from 'styled-components';
 
 import { Button } from '@/components/button';
-
-const StyledSubscribe = styled.form`
-  padding: 2.5rem;
-  border-width: 1px;
-  border-radius: 1rem;
-  border-color: rgba(63, 63, 70, 0.4);
-
-  h2 {
-    color: rgb(244 244 245 / 1);
-    font-weight: 600;
-    line-height: 1.5rem;
-    font-size: 1.5rem;
-    display: flex;
-  }
-
-  p {
-    color: rgb(161 161 170 / 1);
-    line-height: 2.2rem;
-    font-size: 1.4rem;
-    display: flex;
-    margin-top: 1rem;
-  }
-`;
+import { Card } from '@/components/card';
 
 const StyledInputWrapper = styled.div`
   margin-top: 2.5rem;
@@ -75,18 +53,20 @@ const StyledSubscribeButton = styled(Button)`
 
 export function Subscribe() {
   return (
-    <StyledSubscribe>
-      <h2>Stay Up To Date</h2>
-      <p>Get notified when I publish something new, and unsubscribe at any time.</p>
-      <StyledInputWrapper>
-        <input
-          type="email"
-          placeholder="Email address"
-          aria-label="Email address"
-          required
-        />
-        <StyledSubscribeButton>Join</StyledSubscribeButton>
-      </StyledInputWrapper>
-    </StyledSubscribe>
+    <Card>
+      <form>
+        <h2>Stay Up To Date</h2>
+        <p>Get notified when I publish something new, and unsubscribe at any time.</p>
+        <StyledInputWrapper>
+          <input
+            type="email"
+            placeholder="Email address"
+            aria-label="Email address"
+            required
+          />
+          <StyledSubscribeButton>Join</StyledSubscribeButton>
+        </StyledInputWrapper>
+      </form>
+    </Card>
   );
 }
