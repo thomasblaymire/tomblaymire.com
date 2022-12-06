@@ -39,15 +39,21 @@ const StyledInputWrapper = styled.div`
     font-size: 1.5rem;
     padding-top: calc(1rem - 1px);
     padding-bottom: calc(1rem - 1px);
-    padding-left: 0.75rem;
+    padding-left: 1.5rem;
     padding-right: 0.75rem;
     appearance: none;
     flex: 1 1 auto;
+    outline: none;
+
+    &:focus {
+      border-color: rgb(45 212 191/ 1);
+    }
   }
 `;
 
 const StyledSubscribeButton = styled(Button)`
-  color: rgb(244 244 245 1);
+  color: rgb(244 244 245 /1);
+  background: rgb(63 63 70/1);
   line-height: 1.5rem;
   font-size: 1.5rem;
   font-weight: 600;
@@ -61,6 +67,10 @@ const StyledSubscribeButton = styled(Button)`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &:hover {
+    background: rgb(82 82 91/1);
+  }
 `;
 
 export function Subscribe() {
