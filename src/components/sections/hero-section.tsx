@@ -17,13 +17,14 @@ const StyledSectionTitle = styled.h1`
   line-height: 6rem;
   letter-spacing: -0.025em;
   font-weight: 700;
-  color: #f4f4f5;
+  color: ${({ theme }) => theme.colors.textColor};
 `;
 
 const StylesSectionDescription = styled.p`
-  margin-top: 1.5rem;
+  margin-top: 1.75rem;
   font-size: 1.75rem;
-  color: rgb(161 161 170 / 1);
+  line-height: 2.7rem;
+  color: ${({ theme }) => theme.colors.textColorSub};
 `;
 
 const StylesSectionSocials = styled.h1``;
