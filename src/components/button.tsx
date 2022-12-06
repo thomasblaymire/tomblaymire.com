@@ -31,10 +31,11 @@ export const StyledButton = styled.button<ButtonProps>`
 `;
 
 export type ButtonProps = {
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: () => void;
   children?: React.ReactNode;
-  color?: 'primary' | 'secondary';
+  color?: 'primary' | 'secondary' | 'base' | 'link';
   disabled?: boolean;
+  className?: string;
 };
 
 export const Button = ({

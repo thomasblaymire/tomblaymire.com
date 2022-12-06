@@ -5,6 +5,11 @@ interface ThemeType {
   text: string;
 }
 
+export enum THEME {
+  LIGHT = 'light',
+  DARK = 'dark',
+}
+
 const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
   *,
   *::after,
@@ -64,8 +69,8 @@ export const lightTheme = {
     tertiary: '#eeee;',
     quaternary: 'rgb(100, 107, 128)',
     blue: '#1b6ad2',
-    textColorSub: '#a1a7bb',
-    textColor: '#fff',
+    textColorSub: 'rgb(82, 82, 91, 1)',
+    textColor: 'rgb(39, 39, 42, 1)',
     // control-border-color: #40424e;
     // control-background-color: #222531;
     // control-caret-color: #858ca2;
@@ -115,8 +120,8 @@ const darkTheme = {
     tertiary: '#18181b',
     quaternary: 'rgb(100, 107, 128)',
     blue: '#1b6ad2',
-    textColorSub: '#a1a7bb',
-    textColor: '#fff',
+    textColorSub: 'rgb(161, 161, 170, 1)',
+    textColor: 'rgb(244, 244, 245, 1)',
   },
   borders: {
     primary: 'rgb(34, 37, 49)',
