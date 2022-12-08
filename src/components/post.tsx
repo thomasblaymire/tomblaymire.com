@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Button } from '@/components/button';
+import { device } from '@/helpers/device';
 
 const StyledPost = styled.div`
   font-size: 1.5rem;
@@ -64,8 +65,8 @@ const StyledPostButton = styled(Button)`
 `;
 
 const StyledInset = styled.div`
-  left: -1.5rem;
-  right: -1.5rem;
+  left: initial;
+  right: initial;
   border-radius: 1rem;
   background-color: rgba(39, 39, 42, 0.5);
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -75,6 +76,11 @@ const StyledInset = styled.div`
   opacity: 0;
   transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(1) scaleY(1);
   z-index: 0;
+
+  @media ${device.tablet} {
+    left: -1.5rem;
+    right: -1.5rem;
+  }
 
   &:hover {
     cursor: pointer;

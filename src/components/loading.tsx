@@ -9,8 +9,8 @@ interface LoadingProps {
 }
 
 const StyledLoading = styled.div<LoadingProps>`
-  ${(props) =>
-    props.position === 'center' &&
+  ${({ position }) =>
+    position === 'center' &&
     css`
       position: absolute;
       top: 50%;
