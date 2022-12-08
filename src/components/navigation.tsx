@@ -40,7 +40,7 @@ const StyledNavigation = styled.nav<NavbarProps>`
   `}
   }
 
-  a {
+  li {
     line-height: 1.5rem;
     font-weight: 500;
     padding-left: 1rem;
@@ -69,18 +69,27 @@ const StyledToggleButton = styled(Button)`
 `;
 
 const StyledMobileNavigation = styled.nav`
+  margin-top: 1.5rem;
   ul {
     display: flex;
     flex-direction: column;
+    color: rgb(212 212 216/1);
   }
 
-  a {
-    border-bottom-color: rgb(229, 231, 235);
-    border-bottom-width: 0.15rem;
+  li {
+    &:not(:first-child) {
+      border-top-width: calc(1px * calc(1 - 0));
+      border-bottom-width: calc(1px * 0);
+      border-color: hsla(240, 5%, 96%, 0.05);
+    }
+
     line-height: 1.5rem;
     font-weight: 500;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
+  }
+
+  a {
     &:hover {
       color: rgb(20 184 166/1);
     }
@@ -89,16 +98,16 @@ const StyledMobileNavigation = styled.nav`
 
 const StyledModal = styled(Modal)`
   width: 100%;
-  margin: 0 1rem;
+  margin: 0 1.5rem;
 `;
 
 function renderNavItems(items: NavItem[]) {
   return (
     <ul>
       {items.map(({ path, name }, index: number) => (
-        <Link key={index} to={path}>
-          <li>{name}</li>
-        </Link>
+        <li key={index}>
+          <Link to={path}>{name}</Link>
+        </li>
       ))}
     </ul>
   );
@@ -126,7 +135,11 @@ export function Navigation({ items, type }: NavigationProps): JSX.Element {
             </StyledToggleButton>
           </StyledToggle>
           {toggle ? (
-            <StyledModal isActive={toggle} handleClose={() => setToggle(false)}>
+            <StyledModal
+              title="Navigation"
+              isActive={toggle}
+              handleClose={() => setToggle(false)}
+            >
               <MobileNavigation>{renderNavItems(items)}</MobileNavigation>
             </StyledModal>
           ) : null}
