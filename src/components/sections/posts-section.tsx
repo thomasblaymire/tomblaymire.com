@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { Logo } from '@/components/logo';
 import { Post } from '@/components/post';
+import { posts } from '@/content/posts/sample';
 
 export type HeroSectionProps = {
   title: string | React.ReactNode;
@@ -18,9 +18,9 @@ const StyledPostsSection = styled.section`
 export function PostsSection() {
   return (
     <StyledPostsSection>
-      <Post />
-      <Post />
-      <Post />
+      {posts.map((post) => {
+        return <Post key={post.id} post={post} />;
+      })}
     </StyledPostsSection>
   );
 }

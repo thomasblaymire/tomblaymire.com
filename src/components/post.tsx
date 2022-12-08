@@ -5,58 +5,47 @@ import { Button } from '@/components/button';
 
 const StyledPost = styled.div`
   font-size: 1.5rem;
+  position: relative;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: flex-start;
+  position: relative;
 
   h2 {
     color: rgb(244 244 245 1);
     letter-spacing: -0.025em;
     font-weight: 600;
-    font-size: 1rem;
-    line-height: 1.75rem;
+    font-size: 2rem;
+    line-height: 2rem;
   }
 
   p {
     color: rgb(161 161 170 1);
     line-height: 2.2rem;
     font-size: 1.4rem;
-    margin-top: 0.5rem;
-  }
-
-  &:hover {
-    cursor: pointer;
-    background: rgba(39, 39, 42, 0.5);
-    --tw-scale-x: 1;
-    --tw-scale-y: 1;
-    --tw-border-spacing-x: 0;
-    --tw-border-spacing-y: 0;
-    --tw-translate-x: 0;
-    --tw-translate-y: 0;
-    --tw-rotate: 0;
-    --tw-skew-x: 0;
-    --tw-skew-y: 0;
-    transform: translate(var(--tw-translate-x), var(--tw-translate-y))
-      rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
-      scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    margin-top: 1rem;
   }
 `;
 
 const StyledTime = styled.time`
-  color: rgb(113 113 122 1);
+  position: relative;
+  color: rgb(113 113 122 /1);
   line-height: 1.5rem;
   padding-left: 0.875rem;
-  font-size: 0.875rem;
+  font-size: 1.25rem;
   margin-bottom: 0.75rem;
   display: flex;
   align-items: center;
   order: -9999;
+  margin-bottom: 2rem;
 `;
 
 const StyledTimeDivider = styled.span`
   width: 0.125rem;
-  background-color: rgb(113 113 122 1);
+  background-color: rgb(113 113 122 / 1);
+  border-radius: 9999px;
+  height: 1rem;
 `;
 
 const StyledPostButton = styled(Button)`
@@ -74,19 +63,63 @@ const StyledPostButton = styled(Button)`
   }
 `;
 
-export function Post() {
+const StyledInset = styled.div`
+  left: -1.5rem;
+  right: -1.5rem;
+  border-radius: 1rem;
+  background-color: rgba(39, 39, 42, 0.5);
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.15s;
+  position: absolute;
+  height: 100%;
+  opacity: 0;
+  transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(1) scaleY(1);
+  z-index: 0;
+
+  &:hover {
+    cursor: pointer;
+    background: rgba(39, 39, 42, 0.5);
+    opacity: 1;
+    border-radius: 1rem;
+  }
+`;
+
+const StyledDividerWrapper = styled.span`
+  display: flex;
+  align-items: center;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+`;
+
+interface PostProps {
+  post: Post;
+}
+
+interface Post {
+  date: string;
+  title: string;
+  shortMessage: string;
+  link: string;
+}
+
+export function Post({ post }: PostProps) {
+  const { date, title, shortMessage, link } = post;
+
+  console.log('debug title', title);
+
   return (
     <StyledPost>
       <StyledTime>
-        <StyledTimeDivider />
-        September 5 2022
+        <StyledDividerWrapper>
+          <StyledTimeDivider />
+        </StyledDividerWrapper>
+        {date}
       </StyledTime>
-      <h1>Crafting a design system for a multiplanetary future</h1>
-      <p>
-        Most companies try to stay ahead of the curve when it comes to visual design, but
-        for Planetaria we needed to create a brand that would still inspire us 100 years
-        from now when humanity has spread across our entire solar system.
-      </p>
+      <h2>{title}</h2>
+      <StyledInset />
+      <p>{shortMessage}</p>
       <StyledPostButton color="link">
         Read article
         <svg

@@ -46,9 +46,13 @@ const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
     text-decoration: none;
   }
 
-  ul {
+  ul,li, ol {
     margin: 0;
     padding: 0;
+  }
+
+  dd {
+    margin: 0;
   }
 
   blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, p, pre {
