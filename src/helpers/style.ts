@@ -47,9 +47,11 @@ const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
   }
 
   ul,li, ol {
+    list-style: none;
     margin: 0;
     padding: 0;
   }
+  
 
   dd {
     margin: 0;

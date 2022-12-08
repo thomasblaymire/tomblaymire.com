@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Button } from '@/components/button';
+import { Modal } from '@/components/modal';
+import { device } from '@/helpers/device';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 interface NavItem {
   path: string;
@@ -65,7 +68,29 @@ const StyledToggleButton = styled(Button)`
   padding-right: 2rem;
 `;
 
-const StyledMobileNavigation = styled.nav``;
+const StyledMobileNavigation = styled.nav`
+  ul {
+    display: flex;
+    flex-direction: column;
+  }
+
+  a {
+    border-bottom-color: rgb(229, 231, 235);
+    border-bottom-width: 0.15rem;
+    line-height: 1.5rem;
+    font-weight: 500;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    &:hover {
+      color: rgb(20 184 166/1);
+    }
+  }
+`;
+
+const StyledModal = styled(Modal)`
+  width: 100%;
+  margin: 0 1rem;
+`;
 
 function renderNavItems(items: NavItem[]) {
   return (
@@ -79,25 +104,32 @@ function renderNavItems(items: NavItem[]) {
   );
 }
 
-function MobileNavigation({ children }: any) {
+interface MobileNavigationProps {
+  children: React.ReactNode;
+}
+
+function MobileNavigation({ children }: MobileNavigationProps) {
   return <StyledMobileNavigation>{children}</StyledMobileNavigation>;
 }
 
 export function Navigation({ items, type }: NavigationProps): JSX.Element {
   const [toggle, setToggle] = useState(false);
-
-  const isMobile = true;
+  const isTablet = useMediaQuery(device.tablet);
 
   return (
     <>
-      {isMobile ? (
+      {!isTablet ? (
         <>
           <StyledToggle>
             <StyledToggleButton onClick={() => setToggle(!toggle)}>
               Menu
             </StyledToggleButton>
           </StyledToggle>
-          {toggle ? <MobileNavigation>{renderNavItems(items)}</MobileNavigation> : null}
+          {toggle ? (
+            <StyledModal isActive={toggle} handleClose={() => setToggle(false)}>
+              <MobileNavigation>{renderNavItems(items)}</MobileNavigation>
+            </StyledModal>
+          ) : null}
         </>
       ) : (
         <StyledNavigation type={type}>{renderNavItems(items)}</StyledNavigation>
