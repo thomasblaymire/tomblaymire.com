@@ -12,18 +12,12 @@ const StyledHeroContent = styled.div`
 `;
 
 const StyledSectionTitle = styled.h1`
-  margin-top: 2.25rem;
-  font-size: 5rem;
-  line-height: 6rem;
-  letter-spacing: -0.025em;
-  font-weight: 700;
   color: ${({ theme }) => theme.colors.textColor};
+  margin-top: 2.25rem;
 `;
 
 const StylesSectionDescription = styled.p`
   margin-top: 1.75rem;
-  font-size: 1.75rem;
-  line-height: 2.7rem;
   color: ${({ theme }) => theme.colors.textColorSub};
 `;
 
@@ -33,17 +27,16 @@ export type HeroSectionProps = {
   title: string | React.ReactNode;
   description?: string | React.ReactNode;
   socials: boolean;
+  logo?: boolean;
 };
 
-function HeroSection({ title, description, socials }: HeroSectionProps) {
+function HeroSection({ title, description, socials, logo }: HeroSectionProps) {
   return (
     <StyledHeroSection>
       <StyledHeroContent>
         <Grid>
           <Row>
-            <Col size={1}>
-              <Logo />
-            </Col>
+            <Col size={1}>{logo ? <Logo /> : null}</Col>
           </Row>
           <Row>
             <Col size={1}>
