@@ -31,8 +31,8 @@ const StyledWrapper = styled.main`
   @media ${device.tablet} {
     margin-left: 5rem;
     margin-right: 5rem;
-    padding-left: 5rem;
-    padding-right: 5rem;
+    padding-left: 10rem;
+    padding-right: 10rem;
   }
   @media ${device.laptopL} {
     margin-left: 15rem;

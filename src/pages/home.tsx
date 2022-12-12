@@ -18,7 +18,7 @@ const StyledSpacer = styled.div`
 `;
 
 const StyledHomeRow = styled(Row)`
-  margin-top: 15rem;
+  margin-top: 13rem;
 `;
 
 export function Home() {
