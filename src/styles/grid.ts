@@ -4,7 +4,7 @@ import styled from 'styled-components';
 interface ColumnProps {
   size: number;
   collapse?: number;
-  children: ReactNode | ReactChildren;
+  children?: ReactNode | ReactChildren;
 }
 
 interface MediaOptions {
