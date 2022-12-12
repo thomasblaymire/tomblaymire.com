@@ -26,7 +26,12 @@ export function Home() {
     <>
       {/* <Meta /> */}
       <div>
-        <HeroSection title={heroTitle} description={heroDescription} socials={true} />
+        <HeroSection
+          title={heroTitle}
+          description={heroDescription}
+          socials={true}
+          logo={true}
+        />
         <Grid>
           <StyledHomeRow>
             <Col size={7}>
