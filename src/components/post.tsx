@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Button } from '@/components/button';
 import { device } from '@/helpers/device';
 
-const StyledPost = styled.div`
+const StyledPost = styled.article`
   font-size: 1.5rem;
   position: relative;
   display: flex;
@@ -80,6 +80,7 @@ const StyledInset = styled.div`
   @media ${device.tablet} {
     left: -1.5rem;
     right: -1.5rem;
+    top: 0;
   }
 
   &:hover {
@@ -88,6 +89,21 @@ const StyledInset = styled.div`
     opacity: 1;
     border-radius: 1rem;
   }
+`;
+
+const StyledTitle = styled.span`
+  z-index: 10;
+  position: relative;
+`;
+
+const StyledInner = styled.span`
+  left: -1.5rem;
+  right: -1.5rem;
+  z-index: 20;
+  top: -1.5rem;
+  bottom: -1.5rem;
+  position: absolute;
+  border-radius: 1rem;
 `;
 
 const StyledDividerWrapper = styled.span`
@@ -110,11 +126,8 @@ interface Post {
   link: string;
 }
 
-export function Post({ post }: PostProps) {
+export function Post({ post }: PostProps): JSX.Element {
   const { date, title, shortMessage, link } = post;
-
-  console.log('debug title', title);
-
   return (
     <StyledPost>
       <StyledTime>
@@ -123,8 +136,16 @@ export function Post({ post }: PostProps) {
         </StyledDividerWrapper>
         {date}
       </StyledTime>
-      <h2>{title}</h2>
-      <StyledInset />
+      <h2>
+        <StyledInset />
+        <Link to={link}>
+          <StyledInner />
+          <StyledTitle>{title}</StyledTitle>
+        </Link>
+
+        <StyledInner />
+      </h2>
+
       <p>{shortMessage}</p>
       <StyledPostButton color="link">
         Read article

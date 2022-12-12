@@ -26,8 +26,9 @@ const StyledCard = styled.div`
 
 interface CardProps {
   children: ReactElement;
+  className?: string;
 }
 
-export function Card({ children }: CardProps) {
-  return <StyledCard>{children}</StyledCard>;
+export function Card({ children, className }: CardProps) {
+  return <StyledCard className={className}>{children}</StyledCard>;
 }
