@@ -1,10 +1,15 @@
 import react from '@vitejs/plugin-react';
 import { fileURLToPath, URL } from 'url';
 import { defineConfig } from 'vite';
+import Markdown from 'vite-plugin-react-markdown';
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    Markdown(),
+    react({
+      include: [/\.tsx$/, /\.ts$/, /\.md$/],
+    }),
+  ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

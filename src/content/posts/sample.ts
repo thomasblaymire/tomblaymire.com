@@ -5,7 +5,7 @@ export const posts = [
 
     shortMessage:
       'Most companies try to stay ahead of the curve when it comes to visual design, but for Planetaria we needed to create a brand that would still inspire us 100 years from now when humanity has spread across our entire solar system.',
-    link: '/posts/crafting-design-system',
+    link: 'crafting-design-system',
     date: 'September 5, 2022',
   },
   {
@@ -14,7 +14,7 @@ export const posts = [
     date: 'May 5, 2022',
     shortMessage:
       'Most companies try to stay ahead of the curve when it comes to visual design, but for Planetaria we needed to create a brand that would still inspire us 100 years from now when humanity has spread across our entire solar system.',
-    link: '/posts/crafting-design-system',
+    link: 'generics-in-typescript',
   },
   {
     id: 3,
@@ -22,6 +22,6 @@ export const posts = [
     date: 'April 1, 2022',
     shortMessage:
       'Most companies try to stay ahead of the curve when it comes to visual design, but for Planetaria we needed to create a brand that would still inspire us 100 years from now when humanity has spread across our entire solar system.',
-    link: '/posts/crafting-design-system',
+    link: 'understanding-async-javascript',
   },
 ];
