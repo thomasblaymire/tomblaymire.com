@@ -130,39 +130,40 @@ export function Post({ post }: PostProps): JSX.Element {
   const { date, title, shortMessage, link } = post;
   return (
     <StyledPost>
-      <StyledTime>
-        <StyledDividerWrapper>
-          <StyledTimeDivider />
-        </StyledDividerWrapper>
-        {date}
-      </StyledTime>
-      <h2>
-        <StyledInset />
-        <Link to={link}>
+      <Link to={`/articles/${link}`}>
+        <StyledTime>
+          <StyledDividerWrapper>
+            <StyledTimeDivider />
+          </StyledDividerWrapper>
+          {date}
+        </StyledTime>
+        <h2>
+          <StyledInset />
+
           <StyledInner />
           <StyledTitle>{title}</StyledTitle>
-        </Link>
 
-        <StyledInner />
-      </h2>
+          <StyledInner />
+        </h2>
 
-      <p>{shortMessage}</p>
-      <StyledPostButton color="link">
-        Read article
-        <svg
-          viewBox="0 0 16 16"
-          fill="none"
-          aria-hidden="true"
-          className="ml-1 h-4 w-4 stroke-current"
-        >
-          <path
-            d="M6.75 5.75 9.25 8l-2.5 2.25"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          ></path>
-        </svg>
-      </StyledPostButton>
+        <p>{shortMessage}</p>
+        <StyledPostButton color="link">
+          Read article
+          <svg
+            viewBox="0 0 16 16"
+            fill="none"
+            aria-hidden="true"
+            className="ml-1 h-4 w-4 stroke-current"
+          >
+            <path
+              d="M6.75 5.75 9.25 8l-2.5 2.25"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            ></path>
+          </svg>
+        </StyledPostButton>
+      </Link>
     </StyledPost>
   );
 }

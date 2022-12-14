@@ -1,6 +1,7 @@
 import { useRoutes } from 'react-router-dom';
 
 import { About } from '@/pages/about';
+import { Article } from '@/pages/article';
 import { Articles } from '@/pages/articles';
 import { Contact } from '@/pages/contact';
 import { Home } from '@/pages/home';
@@ -22,6 +23,10 @@ export const Router = () => {
     {
       path: '/articles',
       element: <Articles />,
+    },
+    {
+      path: '/articles/:slug',
+      element: <Article />,
     },
     {
       path: '/projects',

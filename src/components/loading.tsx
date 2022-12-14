@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import LoadingIncon from '@/assets/loading.svg';
+import spinner from '@/assets/loading.svg';
 
 interface LoadingProps {
   position?: string;
@@ -12,10 +12,8 @@ const StyledLoading = styled.div<LoadingProps>`
   ${({ position }) =>
     position === 'center' &&
     css`
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      display: flex;
+      justify-content: center;
     `}
 
   svg {
@@ -25,6 +23,6 @@ const StyledLoading = styled.div<LoadingProps>`
 
 export const Loading = ({ position, width, height }: LoadingProps): JSX.Element => (
   <StyledLoading position={position} width={width} height={height}>
-    <LoadingIncon />
+    <img src={spinner} alt="Loading..." />
   </StyledLoading>
 );
