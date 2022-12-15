@@ -2,7 +2,9 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Button } from '@/components/button';
+import { Time } from '@/components/time';
 import { device } from '@/helpers/device';
+import { PostInterface } from '@/types/post';
 
 const StyledPost = styled.article`
   font-size: 1.5rem;
@@ -14,39 +16,19 @@ const StyledPost = styled.article`
   position: relative;
 
   h2 {
-    color: rgb(244 244 245 1);
+    color: rgb(244 244 245 / 1);
     letter-spacing: -0.025em;
     font-weight: 600;
-    font-size: 2rem;
+    font-size: 1.7rem;
     line-height: 2rem;
   }
 
   p {
-    color: rgb(161 161 170 1);
+    color: rgb(161 161 170 / 1);
     line-height: 2.2rem;
     font-size: 1.4rem;
     margin-top: 1rem;
   }
-`;
-
-const StyledTime = styled.time`
-  position: relative;
-  color: rgb(113 113 122 /1);
-  line-height: 1.5rem;
-  padding-left: 0.875rem;
-  font-size: 1.25rem;
-  margin-bottom: 0.75rem;
-  display: flex;
-  align-items: center;
-  order: -9999;
-  margin-bottom: 2rem;
-`;
-
-const StyledTimeDivider = styled.span`
-  width: 0.125rem;
-  background-color: rgb(113 113 122 / 1);
-  border-radius: 9999px;
-  height: 1rem;
 `;
 
 const StyledPostButton = styled(Button)`
@@ -106,17 +88,8 @@ const StyledInner = styled.span`
   border-radius: 1rem;
 `;
 
-const StyledDividerWrapper = styled.span`
-  display: flex;
-  align-items: center;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  position: absolute;
-`;
-
 interface PostProps {
-  post: Post;
+  post: PostInterface;
 }
 
 interface Post {
@@ -126,27 +99,21 @@ interface Post {
   link: string;
 }
 
-export function Post({ post }: PostProps): JSX.Element {
-  const { date, title, shortMessage, link } = post;
+export function Post(post: PostProps): JSX.Element {
+  const { title, description, slug } = post.post.fields;
+  const { createdAt } = post.post.sys;
+
   return (
     <StyledPost>
-      <Link to={`/articles/${link}`}>
-        <StyledTime>
-          <StyledDividerWrapper>
-            <StyledTimeDivider />
-          </StyledDividerWrapper>
-          {date}
-        </StyledTime>
+      <Link to={`/articles/${slug}`}>
+        {createdAt ? <Time dateTime={createdAt} /> : null}
         <h2>
           <StyledInset />
-
           <StyledInner />
           <StyledTitle>{title}</StyledTitle>
-
           <StyledInner />
         </h2>
-
-        <p>{shortMessage}</p>
+        <p>{description}</p>
         <StyledPostButton color="link">
           Read article
           <svg
