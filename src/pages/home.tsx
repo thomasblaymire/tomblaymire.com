@@ -1,9 +1,10 @@
+import { useEffect } from 'react';
 import styled from 'styled-components';
 
 import { Meta } from '@/components/meta';
+import { Posts } from '@/components/posts';
 import { FooterSection } from '@/components/sections/footer-section';
 import { HeroSection } from '@/components/sections/hero-section';
-import { PostsSection } from '@/components/sections/posts-section';
 import { Subscribe } from '@/components/subscribe';
 import { Work } from '@/components/work';
 import { heroDescription, heroTitle } from '@/content/home';
@@ -35,7 +36,7 @@ export function Home() {
         <Grid>
           <StyledHomeRow>
             <Col size={7}>
-              <PostsSection />
+              <Posts limit={3} />
             </Col>
             <Col size={5}>
               <StyledSpacer>

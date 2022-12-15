@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 import { Meta } from '@/components/meta';
+import { Posts } from '@/components/posts';
 import { FooterSection } from '@/components/sections/footer-section';
 import { HeroSection } from '@/components/sections/hero-section';
-import { PostsSection } from '@/components/sections/posts-section';
 import { heroDescription, heroTitle } from '@/content/articles';
 import { Col, Grid, Row } from '@/styles/grid';
 
@@ -25,7 +25,7 @@ export function Articles() {
         <Grid>
           <StyledArticlesRow>
             <Col size={9}>
-              <PostsSection />
+              <Posts />
             </Col>
             <Col size={4} />
           </StyledArticlesRow>
