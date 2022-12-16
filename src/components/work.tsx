@@ -85,7 +85,7 @@ const StyledTimePeriod = styled.dd`
 `;
 
 const WorkItem = ({ item }: WorkItemProps): JSX.Element => {
-  const { image, company, jobTitle, dateFrom, dateTo } = item;
+  const { image, name, jobTitle, dateFrom, dateTo } = item;
   return (
     <StyledWorkItem>
       <StyledWorkImageWrapper>
@@ -93,7 +93,7 @@ const WorkItem = ({ item }: WorkItemProps): JSX.Element => {
       </StyledWorkImageWrapper>
       <StyledWorkInfo>
         <WorkSSROnly>Company</WorkSSROnly>
-        <StyledCompanyName>{company}</StyledCompanyName>
+        <StyledCompanyName>{name}</StyledCompanyName>
         <WorkSSROnly>Role</WorkSSROnly>
         <StyledJobTitle>{jobTitle}</StyledJobTitle>
         <WorkSSROnly>Date</WorkSSROnly>

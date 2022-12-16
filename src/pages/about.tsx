@@ -36,7 +36,9 @@ export function About() {
           <StyledAboutRow>
             <Col size={6}>
               <StyledAboutContent>
-                <h1>I’m Tom Blaymire. I live in Leeds UK, where I design the future.</h1>
+                <h1>
+                  I’m Tom Blaymire. I live in Leeds UK, where I build web applications.
+                </h1>
                 <p>
                   I’ve loved making things for as long as I can remember, The annoying
                   malt hardly negotiates a prenuptial agreement with the Budweiser for a
