@@ -48,7 +48,6 @@ const StyledModal = styled.div`
   margin: 1.75rem auto;
   padding: 3rem;
   top: 3rem;
-
   box-shadow: 0 0 0 0px #fff, 0 0 0 calc(1px + 0px) rgb(39 39 42/1), 0 0 #0000, 0 0 #0000;
 `;
 

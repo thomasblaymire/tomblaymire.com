@@ -1,11 +1,15 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Button } from '@/components/button';
 import { Modal } from '@/components/modal';
 import { device } from '@/helpers/device';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
+
+interface MobileNavigationProps {
+  children: React.ReactNode;
+}
 
 interface NavItem {
   path: string;
@@ -59,6 +63,7 @@ const StyledToggle = styled.div`
   flex: 1 1 0%;
   justify-content: flex-end;
 `;
+
 const StyledToggleButton = styled(Button)`
   background-color: rgba(39, 39, 42, 0.9);
   border: solid 1px hsla(0, 0%, 100%, 0.1);
@@ -101,20 +106,22 @@ const StyledModal = styled(Modal)`
   margin: 0 1.5rem;
 `;
 
+const StyledNavLink = styled(NavLink)`
+  &.active {
+    color: rgb(45 212 191/1);
+  }
+`;
+
 function renderNavItems(items: NavItem[]) {
   return (
     <ul>
       {items.map(({ path, name }, index: number) => (
         <li key={index}>
-          <Link to={path}>{name}</Link>
+          <StyledNavLink to={path}>{name}</StyledNavLink>
         </li>
       ))}
     </ul>
   );
-}
-
-interface MobileNavigationProps {
-  children: React.ReactNode;
 }
 
 function MobileNavigation({ children }: MobileNavigationProps) {

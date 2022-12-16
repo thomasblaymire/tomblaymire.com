@@ -37,7 +37,7 @@ const StyledTimeDivider = styled.span`
   align-items: center;
 `;
 
-export function Time({ dateTime }: TimeProps) {
+export function Time({ dateTime }: TimeProps): JSX.Element {
   const formattedDate = formatDate(dateTime);
   return (
     <StyledTime dateTime={formattedDate}>
