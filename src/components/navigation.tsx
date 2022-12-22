@@ -6,24 +6,12 @@ import { Button } from '@/components/button';
 import { Modal } from '@/components/modal';
 import { device } from '@/helpers/device';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
-
-interface MobileNavigationProps {
-  children: React.ReactNode;
-}
-
-interface NavItem {
-  path: string;
-  name: string;
-}
-
-interface NavigationProps {
-  items: NavItem[];
-  type?: 'basic';
-}
-
-interface NavbarProps {
-  type?: 'basic';
-}
+import {
+  NavbarProps,
+  NavigationMobileProps,
+  NavigationProps,
+  NavItem,
+} from '@/types/navigation';
 
 const StyledNavigation = styled.nav<NavbarProps>`
   ul {
@@ -116,23 +104,28 @@ const StyledNavLink = styled(NavLink)`
 function renderNavItems(items: NavItem[]) {
   return (
     <ul>
-      {items.map(({ path, name }, index: number) => (
+      {items.map(({ path, name, isExternal }, index: number) => (
         <li key={index}>
-          <StyledNavLink to={path}>{name}</StyledNavLink>
+          {isExternal ? (
+            <a href={path} target="_blank" rel="noreferrer">
+              {name}
+            </a>
+          ) : (
+            <StyledNavLink to={path}>{name}</StyledNavLink>
+          )}
         </li>
       ))}
     </ul>
   );
 }
 
-function MobileNavigation({ children }: MobileNavigationProps) {
+function MobileNavigation({ children }: NavigationMobileProps) {
   return <StyledMobileNavigation>{children}</StyledMobileNavigation>;
 }
 
 export function Navigation({ items, type }: NavigationProps): JSX.Element {
   const [toggle, setToggle] = useState(false);
   const isTablet = useMediaQuery(device.tablet);
-
   return (
     <>
       {!isTablet ? (

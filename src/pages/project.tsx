@@ -155,7 +155,6 @@ export function Project(): JSX.Element {
               <StyledButton onClick={handleBack}>
                 <img src={backIcon} alt="Back" />
               </StyledButton>
-              {loading && <Loading position="center" />}
               {error && <ErrorMessage error={error} />}
               {post && renderPost()}
             </StyledArticle>

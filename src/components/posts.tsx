@@ -17,10 +17,9 @@ const StyledPosts = styled.div`
 `;
 
 export function Posts({ limit }: PostsProps) {
-  const { posts, loading, error } = usePosts();
+  const { posts, error } = usePosts();
   const formattedPosts = limit ? posts && posts.slice(0, limit) : posts;
   const renderPosts = () => {
-    if (loading) return <Loading />;
     if (error) return <ErrorMessage error={error} />;
     if (formattedPosts) {
       return formattedPosts.map((post: PostInterface, index: number) => (

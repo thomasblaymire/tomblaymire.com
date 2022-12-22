@@ -1,4 +1,6 @@
-export const navLinks = [
+import { NavItem } from '@/components/navigation';
+
+export const navLinks: NavItem[] = [
   { name: 'About', path: '/about' },
   {
     name: 'Articles',
@@ -13,7 +15,8 @@ export const navLinks = [
     path: '/uses',
   },
   {
-    name: 'Contact',
-    path: '/contact',
+    name: 'Github',
+    path: 'https://github.com/thomasblaymire',
+    isExternal: true,
   },
 ];

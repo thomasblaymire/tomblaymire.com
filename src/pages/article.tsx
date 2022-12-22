@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import backIcon from '@/assets/icons/left.svg';
 import { Button } from '@/components/button';
 import { ErrorMessage } from '@/components/error-message';
-import { Loading } from '@/components/loading';
 import { FooterSection } from '@/components/sections/footer-section';
 import { Time } from '@/components/time';
 import { usePost } from '@/hooks/usePost';
@@ -93,7 +92,7 @@ export function Article(): JSX.Element {
   const navigate = useNavigate();
   const handleBack = () => navigate(-1);
   const { slug } = useParams();
-  const { post, loading, error } = usePost(slug, 'blogPost');
+  const { post, error } = usePost(slug, 'blogPost');
 
   const renderPost = () => {
     if (post) {
@@ -118,7 +117,6 @@ export function Article(): JSX.Element {
               <StyledButton onClick={handleBack}>
                 <img src={backIcon} alt="Back" />
               </StyledButton>
-              {loading && <Loading position="center" />}
               {error && <ErrorMessage error={error} />}
               {post && renderPost()}
             </StyledArticle>

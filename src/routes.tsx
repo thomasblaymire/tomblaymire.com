@@ -3,7 +3,6 @@ import { useRoutes } from 'react-router-dom';
 import { About } from '@/pages/about';
 import { Article } from '@/pages/article';
 import { Articles } from '@/pages/articles';
-import { Contact } from '@/pages/contact';
 import { Home } from '@/pages/home';
 import { NotFound } from '@/pages/not-found';
 import { Project } from '@/pages/project';
@@ -40,10 +39,6 @@ export const Router = () => {
     {
       path: '/uses',
       element: <Uses />,
-    },
-    {
-      path: '/contact',
-      element: <Contact />,
     },
     {
       path: '*',
