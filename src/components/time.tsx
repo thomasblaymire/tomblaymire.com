@@ -4,6 +4,7 @@ import { formatDate } from '@/helpers/date';
 
 interface TimeProps {
   dateTime: string;
+  className?: string;
 }
 
 const StyledTime = styled.time`
@@ -37,10 +38,10 @@ const StyledTimeDivider = styled.span`
   align-items: center;
 `;
 
-export function Time({ dateTime }: TimeProps): JSX.Element {
+export function Time({ dateTime, className }: TimeProps): JSX.Element {
   const formattedDate = formatDate(dateTime);
   return (
-    <StyledTime dateTime={formattedDate}>
+    <StyledTime dateTime={formattedDate} className={className}>
       <StyledDividerWrapper>
         <StyledTimeDivider />
       </StyledDividerWrapper>

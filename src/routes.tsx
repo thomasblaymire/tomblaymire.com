@@ -6,6 +6,7 @@ import { Articles } from '@/pages/articles';
 import { Contact } from '@/pages/contact';
 import { Home } from '@/pages/home';
 import { NotFound } from '@/pages/not-found';
+import { Project } from '@/pages/project';
 import { Projects } from '@/pages/projects';
 import { Uses } from '@/pages/uses';
 
@@ -31,6 +32,10 @@ export const Router = () => {
     {
       path: '/projects',
       element: <Projects />,
+    },
+    {
+      path: '/projects/:slug',
+      element: <Project />,
     },
     {
       path: '/uses',

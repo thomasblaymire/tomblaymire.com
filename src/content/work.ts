@@ -33,7 +33,7 @@ export const workExperiences: WorkExperienceItem[] = [
     shortDescription:
       'Enhacing TV platforms and implementing live sports for one of the leading video streaming services in Australia.',
     link: 'https://www.stan.com.au/',
-    linkText: 'stan.com',
+    linkText: 'stan',
     dateFrom: '2020',
     dateTo: '2022',
   },
@@ -44,7 +44,7 @@ export const workExperiences: WorkExperienceItem[] = [
     shortDescription:
       'Building the new XCover.com platform to allow customers to purchase insurance with ease.',
     link: 'https://www.xcover.com/en',
-    linkText: 'xcover.com',
+    linkText: 'xcover',
     dateFrom: '2019',
     dateTo: '2020',
   },
@@ -55,7 +55,7 @@ export const workExperiences: WorkExperienceItem[] = [
     shortDescription:
       'Re-building the new Betslip from the ground up for one of the UKs leading betting applications.',
     link: 'https://m.skybet.com/',
-    linkText: 'skybet.com',
+    linkText: 'skybet',
     dateFrom: '2018',
     dateTo: '2019',
   },
@@ -66,7 +66,7 @@ export const workExperiences: WorkExperienceItem[] = [
     shortDescription:
       'Creating the careers and innovation websites along with enhancing the primary parcel service website.',
     link: 'https://www.evri.com/',
-    linkText: 'everi.com',
+    linkText: 'evri',
     dateFrom: '2016',
     dateTo: '2018',
   },
@@ -77,7 +77,7 @@ export const workExperiences: WorkExperienceItem[] = [
     shortDescription:
       'Developing medical practice websites and enhancing online appointment booking services.',
     link: 'https://www.emishealth.com/',
-    linkText: 'emis.com',
+    linkText: 'emis',
     dateFrom: '2012',
     dateTo: '2016',
   },
@@ -90,7 +90,7 @@ export const personalProjects: PersonalProjectItem[] = [
     shortDescription:
       'An online crypto tracking application, featuring latest prices, watchlists and user authentication.',
     link: 'https://github.com/thomasblaymire/crypto-track',
-    linkText: 'github.com',
+    linkText: 'crypto',
   },
   {
     image: learnstability,
@@ -98,6 +98,6 @@ export const personalProjects: PersonalProjectItem[] = [
     shortDescription:
       'Building an online course review platform pulling in the best courses from popular course APIs.',
     link: 'https://www.learnstability.com/',
-    linkText: 'learnstability.com',
+    linkText: 'learnstability',
   },
 ];

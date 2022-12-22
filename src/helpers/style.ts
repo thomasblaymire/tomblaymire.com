@@ -53,15 +53,16 @@ const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
   }
 
   h1 {
-    font-size: 5rem;
+    font-size: 4.5rem;
     line-height: 6rem;
     letter-spacing: -0.025em;
     font-weight: 700;
   }
 
   p {
-    font-size: 1.75rem;
+    font-size: 1.7rem;
     line-height: 2.7rem;
+    font-weight: 300;
   }
   
 

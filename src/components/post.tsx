@@ -25,7 +25,7 @@ const StyledPost = styled.article`
 
   p {
     color: rgb(161 161 170 / 1);
-    line-height: 2.2rem;
+    line-height: 2.4rem;
     font-size: 1.4rem;
     margin-top: 1rem;
   }

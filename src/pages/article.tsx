@@ -64,6 +64,17 @@ const StyledBlogSection = styled.div`
     font-size: 1.65rem;
   }
 
+  ul {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    color: #a1a1aa;
+    font-size: 1.65rem;
+  }
+
+  li {
+    color: red;
+  }
+
   img {
     border-radius: 1.5rem;
     max-width: 100%;
@@ -82,7 +93,7 @@ export function Article(): JSX.Element {
   const navigate = useNavigate();
   const handleBack = () => navigate(-1);
   const { slug } = useParams();
-  const { post, loading, error } = usePost(slug);
+  const { post, loading, error } = usePost(slug, 'blogPost');
 
   const renderPost = () => {
     if (post) {

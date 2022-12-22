@@ -4,9 +4,10 @@ import { useEffect, useState } from 'react';
 export type BlogPostFields = {
   title: string;
   body: any;
+  link: string;
 };
 
-export const usePost = (slug: string | undefined) => {
+export const usePost = (slug: string | undefined, type: string) => {
   const [post, setPost] = useState<null | Entry<BlogPostFields>>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -21,7 +22,7 @@ export const usePost = (slug: string | undefined) => {
       try {
         const item = await client.getEntries({
           'fields.slug': slug,
-          content_type: 'blogPost',
+          content_type: type,
         });
         setPost(item.items[0] as Entry<BlogPostFields>);
       } catch (err) {

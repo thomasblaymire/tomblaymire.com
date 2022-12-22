@@ -46,7 +46,8 @@ const StyledNavigation = styled.nav<NavbarProps>`
 
   li {
     line-height: 1.5rem;
-    font-weight: 500;
+    font-weight: 400;
+    font-size: 1.4rem;
     padding-left: 1rem;
     padding-right: 1rem;
     padding-top: 1.25rem;

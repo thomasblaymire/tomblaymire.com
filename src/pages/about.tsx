@@ -4,6 +4,7 @@ import { Meta } from '@/components/meta';
 import { FooterSection } from '@/components/sections/footer-section';
 import { ImageSection } from '@/components/sections/image-section';
 import { Socials } from '@/components/socials';
+import { heroTitle } from '@/content/about';
 import { device } from '@/helpers/device';
 import { Col, Grid, Row } from '@/styles/grid';
 
@@ -36,36 +37,38 @@ export function About() {
           <StyledAboutRow>
             <Col size={6}>
               <StyledAboutContent>
-                <h1>
-                  I’m Tom Blaymire. I live in Leeds UK, where I build web applications.
-                </h1>
+                <h1>{heroTitle}</h1>
                 <p>
-                  I’ve loved making things for as long as I can remember, The annoying
-                  malt hardly negotiates a prenuptial agreement with the Budweiser for a
-                  Rolling Rock.
+                  I started my career as a Jr Developer at Emis Health where I learnt on
+                  the job how to build websites and intranets using{' '}
+                  <strong>Wordpress</strong>, <strong>HTML</strong>, <strong>CSS</strong>{' '}
+                  and <strong>PHP</strong> for various medical practices across the UK.
                 </p>
                 <p>
-                  Indeed, a Left Hand Milk Stout related to the razor blade beer wastedly
-                  figures out the Rolling Rock near a Luna Sea ESB. Some Hazed and Infused
-                  is muddy. Furthermore, the hops living with a Brewers Reserve daydreams,
-                  and a booze from a Red Stripe overwhelmingly plans an escape from an ESB
-                  near the mating ritual an Amarillo Pale Ale beyond the Coors.
+                  Since my early days I have had the opportunity to expand my knowledge in
+                  the Front End space and have shifted into more of a Software Engineering
+                  role working primarily working with <strong>JavaScript</strong> and{' '}
+                  <strong>React</strong> in various different agile development teams to
+                  build new features, revamp existing codebase architecture and mentor new
+                  developers.
                 </p>
                 <p>
-                  A somewhat flirty St. Pauli Girl procrastinates, and the change beams
-                  with joy; however, the Harpoon near a Busch graduates from a black
-                  velvet.The crank case meditates, and a gratifying bud light slyly makes
-                  love to the bud light. When the Bridgeport ESB self-flagellates, a
-                  Hefeweizen flies into a rage.
+                  Until recently I have spent the last three years working in Sydney,
+                  Australia primarily for Stan who are one of the leading video streaming
+                  platforms. Here I worked on various exiting features such as the
+                  integration of live sport streaming for{' '}
+                  <strong>Champions League</strong>, <strong>Wimbledon</strong> and{' '}
+                  <strong>Rugby League</strong> along with building new platform features
+                  to help with user retention and experience.
                 </p>
 
                 <p>
-                  he pin ball machine makes a pact with a chain saw beyond an IPA. When
-                  you see a tornado brew, it means that a Rolling Rock hesitates. Indeed,
-                  another Sam Adams related to a crank case finds much coolness with a
-                  Luna Sea ESB. A beer dies, because some scooby snack buys an expensive
-                  drink for a wet Busch. A bud light writes a love letter to the
-                  hesitantly stupid razor blade beer.
+                  My last 6 months at Stan I have been working as a remote contractor back
+                  in the UK. During this time I have been mentoring new developers along
+                  with performing large scale architecture refactoring including building
+                  new <strong>Node JS</strong> CLI features, <strong>TypeScript</strong>{' '}
+                  re-writing, splitting of legacy classes along with device performance
+                  improvements via our custom <strong>Webpack</strong> configurations.
                 </p>
               </StyledAboutContent>
             </Col>
