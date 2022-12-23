@@ -36,8 +36,8 @@ const StyledNavigation = styled.nav<NavbarProps>`
     line-height: 1.5rem;
     font-weight: 400;
     font-size: 1.4rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
     padding-top: 1.25rem;
     padding-bottom: 1.25rem;
     &:hover {
@@ -101,7 +101,7 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-function renderNavItems(items: NavItem[]) {
+function renderNavItems(items: NavItem[], setToggle: any) {
   return (
     <ul>
       {items.map(({ path, name, isExternal }, index: number) => (
@@ -111,7 +111,9 @@ function renderNavItems(items: NavItem[]) {
               {name}
             </a>
           ) : (
-            <StyledNavLink to={path}>{name}</StyledNavLink>
+            <StyledNavLink to={path} onClick={() => setToggle(false)}>
+              {name}
+            </StyledNavLink>
           )}
         </li>
       ))}
@@ -141,12 +143,14 @@ export function Navigation({ items, type }: NavigationProps): JSX.Element {
               isActive={toggle}
               handleClose={() => setToggle(false)}
             >
-              <MobileNavigation>{renderNavItems(items)}</MobileNavigation>
+              <MobileNavigation>{renderNavItems(items, setToggle)}</MobileNavigation>
             </StyledModal>
           ) : null}
         </>
       ) : (
-        <StyledNavigation type={type}>{renderNavItems(items)}</StyledNavigation>
+        <StyledNavigation type={type}>
+          {renderNavItems(items, setToggle)}
+        </StyledNavigation>
       )}
     </>
   );
