@@ -22,21 +22,19 @@ const StyledWrapper = styled.main`
   left: 0;
   margin-left: 0;
   margin-right: 0;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  border-left: solid 0.1px hsla(0, 0%, 100%, 0.1);
-  border-right: solid 0.1px hsla(0, 0%, 100%, 0.1);
-  background: ${({ theme }) => theme.colors.tertiary};
+  padding: 0 2rem;
+  border-left: solid 1px hsla(0, 0%, 100%, 0.1);
+  border-right: solid 1px hsla(0, 0%, 100%, 0.1);
+  background: rgb(24 24 27/1);
 
   @media ${device.tablet} {
-    margin-left: 5rem;
-    margin-right: 5rem;
-    padding-left: 10rem;
-    padding-right: 10rem;
+    margin: 0 5rem;
+    padding: 0 5rem;
   }
+
   @media ${device.laptopL} {
-    margin-left: 15rem;
-    margin-right: 15rem;
+    margin: 0 15rem;
+    padding: 0 10rem;
   }
 `;
 

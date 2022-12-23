@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import styled from 'styled-components';
 
 import { Meta } from '@/components/meta';
@@ -9,17 +8,14 @@ import { Subscribe } from '@/components/subscribe';
 import { Work } from '@/components/work';
 import { heroDescription, heroTitle } from '@/content/home';
 import { device } from '@/helpers/device';
-import { Col, Grid, Row } from '@/styles/grid';
+import { Col, Grid, PageRow } from '@/styles/grid';
 
 const StyledSpacer = styled.div`
   padding-left: 0;
+  padding-top: 5rem;
   @media ${device.tablet} {
-    padding-left: 4rem;
+    padding-left: 10rem;
   }
-`;
-
-const StyledHomeRow = styled(Row)`
-  margin-top: 13rem;
 `;
 
 export function Home() {
@@ -34,8 +30,8 @@ export function Home() {
           logo={true}
         />
         <Grid>
-          <StyledHomeRow>
-            <Col size={7}>
+          <PageRow>
+            <Col size={6}>
               <Posts limit={3} />
             </Col>
             <Col size={5}>
@@ -44,7 +40,7 @@ export function Home() {
                 <Work />
               </StyledSpacer>
             </Col>
-          </StyledHomeRow>
+          </PageRow>
         </Grid>
         <FooterSection />
       </div>

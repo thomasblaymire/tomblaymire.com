@@ -1,5 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
+import { device } from '@/helpers/device';
+
 interface ThemeType {
   body: string;
   text: string;
@@ -36,8 +38,6 @@ const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
     height: 100%;
     background: ${({ theme }) => theme.body};
     color: ${({ theme }) => theme.text};
-
-
   }
 
   a {
@@ -53,10 +53,15 @@ const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
   }
 
   h1 {
-    font-size: 4.5rem;
-    line-height: 6rem;
+    font-size: 3.5rem;
+    line-height: 4.5rem;
     letter-spacing: -0.025em;
     font-weight: 700;
+
+    @media ${device.tablet} {
+      font-size: 4.5rem;
+      line-height: 6rem;
+    }
   }
 
   p {

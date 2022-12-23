@@ -11,11 +11,7 @@ import { Loading } from '@/components/loading';
 import { FooterSection } from '@/components/sections/footer-section';
 import { Time } from '@/components/time';
 import { usePost } from '@/hooks/usePost';
-import { Col, Grid, Row } from '@/styles/grid';
-
-const StyledArticleRow = styled(Row)`
-  margin-top: 13rem;
-`;
+import { Col, Grid, PageRow } from '@/styles/grid';
 
 const StyledButton = styled(Button)`
   display: flex;
@@ -149,7 +145,7 @@ export function Project(): JSX.Element {
   return (
     <>
       <Grid>
-        <StyledArticleRow>
+        <PageRow>
           <Col size={12}>
             <StyledArticle>
               <StyledButton onClick={handleBack}>
@@ -159,7 +155,7 @@ export function Project(): JSX.Element {
               {post && renderPost()}
             </StyledArticle>
           </Col>
-        </StyledArticleRow>
+        </PageRow>
       </Grid>
       <FooterSection />
     </>

@@ -1,6 +1,8 @@
 import { ReactChildren, ReactNode } from 'react';
 import styled from 'styled-components';
 
+import { device } from '@/helpers/device';
+
 interface ColumnProps {
   size: number;
   collapse?: number;
@@ -53,6 +55,14 @@ export const Grid = styled.div``;
 export const Row = styled.div`
   display: flex;
   flex-wrap: wrap;
+`;
+
+// Common use page row to avoid duplication across components
+export const PageRow = styled(Row)`
+  margin-top: 6rem;
+  @media ${device.tablet} {
+    margin-top: 13rem;
+  }
 `;
 
 export const Col = styled.div<ColumnProps>`

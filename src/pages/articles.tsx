@@ -5,11 +5,7 @@ import { Posts } from '@/components/posts';
 import { FooterSection } from '@/components/sections/footer-section';
 import { HeroSection } from '@/components/sections/hero-section';
 import { heroDescription, heroTitle } from '@/content/articles';
-import { Col, Grid, Row } from '@/styles/grid';
-
-const StyledArticlesRow = styled(Row)`
-  margin-top: 13rem;
-`;
+import { Col, Grid, PageRow } from '@/styles/grid';
 
 export function Articles() {
   return (
@@ -23,12 +19,12 @@ export function Articles() {
           logo={false}
         />
         <Grid>
-          <StyledArticlesRow>
+          <PageRow>
             <Col size={9}>
               <Posts />
             </Col>
             <Col size={4} />
-          </StyledArticlesRow>
+          </PageRow>
         </Grid>
         <FooterSection />
       </div>
