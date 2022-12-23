@@ -1,10 +1,21 @@
 import styled from 'styled-components';
 
 import { Logo } from '@/components/logo';
+import { device } from '@/helpers/device';
 import { Col, Grid, Row } from '@/styles/grid';
 
 const StyledHeroSection = styled.section`
-  margin-top: 10rem;
+  margin-top: 6rem;
+  padding-left: 0rem;
+  padding-bottom: 6rem;
+  border-bottom: 1px solid;
+  border-color: rgba(63, 63, 70, 0.4);
+
+  @media ${device.tablet} {
+    margin-top: 8rem;
+    border: none;
+    padding-bottom: 0;
+  }
 `;
 
 const StyledHeroContent = styled.div`

@@ -5,7 +5,6 @@ import { personalProjects, workExperiences } from '@/content/work';
 
 const StyledProjectsSection = styled.section`
   padding-bottom: 4rem;
-
   ul {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -42,17 +41,15 @@ const StyledProjectsSection = styled.section`
   }
 `;
 
-export function ProjectsSection() {
+export function ProjectsSection(): JSX.Element {
   const projects = [...workExperiences, ...personalProjects];
   return (
     <StyledProjectsSection>
-      <div className="mt-16 sm:mt-20">
-        <ul>
-          {projects.map((project, index) => (
-            <Project key={index} project={project} />
-          ))}
-        </ul>
-      </div>
+      <ul>
+        {projects.map((project, index) => (
+          <Project key={index} project={project} />
+        ))}
+      </ul>
     </StyledProjectsSection>
   );
 }

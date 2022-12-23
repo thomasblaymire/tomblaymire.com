@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { PersonalProjectItem } from '@/content/work';
+
 const StyledImageWrapper = styled.div`
   background-color: rgb(39 39 42/1);
   border-color: rgba(63, 63, 70, 0.5);
@@ -21,24 +23,37 @@ const StyledImageWrapper = styled.div`
   }
 `;
 
-const StyledInset = styled.div``;
+const StyledProjectLink = styled(Link)`
+  box-sizing: border-box;
+  padding: 1rem;
+  border-radius: 1rem;
+  transition: all 0.4s ease-in-out 0s;
+  &:hover {
+    box-shadow: rgb(0 0 0 / 10%) -1px 10px 19px 0px;
+    transition: all 0.4s ease-in-out 0s;
+    background: rgba(39, 39, 42, 0.5);
+  }
+`;
 
-export function Project({ project }: any): JSX.Element {
+interface ProjectProps {
+  project: PersonalProjectItem;
+}
+
+export function Project({ project }: ProjectProps): JSX.Element {
   const { image, name, link, linkText, shortDescription } = project;
   return (
-    <Link to={linkText}>
+    <StyledProjectLink to={linkText}>
       <li key={name}>
         <StyledImageWrapper>
           <img alt="" src={image} decoding="async" data-nimg="1" loading="lazy" />
         </StyledImageWrapper>
         <h2>
-          <StyledInset />
           <a href={link}>
-            <span className="relative z-10">{name}</span>
+            <span>{name}</span>
           </a>
         </h2>
         <p>{shortDescription}</p>
       </li>
-    </Link>
+    </StyledProjectLink>
   );
 }

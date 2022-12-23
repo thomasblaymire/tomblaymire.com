@@ -19,8 +19,8 @@ const StyledPost = styled.article`
     color: rgb(244 244 245 / 1);
     letter-spacing: -0.025em;
     font-weight: 600;
-    font-size: 1.7rem;
-    line-height: 2rem;
+    font-size: 1.75rem;
+    line-height: 1.75rem;
   }
 
   p {
@@ -28,14 +28,15 @@ const StyledPost = styled.article`
     line-height: 2.4rem;
     font-size: 1.4rem;
     margin-top: 1rem;
+    z-index: 10;
   }
 `;
 
 const StyledPostButton = styled(Button)`
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   color: rgb(20 184 166/1);
   display: flex;
-  line-height: 2rem;
+  align-items: center;
   font-size: 1.5rem;
   font-weight: 800;
   padding: 0;
@@ -82,8 +83,6 @@ const StyledInner = styled.span`
   left: -1.5rem;
   right: -1.5rem;
   z-index: 20;
-  top: -1.5rem;
-  bottom: -1.5rem;
   position: absolute;
   border-radius: 1rem;
 `;
@@ -109,7 +108,6 @@ export function Post(post: PostProps): JSX.Element {
         {createdAt ? <Time dateTime={createdAt} /> : null}
         <h2>
           <StyledInset />
-          <StyledInner />
           <StyledTitle>{title}</StyledTitle>
           <StyledInner />
         </h2>
