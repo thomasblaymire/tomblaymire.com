@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { PersonalProjectItem } from '@/content/work';
+import { device } from '@/helpers/device';
 
 const StyledImageWrapper = styled.div`
   background-color: rgb(39 39 42/1);
@@ -25,9 +26,14 @@ const StyledImageWrapper = styled.div`
 
 const StyledProjectLink = styled(Link)`
   box-sizing: border-box;
-  padding: 1rem;
+  padding: 1rem 0.5rem;
   border-radius: 1rem;
   transition: all 0.4s ease-in-out 0s;
+
+  @media ${device.tablet} {
+    padding: 1rem;
+  }
+
   &:hover {
     box-shadow: rgb(0 0 0 / 10%) -1px 10px 19px 0px;
     transition: all 0.4s ease-in-out 0s;

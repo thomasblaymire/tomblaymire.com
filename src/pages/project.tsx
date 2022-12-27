@@ -124,7 +124,7 @@ export function Project(): JSX.Element {
   const { slug } = useParams();
   const { post, error } = usePost(slug, 'work');
 
-  const metaTitle = post ? `${post.fields.title}` : 'Project';
+  const metaTitle = post ? `Project - ${post.fields.title}` : 'Project';
   const metaDescription = post ? `${post.fields.title}` : 'Project - Tom Blaymire';
 
   const renderPost = () => {
