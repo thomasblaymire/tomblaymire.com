@@ -101,7 +101,10 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-function renderNavItems(items: NavItem[], setToggle: any) {
+function renderNavItems(
+  items: NavItem[],
+  setToggle: React.Dispatch<React.SetStateAction<boolean>>,
+) {
   return (
     <ul>
       {items.map(({ path, name, isExternal }, index: number) => (

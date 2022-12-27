@@ -32,9 +32,8 @@ export const StyledButton = styled.button<ButtonProps>`
   font-weight: 500;
   outline: none;
   transition: all 0.2s;
-
-  ${(props) => props.color && COLOR[props.color]}
-  ${(props) => props.disabled && DISABLED}
+  ${({ color }) => color && COLOR[color]}
+  ${({ disabled }) => disabled && DISABLED}
 `;
 
 export type ButtonProps = {

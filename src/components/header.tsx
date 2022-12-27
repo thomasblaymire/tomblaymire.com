@@ -33,7 +33,6 @@ const StyledHeaderLogo = styled.div`
 export function Header({ toggleTheme, theme }: HeaderProps) {
   const location = useLocation();
   const isHomepage = location.pathname === '/';
-
   return (
     <StyledHeader>
       <StyledHeaderLogo>
