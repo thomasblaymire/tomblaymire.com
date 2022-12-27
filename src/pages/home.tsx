@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
+import { Meta } from '@/components/meta';
 import { Posts } from '@/components/posts';
 import { FooterSection } from '@/components/sections/footer-section';
 import { HeroSection } from '@/components/sections/hero-section';
 import { Subscribe } from '@/components/subscribe';
 import { Work } from '@/components/work';
-import { heroDescription, heroTitle } from '@/content/home';
+import { heroDescription, heroTitle, metaTitle } from '@/content/home';
 import { device, sizes } from '@/helpers/device';
 import { Col, Grid, PageRow } from '@/styles/grid';
 
@@ -26,7 +27,7 @@ const StyledPostsCol = styled(Col)`
 export function Home() {
   return (
     <>
-      {/* <Meta /> */}
+      <Meta title={metaTitle} description={heroDescription} />
       <div>
         <HeroSection
           title={heroTitle}

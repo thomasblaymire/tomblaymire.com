@@ -1,5 +1,4 @@
 import ReactMarkdown from 'react-markdown';
-import { Link } from 'react-router-dom';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -7,7 +6,7 @@ import backIcon from '@/assets/icons/left.svg';
 import linkIcon from '@/assets/icons/link.svg';
 import { Button } from '@/components/button';
 import { ErrorMessage } from '@/components/error-message';
-import { Loading } from '@/components/loading';
+import { Meta } from '@/components/meta';
 import { FooterSection } from '@/components/sections/footer-section';
 import { Time } from '@/components/time';
 import { usePost } from '@/hooks/usePost';
@@ -123,7 +122,10 @@ export function Project(): JSX.Element {
   const navigate = useNavigate();
   const handleBack = () => navigate(-1);
   const { slug } = useParams();
-  const { post, loading, error } = usePost(slug, 'work');
+  const { post, error } = usePost(slug, 'work');
+
+  const metaTitle = post ? `${post.fields.title}` : 'Project';
+  const metaDescription = post ? `${post.fields.title}` : 'Project - Tom Blaymire';
 
   const renderPost = () => {
     if (post) {
@@ -146,6 +148,7 @@ export function Project(): JSX.Element {
 
   return (
     <>
+      <Meta title={metaTitle} description={metaDescription} />
       <Grid>
         <PageRow>
           <Col size={12}>

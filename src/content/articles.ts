@@ -1,2 +1,2 @@
-export const heroTitle = `Writing on software design, company building, and the aerospace industry.`;
-export const heroDescription = `All of my long-form thoughts on programming, leadership, product design, and more, collected in chronological order.`;
+export const heroTitle = `Writing on software development, tools, industry trends and more.`;
+export const heroDescription = `All of my longer posts primarily around software development (JavaScript, React, and CSS) where I share things I find interesting along with what I have learnt along the way.`;

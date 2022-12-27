@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import backIcon from '@/assets/icons/left.svg';
 import { Button } from '@/components/button';
 import { ErrorMessage } from '@/components/error-message';
+import { Meta } from '@/components/meta';
 import { FooterSection } from '@/components/sections/footer-section';
 import { Time } from '@/components/time';
 import { usePost } from '@/hooks/usePost';
@@ -102,6 +103,9 @@ export function Article(): JSX.Element {
   const { slug } = useParams();
   const { post, error } = usePost(slug, 'blogPost');
 
+  const metaTitle = post ? `${post.fields.title}` : 'Article';
+  const metaDescription = post ? `${post.fields.title}` : 'Article - Tom Blaymire';
+
   const renderPost = () => {
     if (post) {
       const { title, body } = post.fields;
@@ -118,6 +122,7 @@ export function Article(): JSX.Element {
 
   return (
     <>
+      <Meta title={metaTitle} description={metaDescription} />
       <Grid>
         <PageRow>
           <Col size={12}>

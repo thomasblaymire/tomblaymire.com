@@ -1,5 +1,3 @@
-import styled from 'styled-components';
-
 import { Meta } from '@/components/meta';
 import { Posts } from '@/components/posts';
 import { FooterSection } from '@/components/sections/footer-section';
@@ -10,7 +8,7 @@ import { Col, Grid, PageRow } from '@/styles/grid';
 export function Articles() {
   return (
     <>
-      {/* <Meta /> */}
+      <Meta title="Articles - Tom Blaymire" description={heroDescription} />
       <div>
         <HeroSection
           title={heroTitle}

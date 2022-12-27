@@ -1,11 +1,18 @@
-import favicon from '@/assets/favicon.ico';
+import { Helmet } from 'react-helmet';
 
-export function Meta({ title, description }: any) {
+import favicon from '@/assets/me.png';
+
+interface MetaProps {
+  title: string;
+  description: string;
+}
+
+export function Meta({ title, description }: MetaProps) {
   return (
-    <head>
+    <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
       <link rel="icon" href={favicon} />
-    </head>
+    </Helmet>
   );
 }

@@ -1,5 +1,6 @@
 export const heroTitle = `Software I use, hardware, themes and plugins I recommend.`;
 export const heroDescription = `I use a whole host of different tools to assist me with general development and help me stay productive in my role. Also who doesn't love a kick ass color theme! `;
+export const metaTitle = 'Uses - Tom Blaymire';
 export const uses = [
   {
     name: 'Workstation',
