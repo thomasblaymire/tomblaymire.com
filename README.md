@@ -15,7 +15,8 @@
 
 TBC
 
-##  Built With
+## Built With
+
 - Vite
 - Typescript
 - React
@@ -47,3 +48,4 @@ $ yarn build
 
 # Run ESLint
 $ yarn lint:fix
+```
