@@ -71,6 +71,7 @@ const StyledInset = styled.div`
     background: rgba(39, 39, 42, 0.5);
     opacity: 1;
     border-radius: 1rem;
+    transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(1) scaleY(1.2);
   }
 `;
 
