@@ -17,7 +17,6 @@ const StyledPost = styled.article`
 
   h2 {
     color: rgb(244 244 245 / 1);
-    letter-spacing: -0.025em;
     font-weight: 600;
     font-size: 1.75rem;
     line-height: 1.75rem;
@@ -100,13 +99,11 @@ interface Post {
 }
 
 export function Post(post: PostProps): JSX.Element {
-  const { title, description, slug } = post.post.fields;
-  const { createdAt } = post.post.sys;
-
+  const { title, description, slug, publishDate } = post.post.fields;
   return (
     <StyledPost>
       <Link to={`/articles/${slug}`}>
-        {createdAt ? <Time dateTime={createdAt} /> : null}
+        {publishDate ? <Time dateTime={publishDate} /> : null}
         <h2>
           <StyledInset />
           <StyledTitle>{title}</StyledTitle>

@@ -129,12 +129,11 @@ export function Project(): JSX.Element {
 
   const renderPost = () => {
     if (post) {
-      const { title, body, link } = post.fields;
-      const { createdAt } = post.sys;
+      const { title, body, link, publishDate } = post.fields;
       return (
         <StyledBlogSection>
           <StyledBlogMeta>
-            <StyledTime dateTime={createdAt} />
+            <StyledTime dateTime={publishDate} />
             <StyledLink href={link} target="_blank">
               <img src={linkIcon} alt={link} />
             </StyledLink>

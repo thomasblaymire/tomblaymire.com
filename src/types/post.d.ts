@@ -42,7 +42,7 @@ export interface Sys {
   space: Space;
   id: string;
   type: string;
-  createdAt?: string;
+  publishDate?: string;
   updatedAt: string;
   environment: Environment;
   revision: number;
@@ -78,7 +78,7 @@ export interface Sys5 {
   space: Space2;
   id: string;
   type: string;
-  createdAt: Date;
+  publishDate: Date;
   updatedAt: Date;
   environment: Environment2;
   revision: number;
@@ -152,7 +152,7 @@ export interface Sys8 {
   space: Space3;
   id: string;
   type: string;
-  createdAt: Date;
+  publishDate: Date;
   updatedAt: Date;
   environment: Environment3;
   revision: number;
@@ -188,7 +188,7 @@ export interface Sys12 {
   space: Space4;
   id: string;
   type: string;
-  createdAt: Date;
+  publishDate: Date;
   updatedAt: Date;
   environment: Environment4;
   revision: number;

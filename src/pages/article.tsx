@@ -106,13 +106,14 @@ export function Article(): JSX.Element {
   const metaTitle = post ? `${post.fields.title}` : 'Article';
   const metaDescription = post ? `${post.fields.title}` : 'Article - Tom Blaymire';
 
+  console.log('debug post', post);
+
   const renderPost = () => {
     if (post) {
-      const { title, body } = post.fields;
-      const { createdAt } = post.sys;
+      const { title, body, publishDate } = post.fields;
       return (
         <StyledBlogSection>
-          <Time dateTime={createdAt} />
+          <Time dateTime={publishDate} />
           <h1>{title}</h1>
           <ReactMarkdown>{body}</ReactMarkdown>
         </StyledBlogSection>
