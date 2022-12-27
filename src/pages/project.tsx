@@ -93,6 +93,8 @@ const StyledBlogMeta = styled.div`
 const StyledArticle = styled.div`
   display: flex;
   align-items: start;
+  flex-wrap: wrap;
+  grid-gap: 2rem;
 `;
 
 const StyledTime = styled(Time)`

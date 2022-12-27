@@ -15,7 +15,7 @@ const StyledButton = styled(Button)`
   background-color: rgb(39 39 42/1);
   border-color: rgba(63, 63, 70, 0.5);
   border-width: 1px;
-  padding: 1.2rem;
+  padding: 1.1rem;
 
   img {
     width: 2.3rem;
@@ -76,6 +76,18 @@ const StyledBlogSection = styled.div`
     height: auto;
     margin-top: 2.5rem;
     margin-bottom: 2.5rem;
+  }
+
+  pre {
+    color: #f4f4f5;
+    font-size: 1.4rem;
+    font-weight: 500;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    overflow-x: auto;
+    border: 1px solid;
+    border-color: hsla(240, 6%, 90%, 0.1);
   }
 `;
 

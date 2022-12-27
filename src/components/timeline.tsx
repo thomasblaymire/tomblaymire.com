@@ -1,11 +1,17 @@
 import styled from 'styled-components';
 
+import { device } from '@/helpers/device';
+
 const StyledTimeLine = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(1, minmax(0, 1fr));
   row-gap: 2rem;
   align-items: baseline;
   max-width: 68rem;
+
+  @media ${device.tablet} {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 
   h2 {
     color: rgb(244 244 245/1);

@@ -5,19 +5,19 @@ import { FooterSection } from '@/components/sections/footer-section';
 import { ImageSection } from '@/components/sections/image-section';
 import { Socials } from '@/components/socials';
 import { heroTitle } from '@/content/about';
-import { device } from '@/helpers/device';
+import { device, sizes } from '@/helpers/device';
 import { Col, Grid, PageRow } from '@/styles/grid';
 
 const StyledSpacer = styled.div`
   padding-left: 0;
-  @media ${device.tablet} {
+  @media ${device.laptop} {
     padding-left: 10rem;
   }
 `;
 
 const StyledAboutContent = styled.div`
   margin-bottom: 5rem;
-  @media ${device.tablet} {
+  @media ${device.laptop} {
     margin-bottom: 0rem;
   }
 
@@ -30,6 +30,12 @@ const StyledAboutContent = styled.div`
   }
 `;
 
+const StyledAboutCol = styled(Col)`
+  @media (max-width: ${sizes.laptop}) {
+    flex-basis: 100%;
+  }
+`;
+
 export function About() {
   return (
     <>
@@ -39,7 +45,7 @@ export function About() {
       />
       <Grid>
         <PageRow>
-          <Col size={6}>
+          <StyledAboutCol size={6}>
             <StyledAboutContent>
               <h1>{heroTitle}</h1>
               <p>
@@ -74,7 +80,7 @@ export function About() {
                 improvements via our custom <strong>Webpack</strong> configurations.
               </p>
             </StyledAboutContent>
-          </Col>
+          </StyledAboutCol>
           <Col size={6}>
             <StyledSpacer>
               <ImageSection />

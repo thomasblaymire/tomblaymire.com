@@ -2,14 +2,23 @@ import styled from 'styled-components';
 
 import { Project } from '@/components/project';
 import { personalProjects, workExperiences } from '@/content/work';
+import { device } from '@/helpers/device';
 
 const StyledProjectsSection = styled.section`
   padding-bottom: 4rem;
   ul {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(1, minmax(0, 1fr));
     column-gap: 4rem;
-    row-gap: 8rem;
+    row-gap: 4rem;
+    @media ${device.tablet} {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @media ${device.laptop} {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      row-gap: 8rem;
+    }
   }
 
   li {

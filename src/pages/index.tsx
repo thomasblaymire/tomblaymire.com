@@ -23,13 +23,13 @@ const StyledWrapper = styled.main`
   margin-left: 0;
   margin-right: 0;
   padding: 0 2rem;
-  border-left: solid 1px hsla(0, 0%, 100%, 0.1);
-  border-right: solid 1px hsla(0, 0%, 100%, 0.1);
   background: rgb(24 24 27/1);
 
   @media ${device.tablet} {
     margin: 0 5rem;
     padding: 0 5rem;
+    border-left: solid 1px hsla(0, 0%, 100%, 0.1);
+    border-right: solid 1px hsla(0, 0%, 100%, 0.1);
   }
 
   @media ${device.laptopL} {

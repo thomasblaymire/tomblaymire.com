@@ -1,4 +1,4 @@
-import { NavItem } from '@/components/navigation';
+import { NavItem } from '@/types/navigation';
 
 export const navLinks: NavItem[] = [
   { name: 'About', path: '/about' },
