@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 import { Navigation } from '@/components/navigation';
 import { navLinks } from '@/content/links';
-import { Col, Grid, Row } from '@/styles/grid';
+import { device } from '@/helpers/device';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 const StyledFooterSection = styled.section`
   padding-bottom: 8rem;
@@ -26,9 +27,10 @@ const StyledFooterCopyright = styled.div`
 const StyledFooterNavigation = styled(Navigation)``;
 
 export function FooterSection() {
+  const isTablet = useMediaQuery(device.tablet);
   return (
     <StyledFooterSection>
-      <StyledFooterNavigation items={navLinks} type="basic" />
+      {isTablet ? <StyledFooterNavigation items={navLinks} type="basic" /> : null}
       <StyledFooterCopyright className="col-span-full mt-24 text-lg text-gray-500 dark:text-slate-500 md:mt-44">
         <p>{`© Tom Blaymire ${new Date().getFullYear()}`}. All rights reserved.</p>
       </StyledFooterCopyright>
