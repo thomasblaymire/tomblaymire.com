@@ -4180,6 +4180,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-ga4@npm:^1.4.1":
+  version: 1.4.1
+  resolution: "react-ga4@npm:1.4.1"
+  checksum: 4c33ecb47dfc26c241a6af8e2b08b29b6c059f40e456e93d1c2b65c995edce18f32d9777295774ec992d968d7c5efdd105eb62398972d85ff2e2b6dad8646a26
+  languageName: node
+  linkType: hard
+
 "react-helmet@npm:^6.1.0":
   version: 6.1.0
   resolution: "react-helmet@npm:6.1.0"
@@ -5178,6 +5185,7 @@ __metadata:
     react: ^17.0.2
     react-dom: ^17.0.2
     react-error-boundary: ^3.1.4
+    react-ga4: ^1.4.1
     react-helmet: ^6.1.0
     react-markdown: ^8.0.4
     react-router-dom: ^6.4.4
