@@ -23,13 +23,13 @@ const StyledHeroContent = styled.div`
 `;
 
 const StyledSectionTitle = styled.h1`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textHeading};
   margin-top: 2.25rem;
 `;
 
 const StylesSectionDescription = styled.p`
   margin-top: 1.75rem;
-  color: ${({ theme }) => theme.colors.textColorSub};
+  color: ${({ theme }) => theme.colors.textColor};
 `;
 
 const StylesSectionSocials = styled.h1``;

@@ -21,8 +21,12 @@ const StyledAboutContent = styled.div`
     margin-bottom: 0rem;
   }
 
+  h1 {
+    color: ${({ theme }) => theme.colors.textHeading};
+  }
+
   p {
-    color: ${({ theme }) => theme.colors.textColorSub};
+    color: ${({ theme }) => theme.colors.textColor};
     &:not(:first-child) {
       margin-top: calc(3.5rem * calc(1 - 0));
       margin-bottom: calc(3.5rem * 0);

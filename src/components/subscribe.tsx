@@ -30,7 +30,7 @@ const StyledInputWrapper = styled.div`
 `;
 
 const StyledSubscribeButton = styled(Button)`
-  color: rgb(244 244 245 /1);
+  color: ${({ theme }) => theme.colors.textHeading};
   background: rgb(63 63 70/1);
   line-height: 1.5rem;
   font-size: 1.5rem;

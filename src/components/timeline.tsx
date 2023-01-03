@@ -14,7 +14,7 @@ const StyledTimeLine = styled.div`
   }
 
   h2 {
-    color: rgb(244 244 245/1);
+    color: ${({ theme }) => theme.colors.textHeading};
     font-weight: 600;
     line-height: 1.5rem;
     margin: 0;
@@ -42,6 +42,7 @@ const StyledTimeLineItem = styled.div`
 `;
 
 export function TimeLineItem({ items }: any) {
+  console.log('debug items', items);
   return (
     <StyledTimeLineItem>
       <ul>

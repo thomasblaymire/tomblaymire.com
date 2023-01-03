@@ -36,7 +36,6 @@ const StyledToggleButton = styled(Button)`
 
 export function ThemeToggle({ toggleTheme, theme }: ThemeToggleProps) {
   const handleToggle = () => toggleTheme();
-
   return (
     <StyledThemeToggle>
       <StyledToggleButton onClick={handleToggle} color="base">

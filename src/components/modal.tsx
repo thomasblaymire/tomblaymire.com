@@ -42,7 +42,7 @@ const StyledModalContainer = styled.div<StyledModalProps>`
 
 const StyledModal = styled.div`
   z-index: 100;
-  background: rgb(24 24 27/1);
+  background: ${({ theme }) => theme.colors.tertiary};
   border-radius: 2.5rem;
   position: relative;
   margin: 1.75rem auto;

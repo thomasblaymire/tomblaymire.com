@@ -23,7 +23,7 @@ const StyledWrapper = styled.main`
   margin-left: 0;
   margin-right: 0;
   padding: 0 2rem;
-  background: rgb(24 24 27/1);
+  background: ${({ theme }) => theme.colors.tertiary};
 
   @media ${device.tablet} {
     margin: 0 5rem;

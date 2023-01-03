@@ -19,7 +19,7 @@ const StyledTimeLineSection = styled.section`
     line-height: 1.75rem;
     font-weight: 600;
     margin-top: 2.5rem;
-    color: rgb(244 244 245/1);
+    color: ${({ theme }) => theme.colors.textHeading};
   }
 
   h3 {

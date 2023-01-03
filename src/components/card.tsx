@@ -8,7 +8,7 @@ const StyledCard = styled.div`
   border-color: rgba(63, 63, 70, 0.4);
 
   h2 {
-    color: rgb(244 244 245 / 1);
+    color: ${({ theme }) => theme.colors.textHeading};
     font-weight: 600;
     line-height: 1.5rem;
     font-size: 1.5rem;
@@ -16,7 +16,7 @@ const StyledCard = styled.div`
   }
 
   p {
-    color: rgb(161 161 170 / 1);
+    color: ${({ theme }) => theme.colors.textColor};
     line-height: 2.2rem;
     font-size: 1.4rem;
     display: flex;

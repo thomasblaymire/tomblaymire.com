@@ -16,14 +16,14 @@ const StyledPost = styled.article`
   position: relative;
 
   h2 {
-    color: rgb(244 244 245 / 1);
+    color: ${({ theme }) => theme.colors.textHeading};
     font-weight: 600;
     font-size: 1.75rem;
     line-height: 1.75rem;
   }
 
   p {
-    color: rgb(161 161 170 / 1);
+    color: ${({ theme }) => theme.colors.textColor};
     line-height: 2.4rem;
     font-size: 1.4rem;
     margin-top: 1rem;

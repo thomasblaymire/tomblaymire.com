@@ -81,7 +81,7 @@ const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
 `;
 
 export const lightTheme = {
-  body: 'rgb(0 0 0/ 1)',
+  body: 'rgb(246 246 246)',
   text: '#a1a1aa',
   toggleBorder: '#FFF',
   gradient: 'linear-gradient(#39598A, #79D7ED)',
@@ -89,12 +89,11 @@ export const lightTheme = {
   colors: {
     primary: '#FFFFFF',
     secondary: '#000',
-    // tertiary: '#18181b',
-    tertiary: '#eeee;',
+    tertiary: 'rgb(255, 255, 255, 1)',
     quaternary: 'rgb(100, 107, 128)',
-    blue: '#1b6ad2',
     textColorSub: 'rgb(82, 82, 91, 1)',
-    textColor: 'rgb(39, 39, 42, 1)',
+    textColor: 'rgb(82, 82, 91, 1)',
+    textHeading: 'rgb(39, 39, 42, 1)',
     // control-border-color: #40424e;
     // control-background-color: #222531;
     // control-caret-color: #858ca2;
@@ -141,11 +140,10 @@ const darkTheme = {
   colors: {
     primary: '#18181b',
     secondary: '#000',
-    tertiary: '#18181b',
+    tertiary: 'rgb(24, 24, 27, 1)',
     quaternary: 'rgb(100, 107, 128)',
-    blue: '#1b6ad2',
-    textColorSub: 'rgb(161, 161, 170, 1)',
-    textColor: 'rgb(244, 244, 245, 1)',
+    textColor: 'rgb(161, 161, 170, 1)',
+    textHeading: 'rgb(244, 244, 245, 1)',
   },
   borders: {
     primary: 'rgb(34, 37, 49)',

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import { ErrorMessage } from '@/components/error-message';
-import { Loading } from '@/components/loading';
 import { Post } from '@/components/post';
 import { usePosts } from '@/hooks/usePosts';
 import { PostInterface } from '@/types/post';
