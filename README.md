@@ -13,18 +13,22 @@
 
 ## Screenshot
 
-TBC
+![](https://github.com/thomasblaymire/tomblaymire.com/blob/main/home.png)
 
 ## Built With
 
-- Vite
 - Typescript
 - React
+- Hooks
+- Vite
 - Styled Components
+- Contentful API
 
 ## Future Plans
 
-TBC
+- Abstract static data for pages into Contentful
+- Additional SEO enhancements
+- Themeing variable refactor
 
 ## How To Use
 
