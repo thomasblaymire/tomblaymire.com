@@ -41,12 +41,30 @@ const StyledTimeLineItem = styled.div`
   }
 `;
 
-export function TimeLineItem({ items }: any) {
+type Item = {
+  description: string;
+  title: string;
+};
+
+type Use = {
+  items: Item[];
+  name: string;
+};
+
+interface TimeLineItemProps {
+  items: Item[];
+}
+
+interface TimeLineProps {
+  use: Use;
+}
+
+export function TimeLineItem({ items }: TimeLineItemProps) {
   console.log('debug items', items);
   return (
     <StyledTimeLineItem>
       <ul>
-        {items.map((item: any, index: any) => (
+        {items.map((item: Item, index: number) => (
           <li key={index}>
             <h3>{item.title}</h3>
             <p>{item.description}</p>
@@ -57,7 +75,7 @@ export function TimeLineItem({ items }: any) {
   );
 }
 
-export function TimeLine({ use }: any): JSX.Element {
+export function TimeLine({ use }: TimeLineProps): JSX.Element {
   const { items } = use;
   return (
     <StyledTimeLine>
