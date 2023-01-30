@@ -60,7 +60,6 @@ interface TimeLineProps {
 }
 
 export function TimeLineItem({ items }: TimeLineItemProps) {
-  console.log('debug items', items);
   return (
     <StyledTimeLineItem>
       <ul>
