@@ -1,4 +1,3 @@
-import { ReactElement } from 'react';
 import styled from 'styled-components';
 
 const StyledCard = styled.div`
@@ -25,7 +24,7 @@ const StyledCard = styled.div`
 `;
 
 interface CardProps {
-  children: ReactElement;
+  children: React.ReactNode;
   className?: string;
 }
 

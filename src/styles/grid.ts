@@ -1,4 +1,4 @@
-import { ReactChildren, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import styled from 'styled-components';
 
 import { device } from '@/helpers/device';
@@ -6,7 +6,7 @@ import { device } from '@/helpers/device';
 interface ColumnProps {
   size: number;
   collapse?: number;
-  children?: ReactNode | ReactChildren;
+  children?: ReactNode;
 }
 
 interface MediaOptions {
@@ -16,8 +16,6 @@ interface MediaOptions {
   lg: (styles: number) => string;
   xl: (styles: number) => string;
 }
-
-// type Collapse = [key: string];
 
 const media: MediaOptions = {
   xs: (styles: number) => `
