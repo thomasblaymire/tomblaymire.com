@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 export type BlogPostFields = {
   title: string;
-  body: any;
+  body: string;
   publishDate: string;
   link: string;
 };

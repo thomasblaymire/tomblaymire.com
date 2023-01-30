@@ -106,8 +106,6 @@ export function Article(): JSX.Element {
   const metaTitle = post ? `${post.fields.title}` : 'Article';
   const metaDescription = post ? `${post.fields.title}` : 'Article - Tom Blaymire';
 
-  console.log('debug post', post);
-
   const renderPost = () => {
     if (post) {
       const { title, body, publishDate } = post.fields;

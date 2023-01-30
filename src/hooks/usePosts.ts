@@ -1,4 +1,4 @@
-import { createClient, Entry, EntryCollection } from 'contentful';
+import { createClient, Entry } from 'contentful';
 import { useEffect, useState } from 'react';
 
 import { PostInterface } from '@/types/post';

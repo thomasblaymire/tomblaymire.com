@@ -37,7 +37,7 @@ export const StyledButton = styled.button<ButtonProps>`
 `;
 
 export type ButtonProps = {
-  onClick?: () => void;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   children?: React.ReactNode;
   color?: 'primary' | 'secondary' | 'base' | 'link';
   disabled?: boolean;
