@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
 import { Button } from '@/components/button';
 import { Time } from '@/components/time';
 import { PostInterface } from '@/types/post';
+import { Link } from 'react-router-dom';
 
 interface PostProps {
   post: PostInterface;
@@ -26,7 +26,7 @@ export function Post(post: PostProps): JSX.Element {
           <span className="left-[-1.5rem] right-[-1.5rem] z-20 absolute rounded-[1rem]" />
         </h2>
         <p>{description}</p>
-        <Button 
+        <Button
           color="link"
           className="mt-6 text-[rgb(20,184,166)] flex items-center text-[1.5rem] font-extrabold p-0 [&_svg]:stroke-[rgb(20,184,166)] [&_svg]:w-[2.6rem] [&_svg]:h-[2.2rem]"
         >

@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
 import { PersonalProjectItem } from '@/content/work';
+import { Link } from 'react-router-dom';
 
 interface ProjectProps {
   project: PersonalProjectItem;
@@ -8,7 +8,7 @@ interface ProjectProps {
 export function Project({ project }: ProjectProps): JSX.Element {
   const { image, name, link, linkText, shortDescription } = project;
   return (
-    <Link 
+    <Link
       to={linkText}
       className="box-border p-4 px-2 rounded-[1rem] transition-all duration-[0.4s] ease-in-out tablet:p-4 hover:shadow-[rgb(0_0_0_/_10%)_-1px_10px_19px_0px] hover:bg-[rgba(39,39,42,0.5)]"
     >

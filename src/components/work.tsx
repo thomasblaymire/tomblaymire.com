@@ -16,9 +16,11 @@ const WorkItem = ({ item }: WorkItemProps): JSX.Element => {
         <dt className="sr-only">Company</dt>
         <dd className="flex-none w-full text-[1.35rem] leading-[1.5rem]">{name}</dd>
         <dt className="sr-only">Role</dt>
-        <dd className="text-[rgb(161,161,170)] text-[1.3rem] font-normal leading-[1.5rem]">{jobTitle}</dd>
+        <dd className="text-[rgb(161,161,170)] text-[1.3rem] font-normal leading-[1.5rem]">
+          {jobTitle}
+        </dd>
         <dt className="sr-only">Date</dt>
-        <dd 
+        <dd
           className="ml-auto text-[rgb(161,161,170)] text-[1.3rem] font-normal leading-[1.5rem]"
           aria-label={`${dateFrom} until ${dateTo}`}
         >
