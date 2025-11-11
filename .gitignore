@@ -6,3 +6,7 @@ dist-ssr
 node_modules/*
 .yarn
 .env
+MODERNIZATION_PLAN.md
+package.json.backup
+*.backup
+.vscode/settings.json
