@@ -29,7 +29,7 @@ export function Project(): JSX.Element {
             <a
               href={link}
               target="_blank"
-              className="flex items-center text-[rgb(228,228,231)] font-medium mt-6 text-[1.5rem] leading-8 text-[rgb(161,161,170)] z-10 relative [&_img]:rounded-none [&_img]:m-0"
+              className="flex items-center font-medium mt-6 text-[1.5rem] leading-8 text-[rgb(82,82,91)] dark:text-[rgb(161,161,170)] z-10 relative [&_img]:rounded-none [&_img]:m-0"
             >
               <img src={linkIcon} alt={link} />
             </a>
