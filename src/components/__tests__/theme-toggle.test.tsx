@@ -1,6 +1,8 @@
+import { describe, expect, it, vi } from 'vitest';
+
 import { THEME } from '@/helpers/theme';
 import { renderWithProviders, userEvent } from '@/test/test-utils';
-import { describe, expect, it, vi } from 'vitest';
+
 import { ThemeToggle } from '../theme-toggle';
 
 describe('ThemeToggle', () => {

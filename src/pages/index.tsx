@@ -1,8 +1,9 @@
+import { ErrorBoundary } from 'react-error-boundary';
+import { BrowserRouter } from 'react-router-dom';
+
 import { ErrorFallback } from '@/components/error-fallback';
 import { Header } from '@/components/header';
 import { Router } from '@/routes';
-import { ErrorBoundary } from 'react-error-boundary';
-import { BrowserRouter } from 'react-router-dom';
 
 interface BaseAppProps {
   toggleTheme: () => void;

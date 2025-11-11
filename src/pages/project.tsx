@@ -1,3 +1,6 @@
+import ReactMarkdown from 'react-markdown';
+import { useNavigate, useParams } from 'react-router-dom';
+
 import backIcon from '@/assets/icons/left.svg';
 import linkIcon from '@/assets/icons/link.svg';
 import { Button } from '@/components/button';
@@ -7,8 +10,6 @@ import { FooterSection } from '@/components/sections/footer-section';
 import { Time } from '@/components/time';
 import { usePost } from '@/hooks/usePost';
 import { Col, Grid, PageRow } from '@/styles/grid';
-import ReactMarkdown from 'react-markdown';
-import { useNavigate, useParams } from 'react-router-dom';
 
 export function Project(): JSX.Element {
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ export function Project(): JSX.Element {
               href={link}
               target="_blank"
               className="flex items-center font-medium mt-6 text-[1.5rem] leading-8 text-[rgb(82,82,91)] dark:text-[rgb(161,161,170)] z-10 relative [&_img]:rounded-none [&_img]:m-0"
+              rel="noreferrer"
             >
               <img src={linkIcon} alt={link} />
             </a>

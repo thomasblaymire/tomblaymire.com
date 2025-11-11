@@ -1,4 +1,4 @@
-import { createClient, Entry } from 'contentful';
+import { createClient } from 'contentful';
 import { useEffect, useState } from 'react';
 
 import { PostInterface } from '@/types/post';
@@ -16,7 +16,7 @@ export const usePosts = () => {
   useEffect(() => {
     const getPosts = async () => {
       try {
-        const { items }: any = await client.getEntries({
+        const { items } = await client.getEntries({
           content_type: 'blogPost',
         });
         setPosts(items);

@@ -1,6 +1,8 @@
-import { THEME } from '@/helpers/theme';
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { THEME } from '@/helpers/theme';
+
 import { useLightMode } from '../useLightMode';
 
 describe('useLightMode', () => {

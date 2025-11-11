@@ -1,9 +1,10 @@
+import './styles/globals.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import ReactGA from 'react-ga4';
 
 import App from './App';
-import './styles/globals.css';
 
 // Set dark mode as default
 if (!localStorage.getItem('theme')) {

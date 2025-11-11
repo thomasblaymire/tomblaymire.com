@@ -1,8 +1,8 @@
-interface ErrorMessage {
+interface ErrorMessageProps {
   error: Error;
 }
 
-export function ErrorMessage({ error, ...props }: ErrorMessage) {
+export function ErrorMessage({ error, ...props }: ErrorMessageProps) {
   return (
     <div role="alert" {...props}>
       <span>There was an error: </span>

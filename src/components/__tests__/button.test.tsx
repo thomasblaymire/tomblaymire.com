@@ -1,5 +1,7 @@
-import { renderWithProviders, userEvent } from '@/test/test-utils';
 import { describe, expect, it, vi } from 'vitest';
+
+import { renderWithProviders, userEvent } from '@/test/test-utils';
+
 import { Button } from '../button';
 
 describe('Button', () => {

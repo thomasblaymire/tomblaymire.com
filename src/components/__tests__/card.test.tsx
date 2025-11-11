@@ -1,5 +1,7 @@
-import { renderWithProviders } from '@/test/test-utils';
 import { describe, expect, it } from 'vitest';
+
+import { renderWithProviders } from '@/test/test-utils';
+
 import { Card } from '../card';
 
 describe('Card', () => {

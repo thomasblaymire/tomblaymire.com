@@ -1,3 +1,6 @@
+import ReactMarkdown from 'react-markdown';
+import { useNavigate, useParams } from 'react-router-dom';
+
 import backIcon from '@/assets/icons/left.svg';
 import { Button } from '@/components/button';
 import { ErrorMessage } from '@/components/error-message';
@@ -6,8 +9,6 @@ import { FooterSection } from '@/components/sections/footer-section';
 import { Time } from '@/components/time';
 import { usePost } from '@/hooks/usePost';
 import { Col, Grid, PageRow } from '@/styles/grid';
-import ReactMarkdown from 'react-markdown';
-import { useNavigate, useParams } from 'react-router-dom';
 
 export function Article(): JSX.Element {
   const navigate = useNavigate();

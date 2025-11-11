@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { THEME } from '../theme';
 
 describe('THEME enum', () => {

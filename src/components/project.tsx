@@ -1,5 +1,6 @@
-import { PersonalProjectItem } from '@/content/work';
 import { Link } from 'react-router-dom';
+
+import { PersonalProjectItem } from '@/content/work';
 
 interface ProjectProps {
   project: PersonalProjectItem;

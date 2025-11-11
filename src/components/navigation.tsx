@@ -1,15 +1,12 @@
+import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+
 import { Button } from '@/components/button';
 import { Modal } from '@/components/modal';
 import { device } from '@/helpers/device';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
-import {
-  NavbarProps,
-  NavigationMobileProps,
-  NavigationProps,
-  NavItem,
-} from '@/types/navigation';
-import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavigationMobileProps, NavigationProps, NavItem } from '@/types/navigation';
+
 import { cn } from '../helpers/cn';
 
 function renderNavItems(

@@ -12,7 +12,7 @@ export const getAuthor = async () => {
       select: 'fields',
     });
 
-    const sanitizedEntries = entries.items.map((item: any) => {
+    const sanitizedEntries = entries.items.map((item) => {
       const avatar = item.fields.avatar.fields;
       return {
         ...item.fields,

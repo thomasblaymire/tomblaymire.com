@@ -1,4 +1,5 @@
 import js from '@eslint/js';
+import globals from 'globals';
 import tsPlugin from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 import react from 'eslint-plugin-react';
@@ -20,9 +21,10 @@ export default [
         },
       },
       globals: {
-        browser: true,
-        amd: true,
-        node: true,
+        ...globals.browser,
+        ...globals.node,
+        React: 'readonly',
+        JSX: 'readonly',
       },
     },
     settings: {
@@ -48,6 +50,7 @@ export default [
       '@typescript-eslint/explicit-function-return-type': 'off',
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error',
+      'no-undef': 'off', // TypeScript handles this
       'jsx-a11y/anchor-is-valid': [
         'error',
         {
@@ -56,6 +59,21 @@ export default [
           aspects: ['invalidHref', 'preferButton'],
         },
       ],
+    },
+  },
+  {
+    files: ['**/__tests__/**', '**/*.test.{ts,tsx}', '**/*.d.ts'],
+    rules: {
+      '@typescript-eslint/no-unused-vars': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
+      'no-redeclare': 'off',
+      'no-constant-binary-expression': 'off',
+    },
+  },
+  {
+    files: ['**/*.d.ts'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
     },
   },
   {

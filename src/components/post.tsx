@@ -1,17 +1,11 @@
+import { Link } from 'react-router-dom';
+
 import { Button } from '@/components/button';
 import { Time } from '@/components/time';
 import { PostInterface } from '@/types/post';
-import { Link } from 'react-router-dom';
 
 interface PostProps {
   post: PostInterface;
-}
-
-interface Post {
-  date: string;
-  title: string;
-  shortMessage: string;
-  link: string;
 }
 
 export function Post(post: PostProps): JSX.Element {
