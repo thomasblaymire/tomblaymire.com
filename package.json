@@ -11,6 +11,7 @@
     "type-check": "tsc"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
     "contentful": "^9.2.15",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -20,9 +21,11 @@
     "react-markdown": "^9.0.1",
     "react-router-dom": "^6.28.0",
     "styled-components": "^6.1.13",
+    "tailwind-merge": "^3.4.0",
     "url": "^0.11.4"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.19",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@types/react-helmet": "^6.1.11",
@@ -30,6 +33,7 @@
     "@typescript-eslint/eslint-plugin": "^8.14.0",
     "@typescript-eslint/parser": "^8.14.0",
     "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.22",
     "eslint": "^9.15.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.31.0",
@@ -37,8 +41,10 @@
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-simple-import-sort": "^12.1.1",
+    "postcss": "^8.5.6",
     "pre-commit": "^1.2.2",
     "prettier": "^3.3.3",
+    "tailwindcss": "^4.1.17",
     "typescript": "^5.7.2",
     "vite": "^6.0.1",
     "vite-plugin-react-markdown": "^0.2.10"
