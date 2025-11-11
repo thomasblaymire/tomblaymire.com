@@ -11,7 +11,7 @@ interface PostProps {
 export function Post(post: PostProps): JSX.Element {
   const { title, description, slug, publishDate } = post.post.fields;
   return (
-    <article className="text-[1.5rem] relative flex justify-center flex-col items-start [&_h2]:text-[rgb(39,39,42)] dark:[&_h2]:text-[rgb(244,244,245)] [&_h2]:font-semibold [&_h2]:text-[1.75rem] [&_h2]:leading-[1.75rem] [&_p]:text-[rgb(82,82,91)] dark:[&_p]:text-[rgb(161,161,170)] [&_p]:leading-[2.4rem] [&_p]:text-[1.4rem] [&_p]:mt-4 [&_p]:z-10">
+    <article className="text-[1.5rem] relative flex justify-center flex-col items-start [&_h2]:text-[rgb(244,244,245)] dark:[&_h2]:text-[rgb(244,244,245)] [&_h2]:font-semibold [&_h2]:text-[1.75rem] [&_h2]:leading-[1.75rem] [&_p]:text-[rgb(82,82,91)] dark:[&_p]:text-[rgb(161,161,170)] [&_p]:leading-[2.4rem] [&_p]:text-[1.4rem] [&_p]:mt-4 [&_p]:z-10">
       <Link to={`/articles/${slug}`}>
         {publishDate ? <Time dateTime={publishDate} /> : null}
         <h2>

@@ -14,7 +14,9 @@ const WorkItem = ({ item }: WorkItemProps): JSX.Element => {
       </div>
       <dl className="flex flex-auto flex-wrap gap-x-2">
         <dt className="sr-only">Company</dt>
-        <dd className="flex-none w-full text-[1.35rem] leading-[1.5rem]">{name}</dd>
+        <dd className="flex-none w-full text-[1.35rem] leading-[1.5rem] text-[rgb(244,244,245)] dark:text-[rgb(244,244,245)]">
+          {name}
+        </dd>
         <dt className="sr-only">Role</dt>
         <dd className="text-[rgb(161,161,170)] text-[1.3rem] font-normal leading-[1.5rem]">
           {jobTitle}

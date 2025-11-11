@@ -76,7 +76,7 @@ export function Navigation({ items, type }: NavigationProps): JSX.Element {
         <nav
           className={cn(
             '[&_ul]:list-none [&_ul]:flex [&_ul]:bg-[rgba(39,39,42,0.9)] [&_ul]:border [&_ul]:border-[hsla(0,0%,100%,0.1)] [&_ul]:px-4 [&_ul]:rounded-full',
-            '[&_li]:leading-[1.5rem] [&_li]:font-normal [&_li]:text-[1.4rem] [&_li]:px-5 [&_li]:py-5 [&_li:hover]:text-[rgb(20,184,166)]',
+            '[&_li]:leading-[1.5rem] [&_li]:font-normal [&_li]:text-[1.4rem] [&_li]:px-5 [&_li]:py-5 [&_li]:text-[rgb(212,212,216)] [&_li:hover]:text-[rgb(20,184,166)]',
             type === 'basic' && '[&_ul]:bg-transparent [&_ul]:border-none [&_ul]:p-0',
           )}
         >

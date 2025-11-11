@@ -20,6 +20,11 @@ export function Project(): JSX.Element {
   const metaTitle = post ? `Project - ${post.fields.title}` : 'Project';
   const metaDescription = post ? `${post.fields.title}` : 'Project - Tom Blaymire';
 
+  const fullPost = post as any;
+  const metaImage = fullPost?.fields?.heroImage?.fields?.file?.url
+    ? `https:${fullPost.fields.heroImage.fields.file.url}`
+    : undefined;
+
   const renderPost = () => {
     if (post) {
       const { title, body, link, publishDate } = post.fields;
@@ -45,7 +50,12 @@ export function Project(): JSX.Element {
 
   return (
     <>
-      <Meta title={metaTitle} description={metaDescription} />
+      <Meta
+        title={metaTitle}
+        description={metaDescription}
+        image={metaImage}
+        type="website"
+      />
       <Grid>
         <PageRow>
           <Col size={12}>

@@ -19,6 +19,14 @@ export function Article(): JSX.Element {
   const metaTitle = post ? `${post.fields.title}` : 'Article';
   const metaDescription = post ? `${post.fields.title}` : 'Article - Tom Blaymire';
 
+  const fullPost = post as any;
+  const metaImage = fullPost?.fields?.heroImage?.fields?.file?.url
+    ? `https:${fullPost.fields.heroImage.fields.file.url}`
+    : undefined;
+  const metaAuthor = fullPost?.fields?.author?.fields?.name || 'Tom Blaymire';
+  const metaPublishDate = fullPost?.fields?.publishDate;
+  const metaKeywords = fullPost?.fields?.tags || [];
+
   const renderPost = () => {
     if (post) {
       const { title, body, publishDate } = post.fields;
@@ -34,7 +42,15 @@ export function Article(): JSX.Element {
 
   return (
     <>
-      <Meta title={metaTitle} description={metaDescription} />
+      <Meta
+        title={metaTitle}
+        description={metaDescription}
+        image={metaImage}
+        type="article"
+        author={metaAuthor}
+        publishedTime={metaPublishDate}
+        keywords={metaKeywords}
+      />
       <Grid>
         <PageRow>
           <Col size={12}>
