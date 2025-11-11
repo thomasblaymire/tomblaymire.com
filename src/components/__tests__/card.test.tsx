@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest';
 import { renderWithProviders } from '@/test/test-utils';
+import { describe, expect, it } from 'vitest';
 import { Card } from '../card';
 
 describe('Card', () => {
@@ -8,18 +8,16 @@ describe('Card', () => {
       <Card>
         <h2>Test Title</h2>
         <p>Test content</p>
-      </Card>
+      </Card>,
     );
-    
+
     expect(getByText('Test Title')).toBeInTheDocument();
     expect(getByText('Test content')).toBeInTheDocument();
   });
 
   it('should apply default styling', () => {
-    const { container } = renderWithProviders(
-      <Card>Content</Card>
-    );
-    
+    const { container } = renderWithProviders(<Card>Content</Card>);
+
     const card = container.firstChild as HTMLElement;
     expect(card).toHaveClass('p-[2.5rem]');
     expect(card).toHaveClass('border');
@@ -28,18 +26,18 @@ describe('Card', () => {
 
   it('should apply custom className', () => {
     const { container } = renderWithProviders(
-      <Card className="custom-class">Content</Card>
+      <Card className="custom-class">Content</Card>,
     );
-    
+
     const card = container.firstChild as HTMLElement;
     expect(card).toHaveClass('custom-class');
   });
 
   it('should merge custom className with default styles', () => {
     const { container } = renderWithProviders(
-      <Card className="bg-blue-500">Content</Card>
+      <Card className="bg-blue-500">Content</Card>,
     );
-    
+
     const card = container.firstChild as HTMLElement;
     expect(card).toHaveClass('p-[2.5rem]'); // default style
     expect(card).toHaveClass('bg-blue-500'); // custom style

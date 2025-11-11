@@ -58,7 +58,7 @@ describe('Button', () => {
     const { getByText } = renderWithProviders(
       <Button onClick={handleClick}>Click me</Button>
     );
-    
+
     await user.click(getByText('Click me'));
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
@@ -90,6 +90,7 @@ describe('cn utility', () => {
 ## Coverage
 
 Coverage reports are generated in the `coverage/` directory. Aim for:
+
 - **Statements**: 80%+
 - **Branches**: 75%+
 - **Functions**: 80%+

@@ -1,5 +1,5 @@
-import { describe, it, expect, vi } from 'vitest';
 import { renderWithProviders, userEvent } from '@/test/test-utils';
+import { describe, expect, it, vi } from 'vitest';
 import { Button } from '../button';
 
 describe('Button', () => {
@@ -12,9 +12,9 @@ describe('Button', () => {
     const handleClick = vi.fn();
     const user = userEvent.setup();
     const { getByText } = renderWithProviders(
-      <Button onClick={handleClick}>Click me</Button>
+      <Button onClick={handleClick}>Click me</Button>,
     );
-    
+
     await user.click(getByText('Click me'));
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
@@ -23,9 +23,11 @@ describe('Button', () => {
     const handleClick = vi.fn();
     const user = userEvent.setup();
     const { getByText } = renderWithProviders(
-      <Button onClick={handleClick} disabled>Click me</Button>
+      <Button onClick={handleClick} disabled>
+        Click me
+      </Button>,
     );
-    
+
     await user.click(getByText('Click me'));
     expect(handleClick).not.toHaveBeenCalled();
   });
@@ -38,32 +40,28 @@ describe('Button', () => {
 
   it('should apply secondary color when specified', () => {
     const { getByText } = renderWithProviders(
-      <Button color="secondary">Click me</Button>
+      <Button color="secondary">Click me</Button>,
     );
     const button = getByText('Click me');
     expect(button).toHaveClass('text-black');
   });
 
   it('should apply base color when specified', () => {
-    const { getByText } = renderWithProviders(
-      <Button color="base">Click me</Button>
-    );
+    const { getByText } = renderWithProviders(<Button color="base">Click me</Button>);
     const button = getByText('Click me');
     expect(button).toHaveClass('bg-[rgba(39,39,42,0.9)]');
   });
 
   it('should apply custom className', () => {
     const { getByText } = renderWithProviders(
-      <Button className="custom-class">Click me</Button>
+      <Button className="custom-class">Click me</Button>,
     );
     const button = getByText('Click me');
     expect(button).toHaveClass('custom-class');
   });
 
   it('should have disabled state styling when disabled', () => {
-    const { getByText } = renderWithProviders(
-      <Button disabled>Click me</Button>
-    );
+    const { getByText } = renderWithProviders(<Button disabled>Click me</Button>);
     const button = getByText('Click me');
     expect(button).toHaveClass('cursor-not-allowed');
     expect(button).toBeDisabled();

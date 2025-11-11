@@ -18,11 +18,15 @@ function HeroSection({ title, description, socials, logo }: HeroSectionProps) {
           </Row>
           <Row>
             <Col size={1}>
-              <h1 className="text-[rgb(39,39,42)] dark:text-[rgb(244,244,245)] mt-9">{title}</h1>
+              <h1 className="text-[rgb(39,39,42)] dark:text-[rgb(244,244,245)] mt-9">
+                {title}
+              </h1>
             </Col>
           </Row>
         </Grid>
-        <p className="mt-7 text-[rgb(82,82,91)] dark:text-[rgb(161,161,170)]">{description}</p>
+        <p className="mt-7 text-[rgb(82,82,91)] dark:text-[rgb(161,161,170)]">
+          {description}
+        </p>
         {socials ? <h1>{socials}</h1> : null}
       </div>
     </section>
