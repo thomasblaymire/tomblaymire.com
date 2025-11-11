@@ -1,11 +1,11 @@
 import js from '@eslint/js';
-import globals from 'globals';
 import tsPlugin from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
-import react from 'eslint-plugin-react';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 import prettier from 'eslint-plugin-prettier';
+import react from 'eslint-plugin-react';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
+import globals from 'globals';
 
 export default [
   js.configs.recommended,
