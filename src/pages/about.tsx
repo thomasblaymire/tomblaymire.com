@@ -14,7 +14,7 @@ export function About() {
       />
       <Grid>
         <PageRow>
-          <Col size={6} className="max-laptop:flex-[0_0_100%]">
+          <Col size={6} className="max-laptop:!flex-[0_0_100%]">
             <div className="mb-20 laptop:mb-0 [&_h1]:text-[rgb(244,244,245)] [&_p]:text-text-color [&_p:not(:first-child)]:mt-14">
               <h1>{heroTitle}</h1>
               <p>
@@ -50,7 +50,7 @@ export function About() {
               </p>
             </div>
           </Col>
-          <Col size={6}>
+          <Col size={6} className="max-laptop:!flex-[0_0_100%]">
             <div className="pl-0 laptop:pl-40">
               <ImageSection />
               <Socials />

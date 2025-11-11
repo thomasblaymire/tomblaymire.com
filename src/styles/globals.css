@@ -9,6 +9,7 @@
     line-height: 1.5;
     tab-size: 4;
     height: 100vh;
+    background-color: rgb(0, 0, 0);
   }
 
   body {
@@ -16,6 +17,7 @@
     margin: 0;
     line-height: inherit;
     height: 100%;
+    background-color: rgb(0, 0, 0);
   }
 
   /* Light mode (default) - Exact colors from lightTheme */

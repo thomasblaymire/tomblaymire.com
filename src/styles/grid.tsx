@@ -29,5 +29,5 @@ export const PageRow = ({ children, className = '' }: ContainerProps) => (
 );
 
 export const Col = ({ size, children, className = '' }: ColumnProps) => (
-  <div className={`flex-[${size}] ${className}`}>{children}</div>
+  <div style={{ flex: size }} className={className}>{children}</div>
 );

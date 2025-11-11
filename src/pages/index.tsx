@@ -12,10 +12,10 @@ interface BaseAppProps {
 export function BaseApp({ toggleTheme, theme }: BaseAppProps): JSX.Element {
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <main className="flex justify-center min-h-screen top-0 right-0 bottom-0 left-0 mx-0 my-0 px-50 bg-black tablet:px-5 tablet:border-l tablet:border-r tablet:border-[hsla(0,0%,100%,0.1)] laptopL:mx-60 laptopL:px-40">
-        <div
-          className={`w-full ${theme === 'light' ? 'bg-white' : 'bg-[rgb(24,24,27)]'}`}
-        >
+      <main
+        className={`flex justify-center min-h-screen top-0 right-0 bottom-0 left-0 mx-0 my-0 px-8 tablet:mx-20 tablet:px-20 tablet:border-l tablet:border-r tablet:border-[hsla(0,0%,100%,0.1)] laptopL:mx-60 laptopL:px-40 ${theme === 'light' ? 'bg-white' : 'bg-[rgb(24,24,27)]'}`}
+      >
+        <div className="w-full max-w-[1400px]">
           <ErrorBoundary FallbackComponent={ErrorFallback}>
             <BrowserRouter>
               <Header toggleTheme={toggleTheme} theme={theme} />

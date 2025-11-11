@@ -18,10 +18,10 @@ export function Articles() {
         />
         <Grid>
           <PageRow>
-            <Col size={9}>
+            <Col size={9} className="max-laptop:!flex-[0_0_100%]">
               <Posts />
             </Col>
-            <Col size={4} />
+            <Col size={4} className="max-laptop:!flex-[0_0_100%]" />
           </PageRow>
         </Grid>
         <FooterSection />
