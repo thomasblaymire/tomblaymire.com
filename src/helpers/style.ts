@@ -12,7 +12,7 @@ export enum THEME {
   DARK = 'dark',
 }
 
-const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
+const GlobalStyle = createGlobalStyle`
   *,
   *::after,
   *::before {
