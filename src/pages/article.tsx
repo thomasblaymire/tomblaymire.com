@@ -1,5 +1,3 @@
-import ReactMarkdown from 'react-markdown';
-import { useNavigate, useParams } from 'react-router-dom';
 import backIcon from '@/assets/icons/left.svg';
 import { Button } from '@/components/button';
 import { ErrorMessage } from '@/components/error-message';
@@ -8,6 +6,8 @@ import { FooterSection } from '@/components/sections/footer-section';
 import { Time } from '@/components/time';
 import { usePost } from '@/hooks/usePost';
 import { Col, Grid, PageRow } from '@/styles/grid';
+import ReactMarkdown from 'react-markdown';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export function Article(): JSX.Element {
   const navigate = useNavigate();
@@ -38,7 +38,10 @@ export function Article(): JSX.Element {
         <PageRow>
           <Col size={12}>
             <div className="flex items-start">
-              <Button onClick={handleBack} className="flex bg-[rgb(39,39,42)] border border-[rgba(63,63,70,0.5)] p-[1.1rem] [&_img]:w-[2.3rem]">
+              <Button
+                onClick={handleBack}
+                className="flex bg-[rgb(39,39,42)] border border-[rgba(63,63,70,0.5)] p-[1.1rem] [&_img]:w-[2.3rem]"
+              >
                 <img src={backIcon} alt="Back" />
               </Button>
               {error && <ErrorMessage error={error} />}

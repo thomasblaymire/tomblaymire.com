@@ -20,10 +20,10 @@ export function Home() {
         />
         <Grid>
           <PageRow>
-            <Col size={6} className="max-laptop:flex-[0_0_100%]">
+            <Col size={6} className="max-laptop:!flex-[0_0_100%]">
               <Posts limit={3} />
             </Col>
-            <Col size={5}>
+            <Col size={5} className="max-laptop:!flex-[0_0_100%]">
               <div className="pl-0 pt-20 laptop:pl-40">
                 <Subscribe />
                 <Work />

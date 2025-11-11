@@ -12,7 +12,7 @@ export const useLightMode = () => {
   const setMode = (mode: string) => {
     window.localStorage.setItem('theme', mode);
     setTheme(mode);
-    
+
     if (mode === MODES.DARK) {
       document.documentElement.classList.add('dark');
     } else {

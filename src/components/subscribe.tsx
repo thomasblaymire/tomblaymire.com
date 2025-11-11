@@ -14,7 +14,7 @@ export function Subscribe() {
             aria-label="Email address"
             required
           />
-          <Button className="text-[rgb(244,244,245)] bg-[rgb(63,63,70)] leading-[1.5rem] text-[1.5rem] font-semibold px-3 py-2 rounded-md ml-8 gap-2 flex justify-center items-center hover:bg-[rgb(82,82,91)]">
+          <Button className="text-[rgb(39,39,42)] dark:text-[rgb(244,244,245)] bg-[rgb(63,63,70)] leading-[1.5rem] text-[1.5rem] font-semibold px-3 py-2 rounded-md ml-8 gap-2 flex justify-center items-center hover:bg-[rgb(82,82,91)]">
             Join
           </Button>
         </div>

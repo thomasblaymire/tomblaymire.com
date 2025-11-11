@@ -1,5 +1,5 @@
-import { cn } from '../helpers/cn';
 import spinner from '@/assets/loading.svg';
+import { cn } from '../helpers/cn';
 
 interface LoadingProps {
   position?: string;
@@ -8,10 +8,10 @@ interface LoadingProps {
 }
 
 export const Loading = ({ position, width, height }: LoadingProps): JSX.Element => (
-  <div 
+  <div
     className={cn(
       position === 'center' && 'absolute left-0 right-0 mx-auto text-center',
-      '[&_svg]:text-white'
+      '[&_svg]:text-white',
     )}
     style={{ width, height }}
   >
