@@ -1,38 +1,5 @@
-import styled from 'styled-components';
-
 import { Logo } from '@/components/logo';
-import { device } from '@/helpers/device';
 import { Col, Grid, Row } from '@/styles/grid';
-
-const StyledHeroSection = styled.section`
-  margin-top: 6rem;
-  padding-left: 0rem;
-  padding-bottom: 6rem;
-  border-bottom: 1px solid;
-  border-color: rgba(63, 63, 70, 0.4);
-
-  @media ${device.tablet} {
-    margin-top: 8rem;
-    border: none;
-    padding-bottom: 0;
-  }
-`;
-
-const StyledHeroContent = styled.div`
-  max-width: 70rem;
-`;
-
-const StyledSectionTitle = styled.h1`
-  color: ${({ theme }) => theme.colors.textHeading};
-  margin-top: 2.25rem;
-`;
-
-const StylesSectionDescription = styled.p`
-  margin-top: 1.75rem;
-  color: ${({ theme }) => theme.colors.textColor};
-`;
-
-const StylesSectionSocials = styled.h1``;
 
 export type HeroSectionProps = {
   title: string | React.ReactNode;
@@ -43,22 +10,22 @@ export type HeroSectionProps = {
 
 function HeroSection({ title, description, socials, logo }: HeroSectionProps) {
   return (
-    <StyledHeroSection>
-      <StyledHeroContent>
+    <section className="mt-24 pl-0 pb-24 border-b border-[rgba(63,63,70,0.4)] tablet:mt-32 tablet:border-none tablet:pb-0">
+      <div className="max-w-[70rem]">
         <Grid>
           <Row>
             <Col size={1}>{logo ? <Logo /> : null}</Col>
           </Row>
           <Row>
             <Col size={1}>
-              <StyledSectionTitle>{title}</StyledSectionTitle>
+              <h1 className="text-[rgb(244,244,245)] mt-9">{title}</h1>
             </Col>
           </Row>
         </Grid>
-        <StylesSectionDescription>{description}</StylesSectionDescription>
-        {socials ? <StylesSectionSocials>{socials}</StylesSectionSocials> : null}{' '}
-      </StyledHeroContent>
-    </StyledHeroSection>
+        <p className="mt-7 text-text-color">{description}</p>
+        {socials ? <h1>{socials}</h1> : null}
+      </div>
+    </section>
   );
 }
 

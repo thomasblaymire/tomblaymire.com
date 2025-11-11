@@ -1,45 +1,5 @@
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-
 import { PersonalProjectItem } from '@/content/work';
-import { device } from '@/helpers/device';
-
-const StyledImageWrapper = styled.div`
-  background-color: rgb(39 39 42/1);
-  border-color: rgba(63, 63, 70, 0.5);
-  border-width: 1px;
-  border-radius: 9999px;
-  justify-content: center;
-  align-items: center;
-  width: 5rem;
-  height: 5rem;
-  display: flex;
-  z-index: 10;
-  right: 8px;
-  position: relative;
-
-  img {
-    width: 35px;
-    height: 35px;
-  }
-`;
-
-const StyledProjectLink = styled(Link)`
-  box-sizing: border-box;
-  padding: 1rem 0.5rem;
-  border-radius: 1rem;
-  transition: all 0.4s ease-in-out 0s;
-
-  @media ${device.tablet} {
-    padding: 1rem;
-  }
-
-  &:hover {
-    box-shadow: rgb(0 0 0 / 10%) -1px 10px 19px 0px;
-    transition: all 0.4s ease-in-out 0s;
-    background: rgba(39, 39, 42, 0.5);
-  }
-`;
 
 interface ProjectProps {
   project: PersonalProjectItem;
@@ -48,11 +8,14 @@ interface ProjectProps {
 export function Project({ project }: ProjectProps): JSX.Element {
   const { image, name, link, linkText, shortDescription } = project;
   return (
-    <StyledProjectLink to={linkText}>
+    <Link 
+      to={linkText}
+      className="box-border p-4 px-2 rounded-[1rem] transition-all duration-[0.4s] ease-in-out tablet:p-4 hover:shadow-[rgb(0_0_0_/_10%)_-1px_10px_19px_0px] hover:bg-[rgba(39,39,42,0.5)]"
+    >
       <li key={name}>
-        <StyledImageWrapper>
+        <div className="bg-[rgb(39,39,42)] border border-[rgba(63,63,70,0.5)] rounded-full justify-center items-center w-[5rem] h-[5rem] flex z-10 right-[8px] relative [&_img]:w-[35px] [&_img]:h-[35px]">
           <img alt="" src={image} decoding="async" data-nimg="1" loading="lazy" />
-        </StyledImageWrapper>
+        </div>
         <h2>
           <a href={link}>
             <span>{name}</span>
@@ -60,6 +23,6 @@ export function Project({ project }: ProjectProps): JSX.Element {
         </h2>
         <p>{shortDescription}</p>
       </li>
-    </StyledProjectLink>
+    </Link>
   );
 }

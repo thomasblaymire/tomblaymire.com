@@ -1,64 +1,15 @@
-import styled from 'styled-components';
-
 import { Project } from '@/components/project';
 import { personalProjects, workExperiences } from '@/content/work';
-import { device } from '@/helpers/device';
-
-const StyledProjectsSection = styled.section`
-  padding-bottom: 4rem;
-  ul {
-    display: grid;
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-    column-gap: 4rem;
-    row-gap: 4rem;
-    @media ${device.tablet} {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    @media ${device.laptop} {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      row-gap: 8rem;
-    }
-  }
-
-  li {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    position: relative;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-    line-height: 1.75rem;
-    font-weight: 600;
-    margin-top: 2.5rem;
-    color: ${({ theme }) => theme.colors.textHeading};
-  }
-
-  p {
-    margin-top: 1.5rem;
-    font-size: 1.5rem;
-    line-height: 2.3rem;
-    color: rgb(161 161 170/1);
-    z-index: 10;
-    position: relative;
-  }
-
-  svg {
-    width: 50px;
-  }
-`;
 
 export function ProjectsSection(): JSX.Element {
   const projects = [...workExperiences, ...personalProjects];
   return (
-    <StyledProjectsSection>
+    <section className="pb-16 [&_ul]:grid [&_ul]:grid-cols-1 [&_ul]:gap-x-16 [&_ul]:gap-y-16 tablet:[&_ul]:grid-cols-2 laptop:[&_ul]:grid-cols-3 laptop:[&_ul]:gap-y-32 [&_li]:flex [&_li]:items-start [&_li]:flex-col [&_li]:relative [&_h2]:text-[1.5rem] [&_h2]:leading-[1.75rem] [&_h2]:font-semibold [&_h2]:mt-[2.5rem] [&_h2]:text-[rgb(244,244,245)] [&_p]:mt-6 [&_p]:text-[1.5rem] [&_p]:leading-[2.3rem] [&_p]:text-[rgb(161,161,170)] [&_p]:z-10 [&_p]:relative [&_svg]:w-[50px]">
       <ul>
         {projects.map((project, index) => (
           <Project key={index} project={project} />
         ))}
       </ul>
-    </StyledProjectsSection>
+    </section>
   );
 }

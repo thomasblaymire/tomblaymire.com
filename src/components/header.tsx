@@ -1,6 +1,4 @@
 import { Link, useLocation } from 'react-router-dom';
-import styled from 'styled-components';
-
 import { Logo } from '@/components/logo';
 import { Navigation } from '@/components/navigation';
 import { ThemeToggle } from '@/components/theme-toggle';
@@ -11,39 +9,20 @@ interface HeaderProps {
   theme: string;
 }
 
-const StyledHeader = styled.header`
-  padding-top: 2.5rem;
-  font-size: 1.5rem;
-  display: flex;
-  justify-content: center;
-  flex: 1 1 0%;
-`;
-
-const StyledHeaderLogo = styled.div`
-  display: flex;
-  align-items: center;
-  flex: 1 1 0%;
-
-  img {
-    width: 4.5rem;
-    display: flex;
-  }
-`;
-
 export function Header({ toggleTheme, theme }: HeaderProps) {
   const location = useLocation();
   const isHomepage = location.pathname === '/';
   return (
-    <StyledHeader>
-      <StyledHeaderLogo>
+    <header className="pt-[2.5rem] text-[1.5rem] flex justify-center flex-1">
+      <div className="flex items-center flex-1 [&_img]:w-[4.5rem] [&_img]:flex">
         {!isHomepage ? (
           <Link to="/">
             <Logo />
           </Link>
         ) : null}
-      </StyledHeaderLogo>
+      </div>
       <Navigation items={navLinks} />
       <ThemeToggle toggleTheme={toggleTheme} theme={theme} />
-    </StyledHeader>
+    </header>
   );
 }

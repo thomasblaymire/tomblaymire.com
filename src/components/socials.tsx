@@ -1,78 +1,29 @@
-import styled from 'styled-components';
-
 import { Card } from '@/components/card';
 import { socials } from '@/content/about';
-import { device } from '@/helpers/device';
-
-const StyledSocials = styled.div`
-  display: flex;
-  @media ${device.tablet} {
-    margin-top: 2.5rem;
-  }
-`;
-
-const StyledSocialsList = styled.ul`
-  width: 100%;
-`;
-
-const StyledSocialListItem = styled.li`
-  display: flex;
-  &:not(:first-child) {
-    margin-top: 2rem;
-  }
-  &:last-child {
-    margin-top: 3rem;
-    padding-top: 3rem;
-    border-color: rgba(63, 63, 70, 0.4);
-    border-top-width: 1px;
-  }
-  &:hover img {
-    filter: invert(52%) sepia(76%) saturate(475%) hue-rotate(124deg) brightness(98%)
-      contrast(90%);
-  }
-`;
-
-const StyledSocialLink = styled.a`
-  display: flex;
-  align-items: center;
-  color: rgb(228 228 231/1);
-  font-size: 1.25rem;
-  &:hover {
-    color: rgb(20 184 166/1);
-  }
-  img {
-    width: 2.5rem;
-    height: 2.5rem;
-  }
-`;
-
-const SocialText = styled.span`
-  margin-left: 2rem;
-  font-size: 1.25rem;
-  font-weight: 600;
-`;
-
-const StyledCard = styled(Card)`
-  padding: 0;
-  margin: 0;
-  border: 0;
-`;
 
 export function Socials() {
   return (
-    <StyledCard>
-      <StyledSocials>
-        <StyledSocialsList>
+    <Card className="p-0 m-0 border-0">
+      <div className="flex tablet:mt-[2.5rem]">
+        <ul className="w-full">
           {socials.map(({ text, icon, alt, link }, index) => (
-            <StyledSocialListItem key={index}>
-              <StyledSocialLink href={link} target="_blank" rel="noopener noreferrer">
+            <li 
+              key={index}
+              className="flex [&:not(:first-child)]:mt-8 last:mt-12 last:pt-12 last:border-t last:border-[rgba(63,63,70,0.4)] hover:[&_img]:brightness-[0.98] hover:[&_img]:contrast-[0.9] hover:[&_img]:[filter:invert(52%)_sepia(76%)_saturate(475%)_hue-rotate(124deg)_brightness(98%)_contrast(90%)]"
+            >
+              <a 
+                href={link} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center text-[rgb(228,228,231)] text-[1.25rem] hover:text-[rgb(20,184,166)] [&_img]:w-[2.5rem] [&_img]:h-[2.5rem]"
+              >
                 <img src={icon} alt={alt} />
-                <SocialText>{text}</SocialText>
-              </StyledSocialLink>
-            </StyledSocialListItem>
+                <span className="ml-8 text-[1.25rem] font-semibold">{text}</span>
+              </a>
+            </li>
           ))}
-        </StyledSocialsList>
-      </StyledSocials>
-    </StyledCard>
+        </ul>
+      </div>
+    </Card>
   );
 }

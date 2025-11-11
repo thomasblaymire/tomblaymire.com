@@ -1,9 +1,7 @@
-import styled from 'styled-components';
-
+import { cn } from '../helpers/cn';
 import moonIcon from '@/assets/icons/moon.svg';
 import sunIcon from '@/assets/icons/sun.svg';
 import { Button } from '@/components/button';
-import { device } from '@/helpers/device';
 import { THEME } from '@/helpers/style';
 
 interface ThemeToggleProps {
@@ -11,40 +9,21 @@ interface ThemeToggleProps {
   theme: string;
 }
 
-const StyledThemeToggle = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  line-height: 1.5rem;
-  padding-left: 1.5rem;
-
-  @media ${device.tablet} {
-    flex: 1 1 0%;
-    padding-left: 0;
-  }
-`;
-
-const StyledIcon = styled.img`
-  width: 20px;
-`;
-
-const StyledToggleButton = styled(Button)`
-  display: flex;
-  background: rgba(39, 39, 42, 0.9);
-  padding: 1rem;
-`;
-
 export function ThemeToggle({ toggleTheme, theme }: ThemeToggleProps) {
   const handleToggle = () => toggleTheme();
   return (
-    <StyledThemeToggle>
-      <StyledToggleButton onClick={handleToggle} color="base">
+    <div className="flex justify-end items-center leading-[1.5rem] pl-[1.5rem] tablet:flex-1 tablet:pl-0">
+      <Button 
+        onClick={handleToggle} 
+        color="base"
+        className="flex bg-[rgba(39,39,42,0.9)] p-4"
+      >
         {theme === THEME.DARK ? (
-          <StyledIcon src={sunIcon} alt="sun" />
+          <img src={sunIcon} alt="sun" className="w-[20px]" />
         ) : (
-          <StyledIcon src={moonIcon} alt="moon" />
+          <img src={moonIcon} alt="moon" className="w-[20px]" />
         )}
-      </StyledToggleButton>
-    </StyledThemeToggle>
+      </Button>
+    </div>
   );
 }

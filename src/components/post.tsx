@@ -1,91 +1,7 @@
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-
 import { Button } from '@/components/button';
 import { Time } from '@/components/time';
-import { device } from '@/helpers/device';
 import { PostInterface } from '@/types/post';
-
-const StyledPost = styled.article`
-  font-size: 1.5rem;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: flex-start;
-  position: relative;
-
-  h2 {
-    color: ${({ theme }) => theme.colors.textHeading};
-    font-weight: 600;
-    font-size: 1.75rem;
-    line-height: 1.75rem;
-  }
-
-  p {
-    color: ${({ theme }) => theme.colors.textColor};
-    line-height: 2.4rem;
-    font-size: 1.4rem;
-    margin-top: 1rem;
-    z-index: 10;
-  }
-`;
-
-const StyledPostButton = styled(Button)`
-  margin-top: 1.5rem;
-  color: rgb(20 184 166/1);
-  display: flex;
-  align-items: center;
-  font-size: 1.5rem;
-  font-weight: 800;
-  padding: 0;
-  svg {
-    stroke: rgb(20 184 166/1);
-    width: 2.6rem;
-    height: 2.2rem;
-  }
-`;
-
-const StyledInset = styled.div`
-  left: initial;
-  right: initial;
-  border-radius: 1rem;
-  background-color: rgba(39, 39, 42, 0.5);
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 0.15s;
-  position: absolute;
-  height: 100%;
-  opacity: 0;
-  transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(1) scaleY(1);
-  z-index: 0;
-
-  @media ${device.tablet} {
-    left: -1.5rem;
-    right: -1.5rem;
-    top: 0;
-  }
-
-  &:hover {
-    cursor: pointer;
-    background: rgba(39, 39, 42, 0.5);
-    opacity: 1;
-    border-radius: 1rem;
-    transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(1) scaleY(1.2);
-  }
-`;
-
-const StyledTitle = styled.span`
-  z-index: 10;
-  position: relative;
-`;
-
-const StyledInner = styled.span`
-  left: -1.5rem;
-  right: -1.5rem;
-  z-index: 20;
-  position: absolute;
-  border-radius: 1rem;
-`;
 
 interface PostProps {
   post: PostInterface;
@@ -101,16 +17,19 @@ interface Post {
 export function Post(post: PostProps): JSX.Element {
   const { title, description, slug, publishDate } = post.post.fields;
   return (
-    <StyledPost>
+    <article className="text-[1.5rem] relative flex justify-center flex-col items-start [&_h2]:text-[rgb(244,244,245)] [&_h2]:font-semibold [&_h2]:text-[1.75rem] [&_h2]:leading-[1.75rem] [&_p]:text-text-color [&_p]:leading-[2.4rem] [&_p]:text-[1.4rem] [&_p]:mt-4 [&_p]:z-10">
       <Link to={`/articles/${slug}`}>
         {publishDate ? <Time dateTime={publishDate} /> : null}
         <h2>
-          <StyledInset />
-          <StyledTitle>{title}</StyledTitle>
-          <StyledInner />
+          <div className="left-auto right-auto rounded-[1rem] bg-[rgba(39,39,42,0.5)] transition-[cubic-bezier(0.4,0,0.2,1)] duration-150 absolute h-full opacity-0 z-0 tablet:left-[-1.5rem] tablet:right-[-1.5rem] tablet:top-0 hover:cursor-pointer hover:bg-[rgba(39,39,42,0.5)] hover:opacity-100 hover:rounded-[1rem] hover:scale-y-[1.2]" />
+          <span className="z-10 relative">{title}</span>
+          <span className="left-[-1.5rem] right-[-1.5rem] z-20 absolute rounded-[1rem]" />
         </h2>
         <p>{description}</p>
-        <StyledPostButton color="link">
+        <Button 
+          color="link"
+          className="mt-6 text-[rgb(20,184,166)] flex items-center text-[1.5rem] font-extrabold p-0 [&_svg]:stroke-[rgb(20,184,166)] [&_svg]:w-[2.6rem] [&_svg]:h-[2.2rem]"
+        >
           Read article
           <svg
             viewBox="0 0 16 16"
@@ -125,8 +44,8 @@ export function Post(post: PostProps): JSX.Element {
               strokeLinejoin="round"
             ></path>
           </svg>
-        </StyledPostButton>
+        </Button>
       </Link>
-    </StyledPost>
+    </article>
   );
 }

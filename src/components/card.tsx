@@ -1,27 +1,4 @@
-import styled from 'styled-components';
-
-const StyledCard = styled.div`
-  padding: 2.5rem;
-  border-width: 1px;
-  border-radius: 1rem;
-  border-color: rgba(63, 63, 70, 0.4);
-
-  h2 {
-    color: ${({ theme }) => theme.colors.textHeading};
-    font-weight: 600;
-    line-height: 1.5rem;
-    font-size: 1.5rem;
-    display: flex;
-  }
-
-  p {
-    color: ${({ theme }) => theme.colors.textColor};
-    line-height: 2.2rem;
-    font-size: 1.4rem;
-    display: flex;
-    margin-top: 1rem;
-  }
-`;
+import { cn } from '../helpers/cn';
 
 interface CardProps {
   children: React.ReactNode;
@@ -29,5 +6,16 @@ interface CardProps {
 }
 
 export function Card({ children, className }: CardProps) {
-  return <StyledCard className={className}>{children}</StyledCard>;
+  return (
+    <div 
+      className={cn(
+        'p-[2.5rem] border rounded-[1rem] border-[rgba(63,63,70,0.4)]',
+        '[&_h2]:text-[rgb(244,244,245)] [&_h2]:font-semibold [&_h2]:leading-[1.5rem] [&_h2]:text-[1.5rem] [&_h2]:flex',
+        '[&_p]:text-text-color [&_p]:leading-[2.2rem] [&_p]:text-[1.4rem] [&_p]:flex [&_p]:mt-4',
+        className
+      )}
+    >
+      {children}
+    </div>
+  );
 }

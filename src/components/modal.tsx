@@ -1,90 +1,7 @@
 import { useCallback, useEffect, useRef } from 'react';
-import styled from 'styled-components';
-
+import { cn } from '../helpers/cn';
 import close from '@/assets/icons/close.svg';
 import { useOnClickOutside } from '@/hooks/useOnClickOutside';
-
-interface StyledModalProps {
-  isActive: boolean;
-}
-
-const StyledOverlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1040;
-  width: 100vw;
-  height: 100vh;
-  opacity: 0.5;
-`;
-
-const StyledModalWrapper = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1050;
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  outline: 0;
-  background-color: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(4px);
-  display: flex;
-  justify-content: center;
-  align-items: start;
-  opacity: 1;
-`;
-
-const StyledModalContainer = styled.div<StyledModalProps>`
-  display: ${({ isActive }) => (isActive ? `flex` : `none`)};
-`;
-
-const StyledModal = styled.div`
-  z-index: 100;
-  background: ${({ theme }) => theme.colors.tertiary};
-  border-radius: 2.5rem;
-  position: relative;
-  margin: 1.75rem auto;
-  padding: 3rem;
-  top: 3rem;
-  box-shadow: 0 0 0 0px #fff, 0 0 0 calc(1px + 0px) rgb(39 39 42/1), 0 0 #0000, 0 0 #0000;
-`;
-
-const StyledModalHeader = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  font-size: 17px;
-  line-height: 34px;
-  font-weight: 700;
-
-  h2 {
-    color: rgb(161 161 170/1);
-    font-weight: 500;
-    line-height: 1.5rem;
-    font-size: 1.35rem;
-  }
-`;
-
-const StyledClose = styled.button`
-  display: flex;
-  justify-content: flex-end;
-  font-size: 1.4rem;
-  font-weight: 700;
-  line-height: 1;
-  background: none;
-  opacity: 0.3;
-  cursor: pointer;
-  border: none;
-  padding: 0;
-  img {
-    height: 2rem;
-    width: 2rem;
-    color: rgb(161 161 170/1);
-  }
-`;
 
 interface ModalProps {
   isActive: boolean;
@@ -125,19 +42,37 @@ export const Modal = ({
   }, [handleKeyPress, isActive]);
 
   return (
-    <StyledModalContainer isActive={isActive}>
-      <StyledOverlay />
-      <StyledModalWrapper aria-modal aria-hidden tabIndex={-1} role="dialog">
-        <StyledModal className={className} ref={modalRef}>
-          <StyledModalHeader>
+    <div className={cn(isActive ? 'flex' : 'none')}>
+      <div className="fixed top-0 left-0 z-[1040] w-screen h-screen opacity-50" />
+      <div 
+        className="fixed top-0 left-0 z-[1050] w-full h-full overflow-x-hidden overflow-y-auto outline-0 bg-[rgba(0,0,0,0.8)] backdrop-blur-[4px] flex justify-center items-start opacity-100"
+        aria-modal 
+        aria-hidden 
+        tabIndex={-1} 
+        role="dialog"
+      >
+        <div 
+          className={cn(
+            'z-[100] bg-[rgb(24,24,27)] rounded-[2.5rem] relative my-7 mx-auto p-12 top-12',
+            'shadow-[0_0_0_0px_#fff,0_0_0_calc(1px+0px)_rgb(39_39_42/1),0_0_#0000,0_0_#0000]',
+            className
+          )} 
+          ref={modalRef}
+        >
+          <div className="flex items-center justify-between w-full text-[17px] leading-[34px] font-bold [&_h2]:text-[rgb(161,161,170)] [&_h2]:font-medium [&_h2]:leading-[1.5rem] [&_h2]:text-[1.35rem]">
             {title ? <h2>{title}</h2> : null}
-            <StyledClose data-dismiss="modal" aria-label="Close" onClick={handleClose}>
+            <button 
+              className="flex justify-end text-[1.4rem] font-bold leading-none bg-transparent opacity-30 cursor-pointer border-none p-0 [&_img]:h-8 [&_img]:w-8 [&_img]:text-[rgb(161,161,170)]"
+              data-dismiss="modal" 
+              aria-label="Close" 
+              onClick={handleClose}
+            >
               <img src={close} alt="Close" />
-            </StyledClose>
-          </StyledModalHeader>
+            </button>
+          </div>
           <div>{children}</div>
-        </StyledModal>
-      </StyledModalWrapper>
-    </StyledModalContainer>
+        </div>
+      </div>
+    </div>
   );
 };

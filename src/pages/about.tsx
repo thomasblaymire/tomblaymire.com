@@ -1,44 +1,9 @@
-import styled from 'styled-components';
-
 import { Meta } from '@/components/meta';
 import { FooterSection } from '@/components/sections/footer-section';
 import { ImageSection } from '@/components/sections/image-section';
 import { Socials } from '@/components/socials';
 import { heroTitle } from '@/content/about';
-import { device, sizes } from '@/helpers/device';
 import { Col, Grid, PageRow } from '@/styles/grid';
-
-const StyledSpacer = styled.div`
-  padding-left: 0;
-  @media ${device.laptop} {
-    padding-left: 10rem;
-  }
-`;
-
-const StyledAboutContent = styled.div`
-  margin-bottom: 5rem;
-  @media ${device.laptop} {
-    margin-bottom: 0rem;
-  }
-
-  h1 {
-    color: ${({ theme }) => theme.colors.textHeading};
-  }
-
-  p {
-    color: ${({ theme }) => theme.colors.textColor};
-    &:not(:first-child) {
-      margin-top: calc(3.5rem * calc(1 - 0));
-      margin-bottom: calc(3.5rem * 0);
-    }
-  }
-`;
-
-const StyledAboutCol = styled(Col)`
-  @media (max-width: ${sizes.laptop}) {
-    flex-basis: 100%;
-  }
-`;
 
 export function About() {
   return (
@@ -49,8 +14,8 @@ export function About() {
       />
       <Grid>
         <PageRow>
-          <StyledAboutCol size={6}>
-            <StyledAboutContent>
+          <Col size={6} className="max-laptop:flex-[0_0_100%]">
+            <div className="mb-20 laptop:mb-0 [&_h1]:text-[rgb(244,244,245)] [&_p]:text-text-color [&_p:not(:first-child)]:mt-14">
               <h1>{heroTitle}</h1>
               <p>
                 I started my career as a Jr Developer at Emis Health where I learnt on the
@@ -83,13 +48,13 @@ export function About() {
                 re-writing, splitting of legacy classes along with device performance
                 improvements via our custom <strong>Webpack</strong> configurations.
               </p>
-            </StyledAboutContent>
-          </StyledAboutCol>
+            </div>
+          </Col>
           <Col size={6}>
-            <StyledSpacer>
+            <div className="pl-0 laptop:pl-40">
               <ImageSection />
               <Socials />
-            </StyledSpacer>
+            </div>
           </Col>
         </PageRow>
       </Grid>
