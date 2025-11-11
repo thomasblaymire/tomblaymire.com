@@ -19,7 +19,7 @@ export const usePosts = () => {
         const { items } = await client.getEntries({
           content_type: 'blogPost',
         });
-        setPosts(items);
+        setPosts(items as PostInterface[]);
       } catch (err) {
         const error = err as Error;
         console.error(

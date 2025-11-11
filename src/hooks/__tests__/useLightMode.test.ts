@@ -1,5 +1,5 @@
-import { act, renderHook, waitFor } from '@testing-library/react';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { act, renderHook } from '@testing-library/react';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 import { THEME } from '@/helpers/theme';
 
@@ -18,23 +18,18 @@ describe('useLightMode', () => {
     document.documentElement.classList.remove('dark');
   });
 
-  it('should initialize with dark theme by default', async () => {
+  it('should initialize with dark theme by default', () => {
     const { result } = renderHook(() => useLightMode());
 
-    await waitFor(() => {
-      expect(result.current[2]).toBe(true); // componentMounted
-    });
-
+    expect(result.current[2]).toBe(true); // componentMounted
     expect(result.current[0]).toBe(THEME.DARK);
     expect(document.documentElement.classList.contains('dark')).toBe(true);
   });
 
-  it('should toggle theme from dark to light', async () => {
+  it('should toggle theme from dark to light', () => {
     const { result } = renderHook(() => useLightMode());
 
-    await waitFor(() => {
-      expect(result.current[2]).toBe(true);
-    });
+    expect(result.current[2]).toBe(true);
 
     act(() => {
       result.current[1](); // toggleTheme
@@ -45,12 +40,10 @@ describe('useLightMode', () => {
     expect(localStorage.getItem('theme')).toBe(THEME.LIGHT);
   });
 
-  it('should toggle theme from light to dark', async () => {
+  it('should toggle theme from light to dark', () => {
     const { result } = renderHook(() => useLightMode());
 
-    await waitFor(() => {
-      expect(result.current[2]).toBe(true);
-    });
+    expect(result.current[2]).toBe(true);
 
     // Toggle to light
     act(() => {
@@ -67,25 +60,20 @@ describe('useLightMode', () => {
     expect(localStorage.getItem('theme')).toBe(THEME.DARK);
   });
 
-  it('should load theme from localStorage on mount', async () => {
+  it('should load theme from localStorage on mount', () => {
     localStorage.setItem('theme', THEME.LIGHT);
 
     const { result } = renderHook(() => useLightMode());
 
-    await waitFor(() => {
-      expect(result.current[2]).toBe(true);
-    });
-
+    expect(result.current[2]).toBe(true);
     expect(result.current[0]).toBe(THEME.LIGHT);
     expect(document.documentElement.classList.contains('dark')).toBe(false);
   });
 
-  it('should persist theme to localStorage when toggled', async () => {
+  it('should persist theme to localStorage when toggled', () => {
     const { result } = renderHook(() => useLightMode());
 
-    await waitFor(() => {
-      expect(result.current[2]).toBe(true);
-    });
+    expect(result.current[2]).toBe(true);
 
     act(() => {
       result.current[1]();
@@ -100,22 +88,17 @@ describe('useLightMode', () => {
     expect(localStorage.getItem('theme')).toBe(THEME.DARK);
   });
 
-  it('should add dark class to documentElement when dark mode', async () => {
+  it('should add dark class to documentElement when dark mode', () => {
     const { result } = renderHook(() => useLightMode());
 
-    await waitFor(() => {
-      expect(result.current[2]).toBe(true);
-    });
-
+    expect(result.current[2]).toBe(true);
     expect(document.documentElement.classList.contains('dark')).toBe(true);
   });
 
-  it('should remove dark class from documentElement when light mode', async () => {
+  it('should remove dark class from documentElement when light mode', () => {
     const { result } = renderHook(() => useLightMode());
 
-    await waitFor(() => {
-      expect(result.current[2]).toBe(true);
-    });
+    expect(result.current[2]).toBe(true);
 
     act(() => {
       result.current[1]();
@@ -124,14 +107,12 @@ describe('useLightMode', () => {
     expect(document.documentElement.classList.contains('dark')).toBe(false);
   });
 
-  it('should handle invalid localStorage value', async () => {
+  it('should handle invalid localStorage value', () => {
     localStorage.setItem('theme', 'invalid-theme');
 
     const { result } = renderHook(() => useLightMode());
 
-    await waitFor(() => {
-      expect(result.current[2]).toBe(true);
-    });
+    expect(result.current[2]).toBe(true);
 
     // Should default to dark theme
     expect(result.current[0]).toBe(THEME.DARK);

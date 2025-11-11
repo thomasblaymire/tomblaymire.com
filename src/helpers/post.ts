@@ -13,9 +13,11 @@ export const getAuthor = async () => {
     });
 
     const sanitizedEntries = entries.items.map((item) => {
-      const avatar = item.fields.avatar.fields;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const fields = item.fields as any;
+      const avatar = fields.avatar.fields;
       return {
-        ...item.fields,
+        ...fields,
         avatar,
       };
     });
