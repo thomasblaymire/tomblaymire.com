@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
 
+import { THEME } from '@/helpers/theme';
+
 const MODES = {
-  DARK: 'dark',
-  LIGHT: 'light',
+  DARK: THEME.DARK,
+  LIGHT: THEME.LIGHT,
 };
 
 export const useLightMode = () => {
-  const [theme, setTheme] = useState(MODES.DARK);
+  const [theme, setTheme] = useState<THEME>(MODES.DARK);
   const [componentMounted, setComponentMounted] = useState(false);
 
-  const setMode = (mode: string) => {
+  const setMode = (mode: THEME) => {
     window.localStorage.setItem('theme', mode);
     setTheme(mode);
 
@@ -28,8 +30,8 @@ export const useLightMode = () => {
   };
 
   useEffect(() => {
-    const localTheme = window.localStorage.getItem('theme');
-    if (localTheme) {
+    const localTheme = window.localStorage.getItem('theme') as THEME;
+    if (localTheme && (localTheme === THEME.DARK || localTheme === THEME.LIGHT)) {
       setMode(localTheme);
     } else {
       // Default to dark mode
