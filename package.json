@@ -11,7 +11,8 @@
     "lint:fix": "eslint ./src --quiet --fix",
     "lint:format": "prettier --log-level warn --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" ",
     "lint": "yarn lint:format && yarn lint:fix ",
-    "type-check": "tsc"
+    "type-check": "tsc",
+    "prepare": "husky"
   },
   "dependencies": {
     "clsx": "^2.1.1",
@@ -47,15 +48,23 @@
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "happy-dom": "^20.0.10",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.6",
     "postcss": "^8.5.6",
-    "pre-commit": "^1.2.2",
     "prettier": "^3.3.3",
     "tailwindcss": "^3.4.18",
     "typescript": "^5.7.2",
     "vite": "^6.0.1",
-    "vite-plugin-react-markdown": "^0.2.10",
     "vitest": "^4.0.8"
   },
-  "pre-commit": "lint",
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --quiet --fix",
+      "prettier --write"
+    ],
+    "*.{css,md,json}": [
+      "prettier --write"
+    ]
+  },
   "license": "MIT"
 }
