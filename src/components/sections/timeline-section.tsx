@@ -1,53 +1,17 @@
-import styled from 'styled-components';
-
 import { TimeLine } from '@/components/timeline';
 import { uses } from '@/content/uses';
-import { device } from '@/helpers/device';
-
-const StyledTimeLineSection = styled.section`
-  margin-top: calc(5rem * calc(1 - 0));
-  margin-bottom: calc(5rem * 0);
-
-  @media ${device.tablet} {
-    padding-left: 1.5rem;
-    border-left-width: 1px;
-    border-color: #e5e7eb26;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-    line-height: 1.75rem;
-    font-weight: 600;
-    margin-top: 2.5rem;
-    color: ${({ theme }) => theme.colors.textHeading};
-  }
-
-  h3 {
-    font-size: 1.3rem;
-  }
-
-  p {
-    margin-top: 1.5rem;
-    font-size: 1.5rem;
-    line-height: 2.3rem;
-    color: rgb(161 161 170/1);
-    z-index: 10;
-    position: relative;
-  }
-
-  svg {
-    width: 50px;
-  }
-`;
 
 export function TimelineSection() {
   return (
     <>
       {uses.map((use, index) => {
         return (
-          <StyledTimeLineSection key={index}>
+          <section 
+            key={index}
+            className="mt-20 tablet:pl-6 tablet:border-l tablet:border-[#e5e7eb26] [&_h2]:text-[1.5rem] [&_h2]:leading-[1.75rem] [&_h2]:font-semibold [&_h2]:mt-[2.5rem] [&_h2]:text-[rgb(244,244,245)] [&_h3]:text-[1.3rem] [&_p]:mt-6 [&_p]:text-[1.5rem] [&_p]:leading-[2.3rem] [&_p]:text-[rgb(161,161,170)] [&_p]:z-10 [&_p]:relative [&_svg]:w-[50px]"
+          >
             <TimeLine use={use} />
-          </StyledTimeLineSection>
+          </section>
         );
       })}
     </>

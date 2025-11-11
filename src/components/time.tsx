@@ -1,51 +1,26 @@
-import styled from 'styled-components';
-
 import { formatDate } from '@/helpers/date';
+import { cn } from '../helpers/cn';
 
 interface TimeProps {
   dateTime: string;
   className?: string;
 }
 
-const StyledTime = styled.time`
-  position: relative;
-  color: rgb(113 113 122 /1);
-  line-height: 1.5rem;
-  padding-left: 1.5rem;
-  font-size: 1.4rem;
-  margin-bottom: 0.75rem;
-  display: flex;
-  align-items: center;
-  order: -9999;
-  margin-bottom: 2rem;
-`;
-
-const StyledDividerWrapper = styled.span`
-  display: flex;
-  align-items: center;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  position: absolute;
-`;
-
-const StyledTimeDivider = styled.span`
-  width: 0.2rem;
-  background-color: rgb(113 113 122 / 1);
-  border-radius: 9999px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-`;
-
 export function Time({ dateTime, className }: TimeProps): JSX.Element {
   const formattedDate = formatDate(dateTime);
   return (
-    <StyledTime dateTime={formattedDate} className={className}>
-      <StyledDividerWrapper>
-        <StyledTimeDivider />
-      </StyledDividerWrapper>
+    <time 
+      dateTime={formattedDate} 
+      className={cn(
+        'relative flex items-center pl-[1.5rem] mb-8 text-[1.4rem] leading-[1.5rem]',
+        'text-[rgb(113,113,122)] order-[-9999]',
+        className
+      )}
+    >
+      <span className="absolute left-0 top-0 bottom-0 flex items-center">
+        <span className="w-[0.2rem] h-full flex items-center bg-[rgb(113,113,122)] rounded-full" />
+      </span>
       {formattedDate}
-    </StyledTime>
+    </time>
   );
 }

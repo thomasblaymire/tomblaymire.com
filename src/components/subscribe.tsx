@@ -1,55 +1,5 @@
-import styled from 'styled-components';
-
 import { Button } from '@/components/button';
 import { Card } from '@/components/card';
-
-const StyledInputWrapper = styled.div`
-  margin-top: 2.5rem;
-  display: flex;
-
-  input {
-    background: rgba(63, 63, 70, 0.15);
-    color: rgb(228 228 231/1);
-    border-width: 1px;
-    border-radius: 0.375rem;
-    border-color: rgb(63 63 70/1);
-    line-height: 1.5rem;
-    font-size: 1.5rem;
-    padding-top: calc(1rem - 1px);
-    padding-bottom: calc(1rem - 1px);
-    padding-left: 1.5rem;
-    padding-right: 0.75rem;
-    appearance: none;
-    flex: 1 1 auto;
-    outline: none;
-
-    &:focus {
-      border-color: rgb(45 212 191/ 1);
-    }
-  }
-`;
-
-const StyledSubscribeButton = styled(Button)`
-  color: ${({ theme }) => theme.colors.textHeading};
-  background: rgb(63 63 70/1);
-  line-height: 1.5rem;
-  font-size: 1.5rem;
-  font-weight: 600;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  border-radius: 0.375rem;
-  margin-left: 2rem;
-  gap: 0.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  &:hover {
-    background: rgb(82 82 91/1);
-  }
-`;
 
 export function Subscribe() {
   return (
@@ -57,15 +7,17 @@ export function Subscribe() {
       <form>
         <h2>Stay Up To Date</h2>
         <p>Get notified when I publish something new, and unsubscribe at any time.</p>
-        <StyledInputWrapper>
+        <div className="mt-[2.5rem] flex [&_input]:bg-[rgba(63,63,70,0.15)] [&_input]:text-[rgb(228,228,231)] [&_input]:border [&_input]:rounded-md [&_input]:border-[rgb(63,63,70)] [&_input]:leading-[1.5rem] [&_input]:text-[1.5rem] [&_input]:pt-[calc(1rem-1px)] [&_input]:pb-[calc(1rem-1px)] [&_input]:pl-6 [&_input]:pr-3 [&_input]:appearance-none [&_input]:flex-auto [&_input]:outline-none [&_input:focus]:border-[rgb(45,212,191)]">
           <input
             type="email"
             placeholder="Email address"
             aria-label="Email address"
             required
           />
-          <StyledSubscribeButton>Join</StyledSubscribeButton>
-        </StyledInputWrapper>
+          <Button className="text-[rgb(244,244,245)] bg-[rgb(63,63,70)] leading-[1.5rem] text-[1.5rem] font-semibold px-3 py-2 rounded-md ml-8 gap-2 flex justify-center items-center hover:bg-[rgb(82,82,91)]">
+            Join
+          </Button>
+        </div>
       </form>
     </Card>
   );

@@ -1,7 +1,5 @@
 import ReactMarkdown from 'react-markdown';
 import { useNavigate, useParams } from 'react-router-dom';
-import styled from 'styled-components';
-
 import backIcon from '@/assets/icons/left.svg';
 import { Button } from '@/components/button';
 import { ErrorMessage } from '@/components/error-message';
@@ -10,92 +8,6 @@ import { FooterSection } from '@/components/sections/footer-section';
 import { Time } from '@/components/time';
 import { usePost } from '@/hooks/usePost';
 import { Col, Grid, PageRow } from '@/styles/grid';
-
-const StyledButton = styled(Button)`
-  display: flex;
-  background-color: rgb(39 39 42/1);
-  border-color: rgba(63, 63, 70, 0.5);
-  border-width: 1px;
-  padding: 1.1rem;
-
-  img {
-    width: 2.3rem;
-  }
-`;
-
-const StyledBlogSection = styled.div`
-  max-width: 70rem;
-  margin-left: auto;
-  margin-right: auto;
-
-  h1 {
-    font-size: 5rem;
-    line-height: 4.5rem;
-    margin-top: 3rem;
-  }
-
-  h2 {
-    font-size: 1.75rem;
-    line-height: 1.75rem;
-    margin-top: 8rem;
-    margin-bottom: 1rem;
-    color: #e4e4e7;
-    font-weight: 600;
-  }
-
-  a {
-    color: #2dd4bf;
-    font-weight: 600;
-    text-decoration: underline;
-    text-decoration-color: rgba(45, 212, 191, 0.3);
-    transition-property: color, text-decoration-color;
-    transition-duration: 0.15s;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  p {
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
-    color: #a1a1aa;
-    font-size: 1.65rem;
-  }
-
-  ul {
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
-    color: #a1a1aa;
-    font-size: 1.65rem;
-  }
-
-  li {
-    color: red;
-  }
-
-  img {
-    border-radius: 1.5rem;
-    max-width: 100%;
-    height: auto;
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
-  }
-
-  pre {
-    color: #f4f4f5;
-    font-size: 1.4rem;
-    font-weight: 500;
-    background-color: rgba(0, 0, 0, 0.4);
-    border-radius: 1.5rem;
-    padding: 2rem;
-    overflow-x: auto;
-    border: 1px solid;
-    border-color: hsla(240, 6%, 90%, 0.1);
-  }
-`;
-
-const StyledArticle = styled.div`
-  display: flex;
-  align-items: start;
-`;
 
 export function Article(): JSX.Element {
   const navigate = useNavigate();
@@ -110,11 +22,11 @@ export function Article(): JSX.Element {
     if (post) {
       const { title, body, publishDate } = post.fields;
       return (
-        <StyledBlogSection>
+        <div className="max-w-[70rem] mx-auto [&_h1]:text-[5rem] [&_h1]:leading-[4.5rem] [&_h1]:mt-12 [&_h2]:text-[1.75rem] [&_h2]:leading-[1.75rem] [&_h2]:mt-32 [&_h2]:mb-4 [&_h2]:text-[#e4e4e7] [&_h2]:font-semibold [&_a]:text-[#2dd4bf] [&_a]:font-semibold [&_a]:underline [&_a]:decoration-[rgba(45,212,191,0.3)] [&_a]:transition-[color,text-decoration-color] [&_a]:duration-150 [&_p]:my-[2.5rem] [&_p]:text-[#a1a1aa] [&_p]:text-[1.65rem] [&_ul]:my-[2.5rem] [&_ul]:text-[#a1a1aa] [&_ul]:text-[1.65rem] [&_li]:text-red-500 [&_img]:rounded-[1.5rem] [&_img]:max-w-full [&_img]:h-auto [&_img]:my-[2.5rem] [&_pre]:text-[#f4f4f5] [&_pre]:text-[1.4rem] [&_pre]:font-medium [&_pre]:bg-[rgba(0,0,0,0.4)] [&_pre]:rounded-[1.5rem] [&_pre]:p-8 [&_pre]:overflow-x-auto [&_pre]:border [&_pre]:border-[hsla(240,6%,90%,0.1)]">
           <Time dateTime={publishDate} />
           <h1>{title}</h1>
           <ReactMarkdown>{body}</ReactMarkdown>
-        </StyledBlogSection>
+        </div>
       );
     }
   };
@@ -125,13 +37,13 @@ export function Article(): JSX.Element {
       <Grid>
         <PageRow>
           <Col size={12}>
-            <StyledArticle>
-              <StyledButton onClick={handleBack}>
+            <div className="flex items-start">
+              <Button onClick={handleBack} className="flex bg-[rgb(39,39,42)] border border-[rgba(63,63,70,0.5)] p-[1.1rem] [&_img]:w-[2.3rem]">
                 <img src={backIcon} alt="Back" />
-              </StyledButton>
+              </Button>
               {error && <ErrorMessage error={error} />}
               {post && renderPost()}
-            </StyledArticle>
+            </div>
           </Col>
         </PageRow>
       </Grid>

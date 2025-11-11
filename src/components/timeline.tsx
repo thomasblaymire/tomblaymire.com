@@ -1,45 +1,4 @@
-import styled from 'styled-components';
 
-import { device } from '@/helpers/device';
-
-const StyledTimeLine = styled.div`
-  display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-  row-gap: 2rem;
-  align-items: baseline;
-  max-width: 68rem;
-
-  @media ${device.tablet} {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  h2 {
-    color: ${({ theme }) => theme.colors.textHeading};
-    font-weight: 600;
-    line-height: 1.5rem;
-    margin: 0;
-  }
-`;
-
-const StyledTimeLineItem = styled.div`
-  grid-column: span 3 / span 3;
-
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  li {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    &:not(:first-child) {
-      margin-top: calc(4rem * calc(1 - 0));
-      margin-bottom: calc(4rem * 0);
-    }
-  }
-`;
 
 type Item = {
   description: string;
@@ -61,7 +20,7 @@ interface TimeLineProps {
 
 export function TimeLineItem({ items }: TimeLineItemProps) {
   return (
-    <StyledTimeLineItem>
+    <div className="col-span-3 [&_ul]:list-none [&_ul]:m-0 [&_ul]:p-0 [&_li]:flex [&_li]:flex-col [&_li]:items-start [&_li:not(:first-child)]:mt-16">
       <ul>
         {items.map((item: Item, index: number) => (
           <li key={index}>
@@ -70,16 +29,16 @@ export function TimeLineItem({ items }: TimeLineItemProps) {
           </li>
         ))}
       </ul>
-    </StyledTimeLineItem>
+    </div>
   );
 }
 
 export function TimeLine({ use }: TimeLineProps): JSX.Element {
   const { items } = use;
   return (
-    <StyledTimeLine>
+    <div className="grid grid-cols-1 gap-y-8 items-baseline max-w-[68rem] tablet:grid-cols-4 [&_h2]:text-[rgb(244,244,245)] [&_h2]:font-semibold [&_h2]:leading-[1.5rem] [&_h2]:m-0">
       <h2>{use.name}</h2>
       <TimeLineItem items={items} />
-    </StyledTimeLine>
+    </div>
   );
 }

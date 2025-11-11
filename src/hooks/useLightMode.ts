@@ -12,6 +12,12 @@ export const useLightMode = () => {
   const setMode = (mode: string) => {
     window.localStorage.setItem('theme', mode);
     setTheme(mode);
+    
+    if (mode === MODES.DARK) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
   };
 
   const toggleTheme = () => {
@@ -23,13 +29,12 @@ export const useLightMode = () => {
 
   useEffect(() => {
     const localTheme = window.localStorage.getItem('theme');
-    window.matchMedia &&
-    window.matchMedia('(prefers-color-scheme: dark)').matches &&
-    !localTheme
-      ? setMode(MODES.LIGHT)
-      : localTheme
-      ? setTheme(localTheme)
-      : setMode(MODES.DARK);
+    if (localTheme) {
+      setMode(localTheme);
+    } else {
+      // Default to dark mode
+      setMode(MODES.DARK);
+    }
     setComponentMounted(true);
   }, []);
 
