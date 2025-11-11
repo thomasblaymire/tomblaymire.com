@@ -1,3 +1,6 @@
+import ReactMarkdown from 'react-markdown';
+import { useNavigate, useParams } from 'react-router-dom';
+
 import backIcon from '@/assets/icons/left.svg';
 import { Button } from '@/components/button';
 import { ErrorMessage } from '@/components/error-message';
@@ -6,8 +9,6 @@ import { FooterSection } from '@/components/sections/footer-section';
 import { Time } from '@/components/time';
 import { usePost } from '@/hooks/usePost';
 import { Col, Grid, PageRow } from '@/styles/grid';
-import ReactMarkdown from 'react-markdown';
-import { useNavigate, useParams } from 'react-router-dom';
 
 export function Article(): JSX.Element {
   const navigate = useNavigate();
@@ -17,6 +18,21 @@ export function Article(): JSX.Element {
 
   const metaTitle = post ? `${post.fields.title}` : 'Article';
   const metaDescription = post ? `${post.fields.title}` : 'Article - Tom Blaymire';
+
+  const fullPost = post as unknown as {
+    fields: {
+      heroImage?: { fields?: { file?: { url?: string } } };
+      author?: { fields?: { name?: string } };
+      publishDate?: string;
+      tags?: string[];
+    };
+  };
+  const metaImage = fullPost?.fields?.heroImage?.fields?.file?.url
+    ? `https:${fullPost.fields.heroImage.fields.file.url}`
+    : undefined;
+  const metaAuthor = fullPost?.fields?.author?.fields?.name || 'Tom Blaymire';
+  const metaPublishDate = fullPost?.fields?.publishDate;
+  const metaKeywords = fullPost?.fields?.tags || [];
 
   const renderPost = () => {
     if (post) {
@@ -33,7 +49,15 @@ export function Article(): JSX.Element {
 
   return (
     <>
-      <Meta title={metaTitle} description={metaDescription} />
+      <Meta
+        title={metaTitle}
+        description={metaDescription}
+        image={metaImage}
+        type="article"
+        author={metaAuthor}
+        publishedTime={metaPublishDate}
+        keywords={metaKeywords}
+      />
       <Grid>
         <PageRow>
           <Col size={12}>

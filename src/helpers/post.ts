@@ -12,10 +12,12 @@ export const getAuthor = async () => {
       select: 'fields',
     });
 
-    const sanitizedEntries = entries.items.map((item: any) => {
-      const avatar = item.fields.avatar.fields;
+    const sanitizedEntries = entries.items.map((item) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const fields = item.fields as any;
+      const avatar = fields.avatar.fields;
       return {
-        ...item.fields,
+        ...fields,
         avatar,
       };
     });

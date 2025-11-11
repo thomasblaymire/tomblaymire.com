@@ -1,5 +1,5 @@
-import { createClient, Entry } from 'contentful';
-import { useEffect, useState } from 'react';
+import { createClient } from 'contentful';
+import { useEffect, useMemo, useState } from 'react';
 
 import { PostInterface } from '@/types/post';
 
@@ -8,18 +8,22 @@ export const usePosts = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
-  const client = createClient({
-    space: import.meta.env.VITE_CONTENTFUL_SPACE_ID,
-    accessToken: import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN,
-  });
+  const client = useMemo(
+    () =>
+      createClient({
+        space: import.meta.env.VITE_CONTENTFUL_SPACE_ID,
+        accessToken: import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN,
+      }),
+    [],
+  );
 
   useEffect(() => {
     const getPosts = async () => {
       try {
-        const { items }: any = await client.getEntries({
+        const { items } = await client.getEntries({
           content_type: 'blogPost',
         });
-        setPosts(items);
+        setPosts(items as PostInterface[]);
       } catch (err) {
         const error = err as Error;
         console.error(

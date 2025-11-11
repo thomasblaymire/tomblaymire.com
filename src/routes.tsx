@@ -1,13 +1,29 @@
+import { lazy } from 'react';
 import { useRoutes } from 'react-router-dom';
 
-import { About } from '@/pages/about';
-import { Article } from '@/pages/article';
-import { Articles } from '@/pages/articles';
 import { Home } from '@/pages/home';
-import { NotFound } from '@/pages/not-found';
-import { Project } from '@/pages/project';
-import { Projects } from '@/pages/projects';
-import { Uses } from '@/pages/uses';
+
+const About = lazy(() =>
+  import('@/pages/about').then((module) => ({ default: module.About })),
+);
+const Article = lazy(() =>
+  import('@/pages/article').then((module) => ({ default: module.Article })),
+);
+const Articles = lazy(() =>
+  import('@/pages/articles').then((module) => ({ default: module.Articles })),
+);
+const NotFound = lazy(() =>
+  import('@/pages/not-found').then((module) => ({ default: module.NotFound })),
+);
+const Project = lazy(() =>
+  import('@/pages/project').then((module) => ({ default: module.Project })),
+);
+const Projects = lazy(() =>
+  import('@/pages/projects').then((module) => ({ default: module.Projects })),
+);
+const Uses = lazy(() =>
+  import('@/pages/uses').then((module) => ({ default: module.Uses })),
+);
 
 export const Router = () => {
   const element = useRoutes([

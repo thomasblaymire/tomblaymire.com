@@ -2,7 +2,6 @@ import moonIcon from '@/assets/icons/moon.svg';
 import sunIcon from '@/assets/icons/sun.svg';
 import { Button } from '@/components/button';
 import { THEME } from '@/helpers/theme';
-import { cn } from '../helpers/cn';
 
 interface ThemeToggleProps {
   toggleTheme: () => void;

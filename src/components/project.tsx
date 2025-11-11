@@ -1,5 +1,6 @@
-import { PersonalProjectItem } from '@/content/work';
 import { Link } from 'react-router-dom';
+
+import { PersonalProjectItem } from '@/content/work';
 
 interface ProjectProps {
   project: PersonalProjectItem;
@@ -16,7 +17,7 @@ export function Project({ project }: ProjectProps): JSX.Element {
         <div className="bg-[rgb(39,39,42)] border border-[rgba(63,63,70,0.5)] rounded-full justify-center items-center w-[5rem] h-[5rem] flex z-10 right-[8px] relative [&_img]:w-[35px] [&_img]:h-[35px]">
           <img alt="" src={image} decoding="async" data-nimg="1" loading="lazy" />
         </div>
-        <h2>
+        <h2 className="text-[rgb(244,244,245)] dark:text-[rgb(244,244,245)]">
           <a href={link}>
             <span>{name}</span>
           </a>

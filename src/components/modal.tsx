@@ -1,6 +1,8 @@
+import { useCallback, useEffect, useRef } from 'react';
+
 import close from '@/assets/icons/close.svg';
 import { useOnClickOutside } from '@/hooks/useOnClickOutside';
-import { useCallback, useEffect, useRef } from 'react';
+
 import { cn } from '../helpers/cn';
 
 interface ModalProps {

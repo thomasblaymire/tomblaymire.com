@@ -1,4 +1,5 @@
 import spinner from '@/assets/loading.svg';
+
 import { cn } from '../helpers/cn';
 
 interface LoadingProps {
