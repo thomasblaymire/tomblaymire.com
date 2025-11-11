@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -20,7 +21,9 @@ export function BaseApp({ toggleTheme, theme }: BaseAppProps): JSX.Element {
           <ErrorBoundary FallbackComponent={ErrorFallback}>
             <BrowserRouter>
               <Header toggleTheme={toggleTheme} theme={theme} />
-              <Router />
+              <Suspense fallback={<div className="min-h-[50vh]" />}>
+                <Router />
+              </Suspense>
             </BrowserRouter>
           </ErrorBoundary>
         </div>

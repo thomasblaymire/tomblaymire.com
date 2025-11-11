@@ -1,5 +1,5 @@
 import { createClient, Entry } from 'contentful';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 export type BlogPostFields = {
   title: string;
@@ -13,10 +13,14 @@ export const usePost = (slug: string | undefined, type: string) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
-  const client = createClient({
-    space: import.meta.env.VITE_CONTENTFUL_SPACE_ID,
-    accessToken: import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN,
-  });
+  const client = useMemo(
+    () =>
+      createClient({
+        space: import.meta.env.VITE_CONTENTFUL_SPACE_ID,
+        accessToken: import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN,
+      }),
+    [],
+  );
 
   useEffect(() => {
     const getSinglePost = async (slug: string | undefined) => {

@@ -19,7 +19,14 @@ export function Article(): JSX.Element {
   const metaTitle = post ? `${post.fields.title}` : 'Article';
   const metaDescription = post ? `${post.fields.title}` : 'Article - Tom Blaymire';
 
-  const fullPost = post as any;
+  const fullPost = post as unknown as {
+    fields: {
+      heroImage?: { fields?: { file?: { url?: string } } };
+      author?: { fields?: { name?: string } };
+      publishDate?: string;
+      tags?: string[];
+    };
+  };
   const metaImage = fullPost?.fields?.heroImage?.fields?.file?.url
     ? `https:${fullPost.fields.heroImage.fields.file.url}`
     : undefined;
