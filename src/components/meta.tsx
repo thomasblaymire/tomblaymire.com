@@ -49,7 +49,7 @@ export function Meta({
         '@type': 'Person',
         name: 'Tom Blaymire',
         url: siteUrl,
-        jobTitle: 'Software Engineer',
+        jobTitle: 'Lead Frontend Engineer',
         alumniOf: 'University of Leeds',
         sameAs: [
           'https://github.com/thomasblaymire',
