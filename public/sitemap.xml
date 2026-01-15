@@ -40,4 +40,24 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- Articles -->
+  <url>
+    <loc>https://www.tomblaymire.com/articles/generics-in-typescript</loc>
+    <lastmod>2026-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.tomblaymire.com/articles/top-ui-inspiration-websites</loc>
+    <lastmod>2026-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.tomblaymire.com/articles/git-commands-for-developers</loc>
+    <lastmod>2026-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>
