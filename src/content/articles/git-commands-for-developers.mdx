@@ -1,0 +1,205 @@
+export const meta = {
+  title: "Git Commands For Developers",
+  slug: "git-commands-for-developers",
+  description: "Version control in a nutshell allows you to update, share and track code from a centralised location. It is a perfect way for you to contribute your changes to a shared codebase with a team of other developers all working on the same project.",
+  publishDate: "2015-12-15",
+  tags: ["git", "version-control", "development"],
+};
+
+## What is version control?
+
+Version control in a nutshell allows you to update, share and track code from a centralised location. It is a perfect way for you to contribute your changes to a shared codebase with a team of other developers all working on the same project.
+
+The most used version control system or VCS for short is Git. Git has been around for years originally created in 2005 it allows developers to share code in an effective way and is well supported by various different code editors such as VSCode and Sublime Text.
+
+## Is it hard to learn Git?
+
+I believe that version control should be one of the first things you learn as you are pursuing a career as a Web Developer. Most teams use Git so it is essential that you at least understand the basic commands and can commit, merge and push your changes up to a remote repository.
+
+## What Git commands do I need to know as a Web Developer?
+
+To help you on your way we have listed below some of our top commands to get you up and running with git. Don't worry you don't have to memorize them all but they may serve as a useful reference in the future.
+
+### Basic Commands
+
+**How to create a git repo?**
+```bash
+git init
+```
+
+**How to remove a git repo?**
+```bash
+rm -rf .git
+```
+
+**How to add a file to the repo?**
+```bash
+git add <filename>
+```
+
+**How to commit a change?**
+```bash
+git commit -m "message"
+```
+
+**How to edit a commit message?**
+```bash
+git commit --amend -m "new message"
+```
+
+**How to commit all changes same line?**
+```bash
+git commit -a -m "message"
+```
+
+**How to view the status of a project?**
+```bash
+git status
+```
+
+**How to log all git commit history?**
+```bash
+git log
+```
+
+**How to log all git commit on one line?**
+```bash
+git log --oneline
+```
+
+**How to display a fancy graphical view of commits?**
+```bash
+git log --graph --decorate --pretty=oneline --abbrev-commit
+```
+
+**How to see the code from a commit?**
+```bash
+git checkout 7cb4e
+```
+
+**How to go back to branch master (latest)?**
+```bash
+git checkout main
+```
+
+**How to see the difference between versions?**
+```bash
+git diff 7cb4e 98541
+```
+
+**How to undo when a file is wrong (staged)?**
+```bash
+git reset HEAD css/custom.css
+```
+
+**How to undo when a file is wrong (committed)?**
+```bash
+git checkout HEAD^ css/custom.css
+```
+
+**How to show what has changed from last time?**
+```bash
+git diff
+```
+
+### Commit message top tip
+
+Be sure to commit your work often and use relevant short commit messages explaining what your changes are. When writing a commit message ask yourself:
+
+Does this message make sense to someone who has not been working on my current task?
+
+## Branching Commands
+
+A branch in Git is simply a lightweight movable pointer to an individual commit. You could for example branch off from your colleagues branch and make your own changes to their work!
+
+**How to create a branch?**
+```bash
+git branch branch_name
+```
+
+**How to switch to the new branch?**
+```bash
+git checkout branch_name
+```
+
+**How to see the commit log of new branch?**
+```bash
+git log
+```
+
+**How to create a branch and switch to it?**
+```bash
+git checkout -b branch_name
+```
+
+**How to list all branches?**
+```bash
+git branch -a
+```
+
+**How to delete a branch?** (must switch to different branch first)
+```bash
+git branch -D bar_feature
+```
+
+## Merging Commands
+
+Like the opposite of branching, merging will bring all changes and commits into one timeline.
+
+**How to merge a branch?**
+```bash
+git merge foo_feature
+```
+
+**How to edit conflicted file?**
+```bash
+nano file1 # will show both changes
+```
+
+**How to combine conflicted files?**
+```bash
+nano file1 # simply add a comma between changes
+```
+
+**After conflict changed?**
+```bash
+git add file1
+git commit
+```
+
+## Remote Repositories
+
+This is where you can essentially clone (copy) a centralised repo to then work on a specific task within that project.
+
+This could be a repository created by someone at the other side of the world that you can then get access to and contribute your changes.
+
+**How to clone a repo to your local machine?**
+```bash
+git clone https://repo_url.git
+```
+
+**Show all remotes available?**
+```bash
+git remote -v
+```
+
+**How to manually add a remote repo?**
+```bash
+git remote add origin /path
+```
+
+**How to push a commit to the remote repo?**
+```bash
+git push
+```
+
+**How to push a commit with a branch?**
+```bash
+git push origin new_feature
+```
+
+## Conclusion
+
+These are just a snippet of some of the Git commands that I find myself using often. Git is one of those tools that you gradually pick up over time so don't worry too much if it all doesn't make sense right now.
+
+Git also comes with a fantastic documentation you can find this here: [Git Documentation](https://git-scm.com/docs)
