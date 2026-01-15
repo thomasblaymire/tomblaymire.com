@@ -14,6 +14,32 @@ interface MetaProps {
   keywords?: string[];
 }
 
+const personSchema = {
+  '@type': 'Person',
+  name: 'Tom Blaymire',
+  url: 'https://www.tomblaymire.com',
+  jobTitle: 'Lead Frontend Engineer',
+  worksFor: {
+    '@type': 'Organization',
+    name: 'NewDay',
+    url: 'https://www.newday.co.uk',
+  },
+  alumniOf: {
+    '@type': 'EducationalOrganization',
+    name: 'University of Leeds',
+  },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'London',
+    addressCountry: 'United Kingdom',
+  },
+  sameAs: [
+    'https://github.com/thomasblaymire',
+    'https://twitter.com/thomas_blaymire',
+    'https://www.linkedin.com/in/thomasblaymire/',
+  ],
+};
+
 export function Meta({
   title,
   description,
@@ -29,6 +55,29 @@ export function Meta({
   const defaultImage = `${siteUrl}${profileImage}`;
   const ogImage = image || defaultImage;
 
+  const breadcrumbList = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: siteUrl,
+      },
+      ...(location.pathname !== '/'
+        ? [
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: title,
+              item: canonicalUrl,
+            },
+          ]
+        : []),
+    ],
+  };
+
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': type === 'article' ? 'Article' : 'WebSite',
@@ -36,27 +85,18 @@ export function Meta({
     description: description,
     url: canonicalUrl,
     ...(type === 'article' && {
-      author: {
-        '@type': 'Person',
-        name: author || 'Tom Blaymire',
-        url: siteUrl,
-      },
+      headline: title,
+      author: personSchema,
       datePublished: publishedTime,
       image: ogImage,
-    }),
-    ...(type === 'website' && {
-      author: {
+      publisher: {
         '@type': 'Person',
         name: 'Tom Blaymire',
         url: siteUrl,
-        jobTitle: 'Lead Frontend Engineer',
-        alumniOf: 'University of Leeds',
-        sameAs: [
-          'https://github.com/thomasblaymire',
-          'https://twitter.com/thomas_blaymire',
-          'https://www.linkedin.com/in/thomasblaymire/',
-        ],
       },
+    }),
+    ...(type === 'website' && {
+      author: personSchema,
     }),
   };
 
@@ -93,6 +133,7 @@ export function Meta({
       )}
 
       <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
+      <script type="application/ld+json">{JSON.stringify(breadcrumbList)}</script>
     </Helmet>
   );
 }
