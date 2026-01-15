@@ -1,4 +1,5 @@
 import { Suspense } from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 
 import { Loading } from '@/components/loading';
 import { useLightMode } from '@/hooks/useLightMode';
@@ -8,9 +9,11 @@ function App() {
   const [theme, toggleTheme] = useLightMode();
 
   return (
-    <Suspense fallback={<Loading />}>
-      <BaseApp toggleTheme={toggleTheme} theme={theme} />
-    </Suspense>
+    <HelmetProvider>
+      <Suspense fallback={<Loading />}>
+        <BaseApp toggleTheme={toggleTheme} theme={theme} />
+      </Suspense>
+    </HelmetProvider>
   );
 }
 
