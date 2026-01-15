@@ -32,21 +32,20 @@ export function About() {
                 developers.
               </p>
               <p>
-                Until recently I have spent the last three years working in Sydney,
-                Australia primarily for Stan who are one of the leading video streaming
-                platforms. Here I worked on various exiting features such as the
-                integration of live sport streaming for <strong>Champions League</strong>,{' '}
-                <strong>Wimbledon</strong> and <strong>Rugby League</strong> along with
-                building new platform features to help with user retention and experience.
+                I spent three years working in Sydney, Australia primarily for Stan, one
+                of the leading video streaming platforms. There I worked on exciting
+                features such as the integration of live sport streaming for{' '}
+                <strong>Champions League</strong>, <strong>Wimbledon</strong> and{' '}
+                <strong>Rugby League</strong> along with building new platform features to
+                help with user retention and experience.
               </p>
 
               <p>
-                My last 6 months at Stan I have been working as a remote contractor back
-                in the UK. During this time I have been mentoring new developers along
-                with performing large scale architecture refactoring including building
-                new <strong>Node JS</strong> CLI features, <strong>TypeScript</strong>{' '}
-                re-writing, splitting of legacy classes along with device performance
-                improvements via our custom <strong>Webpack</strong> configurations.
+                Now based in London and working remotely, I continue to focus on building
+                scalable frontend architectures. My experience spans mentoring developers,
+                performing large-scale architecture refactoring, building{' '}
+                <strong>Node JS</strong> CLI tools, <strong>TypeScript</strong>{' '}
+                migrations, and optimising application performance.
               </p>
             </div>
           </Col>

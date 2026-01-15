@@ -5,7 +5,7 @@ import linkedinIcon from '@/assets/icons/social/linkedin.svg';
 import twitterIcon from '@/assets/icons/social/twitter.svg';
 
 export const heroTitle =
-  'I’m Tom Blaymire. I live in Leeds UK, where I build web applications.';
+  "I'm Tom Blaymire. I live in London, where I build web applications.";
 export const socials = [
   {
     text: 'Follow on Twitter',
