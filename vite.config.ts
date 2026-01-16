@@ -4,10 +4,23 @@ import { defineConfig } from 'vite';
 
 export default defineConfig(async () => {
   const mdx = await import('@mdx-js/rollup');
+  const shikiRehype = await import('@shikijs/rehype');
 
   return {
     plugins: [
-      { enforce: 'pre' as const, ...mdx.default() },
+      {
+        enforce: 'pre' as const,
+        ...mdx.default({
+          rehypePlugins: [
+            [
+              shikiRehype.default,
+              {
+                theme: 'one-dark-pro',
+              },
+            ],
+          ],
+        }),
+      },
       react({
         include: [/\.tsx$/, /\.ts$/, /\.mdx$/],
       }),

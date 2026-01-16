@@ -9,8 +9,15 @@ import GitCommandsForDevelopers, {
 import TopUiInspirationWebsites, {
   meta as topUiInspirationWebsitesMeta,
 } from './top-ui-inspiration-websites.mdx';
+import TypescriptPatternsIUseEveryDay, {
+  meta as typescriptPatternsIUseEveryDayMeta,
+} from './typescript-patterns-i-use-every-day.mdx';
 
 const articles: Article[] = [
+  {
+    meta: typescriptPatternsIUseEveryDayMeta,
+    Content: TypescriptPatternsIUseEveryDay,
+  },
   {
     meta: genericsInTypescriptMeta,
     Content: GenericsInTypescript,

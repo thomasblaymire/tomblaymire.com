@@ -1,0 +1,229 @@
+export const meta = {
+  title: 'TypeScript Patterns I Use Every Day',
+  slug: 'typescript-patterns-i-use-every-day',
+  description: 'After years of writing TypeScript professionally, these are the patterns that have stuck. Not the clever stuff - the practical bits that actually make codebases easier to work with.',
+  publishDate: '2024-01-16',
+  tags: ['typescript', 'javascript', 'patterns'],
+};
+
+I've been writing TypeScript for about seven years now. In that time I've seen a lot of clever type gymnastics - mapped types, conditional types, template literal types doing backflips. Most of it is interesting but rarely useful day-to-day.
+
+These are the patterns I actually reach for. Nothing groundbreaking, but they've saved me countless hours of debugging and made refactoring way less scary.
+
+## Discriminated Unions Over Optional Properties
+
+This one took me embarrassingly long to fully appreciate. When you have an object that can be in different states, don't use optional properties:
+
+```typescript
+// This is a mess to work with
+type Response = {
+  status: 'loading' | 'success' | 'error';
+  data?: User;
+  error?: string;
+};
+
+// You end up with loads of checks
+if (response.status === 'success') {
+  // TypeScript doesn't know data exists here
+  console.log(response.data?.name); // still need optional chaining
+}
+```
+
+Use discriminated unions instead:
+
+```typescript
+type Response =
+  | { status: 'loading' }
+  | { status: 'success'; data: User }
+  | { status: 'error'; error: string };
+
+if (response.status === 'success') {
+  // TypeScript knows data exists
+  console.log(response.data.name); // no optional chaining needed
+}
+```
+
+The difference seems small but it compounds. You stop second-guessing whether properties exist. The compiler tells you exactly what's available in each state.
+
+I use this pattern constantly for API responses, form states, modal states - anything with distinct modes.
+
+## Type Predicates for Filtering
+
+This one bites everyone at some point. You filter an array to remove nulls but TypeScript doesn't narrow the type:
+
+```typescript
+const users: (User | null)[] = [user1, null, user2];
+const validUsers = users.filter(u => u !== null);
+// validUsers is still (User | null)[] - annoying
+```
+
+Write a type predicate:
+
+```typescript
+const isNotNull = <T>(value: T | null): value is T => value !== null;
+
+const validUsers = users.filter(isNotNull);
+// validUsers is User[] - much better
+```
+
+I have a small file of these predicates in most projects. `isDefined`, `isNotNull`, `hasProperty` - boring utilities that save headaches.
+
+## Const Assertions for Literal Types
+
+When you define an object, TypeScript widens the types:
+
+```typescript
+const config = {
+  endpoint: '/api/users',
+  method: 'GET',
+};
+// method is string, not 'GET'
+```
+
+If you need the literal types (say, for a function that only accepts specific methods), use `as const`:
+
+```typescript
+const config = {
+  endpoint: '/api/users',
+  method: 'GET',
+} as const;
+// method is 'GET'
+```
+
+Useful for configuration objects, route definitions, action types - anywhere you want to preserve the specific values.
+
+## Extract and Exclude for Union Manipulation
+
+Say you have a union type and need to pull out specific members:
+
+```typescript
+type Event =
+  | { type: 'click'; x: number; y: number }
+  | { type: 'keypress'; key: string }
+  | { type: 'scroll'; offset: number };
+
+// Get just the mouse events
+type MouseEvent = Extract<Event, { type: 'click' }>;
+
+// Get everything except scroll
+type NonScrollEvent = Exclude<Event, { type: 'scroll' }>;
+```
+
+I reach for this when building event handlers or when I need a subset of a larger union. Beats manually duplicating type definitions.
+
+## Satisfies for the Best of Both Worlds
+
+This is a newer one (TypeScript 4.9) that I've grown to love. Sometimes you want to check that an object matches a type but keep the specific literal types:
+
+```typescript
+type Route = {
+  path: string;
+  component: string;
+};
+
+// With type annotation, you lose the specific paths
+const routes: Record<string, Route> = {
+  home: { path: '/', component: 'Home' },
+  about: { path: '/about', component: 'About' },
+};
+// routes.home.path is string
+
+// With satisfies, you keep them
+const routes = {
+  home: { path: '/', component: 'Home' },
+  about: { path: '/about', component: 'About' },
+} satisfies Record<string, Route>;
+// routes.home.path is '/'
+```
+
+The second version gives you autocomplete for the specific paths while still validating the shape. Win-win.
+
+## Branded Types for IDs
+
+This is more of a convention but it's prevented bugs for me. When you have different ID types that are all strings, TypeScript treats them as interchangeable:
+
+```typescript
+function getUser(id: string) { ... }
+function getOrder(id: string) { ... }
+
+const orderId = '123';
+getUser(orderId); // No error, but probably a bug
+```
+
+Create branded types:
+
+```typescript
+type UserId = string & { readonly brand: unique symbol };
+type OrderId = string & { readonly brand: unique symbol };
+
+function getUser(id: UserId) { ... }
+function getOrder(id: OrderId) { ... }
+
+const orderId = '123' as OrderId;
+getUser(orderId); // Error! Can't assign OrderId to UserId
+```
+
+It's a bit of ceremony but I've seen this catch real bugs, especially in larger codebases where IDs get passed around a lot.
+
+## Exhaustive Checks with Never
+
+When you have a switch over a union, you want TypeScript to yell at you if you miss a case:
+
+```typescript
+type Status = 'pending' | 'active' | 'archived';
+
+function getLabel(status: Status): string {
+  switch (status) {
+    case 'pending':
+      return 'Pending';
+    case 'active':
+      return 'Active';
+    case 'archived':
+      return 'Archived';
+    default:
+      // This ensures all cases are handled
+      const _exhaustive: never = status;
+      return _exhaustive;
+  }
+}
+```
+
+If someone adds a new status later and forgets to update this function, TypeScript will throw an error. Future-proofing that costs nothing.
+
+## Pick and Omit for API Boundaries
+
+When you're building forms or API payloads, you rarely need the full entity type:
+
+```typescript
+interface User {
+  id: string;
+  email: string;
+  name: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+// For creating a user, you don't have an ID yet
+type CreateUserPayload = Omit<User, 'id' | 'createdAt' | 'updatedAt'>;
+
+// For a profile form, you only edit certain fields
+type ProfileFormData = Pick<User, 'name' | 'email'>;
+```
+
+Keeps your types DRY and makes it obvious what each boundary expects.
+
+## What I've Stopped Doing
+
+A few things I used to do that I've backed away from:
+
+**Overly complex mapped types** - If a type requires more than a few seconds to understand, it's probably not worth it. A bit of duplication is fine.
+
+**Enums** - I use union types instead. `type Status = 'active' | 'inactive'` is simpler and works better with type inference.
+
+**Class-heavy code** - Functions and plain objects handle most things. Classes have their place but they're often overkill in frontend code.
+
+## Wrapping Up
+
+None of this is revolutionary. The TypeScript docs cover all of it. But knowing these patterns exist and reaching for them at the right time is what makes a codebase pleasant to work in.
+
+Start with discriminated unions if you take one thing away. They'll change how you model state.
