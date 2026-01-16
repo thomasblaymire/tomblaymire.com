@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { ErrorFallback } from '@/components/error-fallback';
 import { Header } from '@/components/header';
+import { ScrollToTop } from '@/components/scroll-to-top';
 import { Router } from '@/routes';
 
 interface BaseAppProps {
@@ -20,6 +21,7 @@ export function BaseApp({ toggleTheme, theme }: BaseAppProps): JSX.Element {
         <div className="w-full max-w-[1200px]">
           <ErrorBoundary FallbackComponent={ErrorFallback}>
             <BrowserRouter>
+              <ScrollToTop />
               <Header toggleTheme={toggleTheme} theme={theme} />
               <Suspense fallback={<div className="min-h-[50vh]" />}>
                 <Router />
