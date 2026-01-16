@@ -17,7 +17,7 @@ export function Header({ toggleTheme, theme }: HeaderProps) {
     <header className="pt-[2.5rem] text-[1.5rem] flex justify-center flex-1">
       <div className="flex items-center flex-1 [&_img]:w-[4.5rem] [&_img]:flex">
         {!isHomepage ? (
-          <Link to="/">
+          <Link to="/" aria-label="Tom Blaymire - Go to homepage">
             <Logo />
           </Link>
         ) : null}

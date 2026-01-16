@@ -18,8 +18,14 @@ function renderNavItems(
       {items.map(({ path, name, isExternal }, index: number) => (
         <li key={index}>
           {isExternal ? (
-            <a href={path} target="_blank" rel="noreferrer">
+            <a
+              href={path}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${name} (opens in new tab)`}
+            >
               {name}
+              <span className="sr-only"> (opens in new tab)</span>
             </a>
           ) : (
             <NavLink
@@ -49,6 +55,8 @@ function MobileNavigation({ children }: NavigationMobileProps) {
 export function Navigation({ items, type }: NavigationProps): JSX.Element {
   const [toggle, setToggle] = useState(false);
   const isTablet = useMediaQuery(device.tablet);
+  const menuId = 'mobile-navigation-menu';
+
   return (
     <>
       {!isTablet ? (
@@ -57,6 +65,10 @@ export function Navigation({ items, type }: NavigationProps): JSX.Element {
             <Button
               onClick={() => setToggle(!toggle)}
               className="bg-[rgba(39,39,42,0.9)] border border-[hsla(0,0%,100%,0.1)] rounded-full pointer-events-auto px-8"
+              aria-expanded={toggle}
+              aria-controls={menuId}
+              aria-haspopup="dialog"
+              aria-label="Open navigation menu"
             >
               Menu
             </Button>

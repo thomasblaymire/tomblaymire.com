@@ -6,22 +6,22 @@ import { renderWithProviders, userEvent } from '@/test/test-utils';
 import { ThemeToggle } from '../theme-toggle';
 
 describe('ThemeToggle', () => {
-  it('should render sun icon when theme is dark', () => {
+  it('should have accessible label for switching to light mode when theme is dark', () => {
     const toggleTheme = vi.fn();
-    const { getByAltText } = renderWithProviders(
+    const { getByRole } = renderWithProviders(
       <ThemeToggle toggleTheme={toggleTheme} theme={THEME.DARK} />,
     );
 
-    expect(getByAltText('sun')).toBeInTheDocument();
+    expect(getByRole('button', { name: 'Switch to light mode' })).toBeInTheDocument();
   });
 
-  it('should render moon icon when theme is light', () => {
+  it('should have accessible label for switching to dark mode when theme is light', () => {
     const toggleTheme = vi.fn();
-    const { getByAltText } = renderWithProviders(
+    const { getByRole } = renderWithProviders(
       <ThemeToggle toggleTheme={toggleTheme} theme={THEME.LIGHT} />,
     );
 
-    expect(getByAltText('moon')).toBeInTheDocument();
+    expect(getByRole('button', { name: 'Switch to dark mode' })).toBeInTheDocument();
   });
 
   it('should call toggleTheme when button is clicked', async () => {

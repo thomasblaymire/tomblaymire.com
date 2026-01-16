@@ -6,6 +6,11 @@ export type ButtonProps = {
   color?: 'primary' | 'secondary' | 'base' | 'link';
   disabled?: boolean;
   className?: string;
+  'aria-label'?: string;
+  'aria-expanded'?: boolean;
+  'aria-controls'?: string;
+  'aria-haspopup'?: boolean | 'menu' | 'listbox' | 'tree' | 'grid' | 'dialog';
+  type?: 'button' | 'submit' | 'reset';
 };
 
 export const Button = ({
@@ -14,14 +19,24 @@ export const Button = ({
   color = 'primary',
   disabled,
   className,
+  'aria-label': ariaLabel,
+  'aria-expanded': ariaExpanded,
+  'aria-controls': ariaControls,
+  'aria-haspopup': ariaHasPopup,
+  type = 'button',
 }: ButtonProps) => {
   return (
     <button
+      type={type}
       onClick={onClick}
       disabled={disabled}
+      aria-label={ariaLabel}
+      aria-expanded={ariaExpanded}
+      aria-controls={ariaControls}
+      aria-haspopup={ariaHasPopup}
       className={cn(
         // Base styles
-        'cursor-pointer border-none rounded-[50px] font-medium outline-none transition-all duration-200',
+        'cursor-pointer border-none rounded-[50px] font-medium transition-all duration-200',
         // Color variants
         color === 'primary' && 'text-white',
         color === 'secondary' &&

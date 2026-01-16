@@ -10,7 +10,11 @@ const WorkItem = ({ item }: WorkItemProps): JSX.Element => {
   return (
     <li className="flex gap-6 [&:not(:first-child)]:mt-[2.25rem]">
       <div className="w-[4.2rem] h-[4.2rem] flex-shrink-0 flex items-center justify-center">
-        <img src={image} alt="" className="w-full h-full rounded-full object-cover" />
+        <img
+          src={image}
+          alt={`${name} logo`}
+          className="w-full h-full rounded-full object-cover"
+        />
       </div>
       <dl className="flex flex-auto flex-col min-w-0">
         <dt className="sr-only">Company</dt>

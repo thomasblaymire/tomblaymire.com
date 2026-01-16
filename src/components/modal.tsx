@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useId, useRef } from 'react';
 
 import close from '@/assets/icons/close.svg';
 import { useOnClickOutside } from '@/hooks/useOnClickOutside';
@@ -21,37 +21,77 @@ export const Modal = ({
   className,
 }: ModalProps): JSX.Element => {
   const modalRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const previousActiveElement = useRef<HTMLElement | null>(null);
+  const titleId = useId();
 
   // handle what happens on click outside of modal
   const handleClickOutside = () => handleClose();
 
   // handle what happens on escape key press
-  const handleKeyPress = useCallback((event: KeyboardEvent) => {
-    if (event.key === 'Escape') handleClose();
-  }, []);
+  const handleKeyPress = useCallback(
+    (event: KeyboardEvent) => {
+      if (event.key === 'Escape') handleClose();
+
+      // Focus trap - keep focus within modal
+      if (event.key === 'Tab' && modalRef.current) {
+        const focusableElements = modalRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+        );
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (event.shiftKey && document.activeElement === firstElement) {
+          event.preventDefault();
+          lastElement?.focus();
+        } else if (!event.shiftKey && document.activeElement === lastElement) {
+          event.preventDefault();
+          firstElement?.focus();
+        }
+      }
+    },
+    [handleClose],
+  );
 
   useOnClickOutside(modalRef, handleClickOutside);
 
   useEffect(() => {
     if (isActive) {
-      // attach the event listener if the modal is shown
+      // Store the element that had focus before opening
+      previousActiveElement.current = document.activeElement as HTMLElement;
+
+      // Focus the close button when modal opens
+      setTimeout(() => closeButtonRef.current?.focus(), 0);
+
+      // Prevent body scroll
+      document.body.style.overflow = 'hidden';
+
+      // Attach the event listener if the modal is shown
       document.addEventListener('keydown', handleKeyPress);
-      // remove the event listener
+
       return () => {
         document.removeEventListener('keydown', handleKeyPress);
+        document.body.style.overflow = '';
+
+        // Return focus to the element that triggered the modal
+        previousActiveElement.current?.focus();
       };
     }
   }, [handleKeyPress, isActive]);
 
+  if (!isActive) return <></>;
+
   return (
-    <div className={cn(isActive ? 'flex' : 'none')}>
-      <div className="fixed top-0 left-0 z-[1040] w-screen h-screen opacity-50" />
+    <div className="flex" role="presentation">
+      <div
+        className="fixed top-0 left-0 z-[1040] w-screen h-screen opacity-50"
+        aria-hidden="true"
+      />
       <div
         className="fixed top-0 left-0 z-[1050] w-full h-full overflow-x-hidden overflow-y-auto outline-0 bg-[rgba(0,0,0,0.8)] backdrop-blur-[4px] flex justify-center items-start opacity-100"
-        aria-modal
-        aria-hidden
-        tabIndex={-1}
         role="dialog"
+        aria-modal="true"
+        aria-labelledby={title ? titleId : undefined}
       >
         <div
           className={cn(
@@ -62,14 +102,15 @@ export const Modal = ({
           ref={modalRef}
         >
           <div className="flex items-center justify-between w-full text-[17px] leading-[34px] font-bold [&_h2]:text-[rgb(161,161,170)] [&_h2]:font-medium [&_h2]:leading-[1.5rem] [&_h2]:text-[1.35rem]">
-            {title ? <h2>{title}</h2> : null}
+            {title ? <h2 id={titleId}>{title}</h2> : null}
             <button
-              className="flex justify-end text-[1.4rem] font-bold leading-none bg-transparent opacity-30 cursor-pointer border-none p-0 [&_img]:h-8 [&_img]:w-8 [&_img]:text-[rgb(161,161,170)]"
-              data-dismiss="modal"
-              aria-label="Close"
+              ref={closeButtonRef}
+              type="button"
+              className="flex justify-end text-[1.4rem] font-bold leading-none bg-transparent opacity-30 cursor-pointer border-none p-0 [&_img]:h-8 [&_img]:w-8 [&_img]:text-[rgb(161,161,170)] hover:opacity-60 transition-opacity"
+              aria-label="Close navigation menu"
               onClick={handleClose}
             >
-              <img src={close} alt="Close" />
+              <img src={close} alt="" aria-hidden="true" />
             </button>
           </div>
           <div>{children}</div>
