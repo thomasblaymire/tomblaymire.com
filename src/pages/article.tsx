@@ -48,22 +48,20 @@ export function Article(): JSX.Element {
       <Grid>
         <PageRow>
           <Col size={12}>
-            <div className="flex flex-col w-full max-w-[70rem] mx-auto px-4 tablet:px-0 overflow-x-hidden">
-              <div className="flex items-center justify-between gap-4 mb-6 tablet:mb-8">
-                <Button
-                  onClick={handleBack}
-                  className="flex items-center justify-center bg-[rgb(39,39,42)] border border-[rgba(63,63,70,0.5)] w-12 h-12 tablet:w-[4.4rem] tablet:h-[4.4rem] rounded-full shrink-0"
-                >
-                  <img
-                    src={backIcon}
-                    alt="Back"
-                    className="w-6 h-6 tablet:w-[2.3rem] tablet:h-[2.3rem]"
-                  />
-                </Button>
-                {post && (
-                  <Time dateTime={post.meta.publishDate} className="mb-0 order-none" />
-                )}
-              </div>
+            <div className="relative w-full max-w-[70rem] mx-auto px-4 tablet:px-0 overflow-x-hidden">
+              <Button
+                onClick={handleBack}
+                className="flex items-center justify-center bg-[rgb(39,39,42)] border border-[rgba(63,63,70,0.5)] w-12 h-12 tablet:w-[4.4rem] tablet:h-[4.4rem] rounded-full shrink-0 mb-4 tablet:mb-0 tablet:absolute tablet:left-[-7rem] tablet:top-0"
+              >
+                <img
+                  src={backIcon}
+                  alt="Back"
+                  className="w-6 h-6 tablet:w-[2.3rem] tablet:h-[2.3rem]"
+                />
+              </Button>
+              {post && (
+                <Time dateTime={post.meta.publishDate} className="mb-0 order-none" />
+              )}
               {error && <ErrorMessage error={error} />}
               {post && renderPost()}
             </div>
