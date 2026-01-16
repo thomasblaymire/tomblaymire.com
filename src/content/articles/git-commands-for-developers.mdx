@@ -1,103 +1,199 @@
 export const meta = {
   title: 'Git Commands For Developers',
   slug: 'git-commands-for-developers',
-  description: 'Version control in a nutshell allows you to update, share and track code from a centralised location. It is a perfect way for you to contribute your changes to a shared codebase with a team of other developers all working on the same project.',
+  description: 'A practical guide to the Git commands I use daily. From basic commits to rebasing and the GitHub CLI, these are the commands that have become second nature over the years.',
   publishDate: '2015-12-15',
-  tags: ['git', 'version-control', 'development'],
+  updatedDate: '2024-01-16',
+  tags: ['git', 'version-control', 'development', 'github'],
 };
 
 ## What is version control?
 
-Version control in a nutshell allows you to update, share and track code from a centralised location. It is a perfect way for you to contribute your changes to a shared codebase with a team of other developers all working on the same project.
+Version control lets you track changes, collaborate with others, and maintain a history of your codebase. Git is by far the most popular version control system out there - pretty much every dev team uses it.
 
-The most used version control system or VCS for short is Git. Git has been around for years originally created in 2005 it allows developers to share code in an effective way and is well supported by various different code editors such as VSCode and Sublime Text.
+I've been using Git since my first dev job and honestly, it took a while before things clicked. These days most of these commands are muscle memory, but I remember how confusing it all seemed at first.
 
-## Is it hard to learn Git?
+## The Basics
 
-I believe that version control should be one of the first things you learn as you are pursuing a career as a Web Developer. Most teams use Git so it is essential that you at least understand the basic commands and can commit, merge and push your changes up to a remote repository.
-
-## Basic Commands
-
-**How to create a git repo?**
+These are the commands you'll use constantly:
 
 ```bash
+# Start a new repo
 git init
-```
 
-**How to add a file to the repo?**
+# Stage files for commit
+git add .                    # Stage everything
+git add src/components/      # Stage a specific folder
 
-```bash
-git add <filename>
-```
+# Commit your changes
+git commit -m "add user login form"
 
-**How to commit a change?**
-
-```bash
-git commit -m "message"
-```
-
-**How to view the status of a project?**
-
-```bash
+# Check what's changed
 git status
-```
 
-**How to log all git commit history?**
-
-```bash
+# View commit history
 git log --oneline
 ```
 
-## Branching Commands
+## Branching
 
-A branch in Git is simply a lightweight movable pointer to an individual commit. You could for example branch off from your colleagues branch and make your own changes to their work!
-
-**How to create a branch and switch to it?**
+Branches let you work on features without messing up the main codebase. I create new branches constantly.
 
 ```bash
-git checkout -b branch_name
-```
+# Create and switch to a new branch
+git checkout -b feature/add-search
+# or the newer way
+git switch -c feature/add-search
 
-**How to list all branches?**
-
-```bash
+# List all branches
 git branch -a
+
+# Switch between branches
+git checkout main
+git switch main
+
+# Delete a branch (local)
+git branch -d feature/add-search
+# Force delete
+git branch -D feature/add-search
 ```
 
-**How to delete a branch?**
+## Working with Remotes
 
 ```bash
-git branch -D branch_name
+# Clone a repo
+git clone git@github.com:username/repo.git
+
+# Push your branch
+git push origin feature/add-search
+# Set upstream so you can just use 'git push' next time
+git push -u origin feature/add-search
+
+# Pull latest changes
+git pull origin main
+
+# Fetch without merging (I do this a lot)
+git fetch origin
 ```
 
-## Merging Commands
+## Rebasing
 
-Like the opposite of branching, merging will bring all changes and commits into one timeline.
-
-**How to merge a branch?**
+Rebasing keeps your commit history clean. I rebase onto main before opening PRs to avoid messy merge commits.
 
 ```bash
-git merge feature_branch
+# Rebase your branch onto main
+git checkout feature/add-search
+git rebase main
+
+# Interactive rebase to squash/edit commits
+git rebase -i HEAD~3
+
+# If you mess up, abort
+git rebase --abort
 ```
 
-## Remote Repositories
+During interactive rebase, you can:
+- `pick` - keep the commit
+- `squash` - combine with the previous commit
+- `reword` - change the commit message
+- `drop` - remove the commit entirely
 
-This is where you can essentially clone (copy) a centralised repo to then work on a specific task within that project.
+## Stashing
 
-**How to clone a repo to your local machine?**
+When you need to quickly switch branches but don't want to commit half-finished work:
 
 ```bash
-git clone https://repo_url.git
+# Stash your changes
+git stash
+
+# Stash with a message (helpful when you have multiple stashes)
+git stash push -m "wip: search component styling"
+
+# List stashes
+git stash list
+
+# Apply the latest stash
+git stash pop
+
+# Apply a specific stash
+git stash apply stash@{2}
 ```
 
-**How to push a commit to the remote repo?**
+## Undoing Things
+
+We all make mistakes. Here's how to fix them:
 
 ```bash
-git push origin branch_name
+# Undo last commit but keep changes staged
+git reset --soft HEAD~1
+
+# Undo last commit and unstage changes
+git reset HEAD~1
+
+# Completely undo last commit (careful with this one)
+git reset --hard HEAD~1
+
+# Discard changes in a file
+git checkout -- src/App.tsx
+
+# Create a new commit that undoes a previous commit
+git revert abc123
 ```
 
-## Conclusion
+## GitHub CLI
 
-These are just a snippet of some of the Git commands that I find myself using often. Git is one of those tools that you gradually pick up over time so don't worry too much if it all doesn't make sense right now.
+The GitHub CLI (`gh`) has become part of my daily workflow. It's way faster than clicking around the website.
 
-Git also comes with a fantastic documentation you can find this here: [Git Documentation](https://git-scm.com/docs)
+```bash
+# Create a PR
+gh pr create --title "Add search feature" --body "Implements full-text search"
+
+# List open PRs
+gh pr list
+
+# Check out a PR locally
+gh pr checkout 123
+
+# View PR in browser
+gh pr view --web
+
+# Create an issue
+gh issue create --title "Bug: login fails on Safari"
+
+# Clone a repo (shorter than the full URL)
+gh repo clone owner/repo
+```
+
+## Conventional Commits
+
+I've started using conventional commits on most projects. Makes the git history way more readable and works nicely with automated changelogs.
+
+```bash
+git commit -m "feat: add user authentication"
+git commit -m "fix: resolve login redirect loop"
+git commit -m "docs: update API documentation"
+git commit -m "refactor: extract validation logic"
+git commit -m "chore: update dependencies"
+```
+
+The format is `type(optional scope): description`. Common types are `feat`, `fix`, `docs`, `style`, `refactor`, `test`, and `chore`.
+
+## Useful Aliases
+
+I have these in my `.gitconfig`:
+
+```bash
+[alias]
+  co = checkout
+  br = branch
+  st = status
+  last = log -1 HEAD
+  undo = reset HEAD~1
+  amend = commit --amend --no-edit
+```
+
+## Wrapping Up
+
+Git has a steep learning curve but once you get comfortable with these commands, you'll wonder how you ever worked without them. When things go wrong (and they will), `git reflog` is your friend - it shows everything you've done and lets you recover from almost any mistake.
+
+The [official Git docs](https://git-scm.com/docs) are surprisingly readable if you want to dig deeper.
