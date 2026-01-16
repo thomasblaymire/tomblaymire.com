@@ -30,6 +30,12 @@
     max-width: 100vw;
   }
 
+  /* Ensure text wraps properly on mobile */
+  * {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
   /* Light mode (default) - Exact colors from lightTheme */
   :root {
     --color-bg: 246 246 246; /* rgb(246, 246, 246) */
