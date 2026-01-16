@@ -1,5 +1,5 @@
 import { Navigation } from '@/components/navigation';
-import { navLinks } from '@/content/links';
+import { navLinks } from '@/content/pages/links';
 import { device } from '@/helpers/device';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 

@@ -1,5 +1,5 @@
 import { Card } from '@/components/card';
-import { socials } from '@/content/about';
+import { socials } from '@/content/pages/about';
 
 export function Socials() {
   return (

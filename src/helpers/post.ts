@@ -1,29 +1,11 @@
-import { createClient } from 'contentful';
+// Post helpers - currently unused after MDX migration
+// Keeping file for potential future use
 
-const client = createClient({
-  space: import.meta.env.VITE_CONTENTFUL_SPACE_ID,
-  accessToken: import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN,
-});
-
-export const getAuthor = async () => {
-  try {
-    const entries = await client.getEntries({
-      content_type: 'author',
-      select: 'fields',
-    });
-
-    const sanitizedEntries = entries.items.map((item) => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const fields = item.fields as any;
-      const avatar = fields.avatar.fields;
-      return {
-        ...fields,
-        avatar,
-      };
-    });
-
-    return sanitizedEntries;
-  } catch (error) {
-    console.log(`Error fetching authors ${error}`);
-  }
+export const formatDate = (dateString: string): string => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-GB', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
 };

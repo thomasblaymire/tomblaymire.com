@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Logo } from '@/components/logo';
 import { Navigation } from '@/components/navigation';
 import { ThemeToggle } from '@/components/theme-toggle';
-import { navLinks } from '@/content/links';
+import { navLinks } from '@/content/pages/links';
 
 interface HeaderProps {
   toggleTheme: () => void;

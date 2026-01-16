@@ -2,7 +2,7 @@ import { Meta } from '@/components/meta';
 import { Posts } from '@/components/posts';
 import { FooterSection } from '@/components/sections/footer-section';
 import { HeroSection } from '@/components/sections/hero-section';
-import { heroDescription, heroTitle } from '@/content/articles';
+import { heroDescription, heroTitle } from '@/content/pages/articles-page';
 import { Col, Grid, PageRow } from '@/styles/grid';
 
 export function Articles() {

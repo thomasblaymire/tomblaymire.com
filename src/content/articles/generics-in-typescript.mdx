@@ -1,0 +1,213 @@
+export const meta = {
+  title: 'Generics In TypeScript',
+  slug: 'generics-in-typescript',
+  description: 'A practical look at TypeScript generics - from basic usage to more advanced patterns. If you find yourself reaching for `any`, generics are probably what you need.',
+  publishDate: '2017-05-16',
+  updatedDate: '2024-01-16',
+  tags: ['typescript', 'javascript'],
+};
+
+Generics confused me for ages when I first started with TypeScript. They looked intimidating with all those angle brackets. But once they clicked, I realised they're actually pretty straightforward - and they solve a lot of problems.
+
+If you find yourself reaching for `any` because you want a function to work with different types, generics are what you need.
+
+## The Problem
+
+Let's say you want a function that returns the last item in an array:
+
+```typescript
+const last = (arr: number[]) => {
+  return arr[arr.length - 1];
+}
+
+const num = last([1, 2, 3]); // works fine
+const str = last(['a', 'b', 'c']); // error!
+```
+
+The function only works with numbers. You could use `any`:
+
+```typescript
+const last = (arr: any[]) => {
+  return arr[arr.length - 1];
+}
+```
+
+But now TypeScript doesn't know what type is returned. Hover over `last(['a', 'b'])` and you'll see `any`. You've lost all the benefits of TypeScript.
+
+## Enter Generics
+
+Generics let you say "this function works with any type, and I'll preserve that type information":
+
+```typescript
+const last = <T>(arr: T[]): T => {
+  return arr[arr.length - 1];
+}
+
+const num = last([1, 2, 3]);      // type is number
+const str = last(['a', 'b', 'c']); // type is string
+```
+
+The `T` is just a placeholder - call it whatever you want. `T` is conventional, but I often use more descriptive names like `TItem` or `TData`.
+
+## Multiple Type Parameters
+
+You can have as many type parameters as you need:
+
+```typescript
+const makePair = <K, V>(key: K, value: V): [K, V] => {
+  return [key, value];
+}
+
+const pair = makePair('name', 42); // type is [string, number]
+```
+
+## Constraining Types
+
+Sometimes you need to limit what types are allowed. Use `extends`:
+
+```typescript
+const getFullName = <T extends { firstName: string; lastName: string }>(
+  person: T
+) => {
+  return `${person.firstName} ${person.lastName}`;
+}
+
+// Works - has required properties
+getFullName({ firstName: 'Tom', lastName: 'Blaymire', age: 30 });
+
+// Error - missing lastName
+getFullName({ firstName: 'Tom' });
+```
+
+The object can have extra properties, but it must have at least `firstName` and `lastName`.
+
+## Generic Interfaces
+
+Generics work great with interfaces. Instead of creating separate interfaces for every variation:
+
+```typescript
+// Don't do this
+interface StringResponse {
+  data: string;
+  status: number;
+}
+
+interface UserResponse {
+  data: User;
+  status: number;
+}
+```
+
+Use a generic:
+
+```typescript
+interface ApiResponse<T> {
+  data: T;
+  status: number;
+}
+
+type StringResponse = ApiResponse<string>;
+type UserResponse = ApiResponse<User>;
+```
+
+## Default Types
+
+You can give generics default values:
+
+```typescript
+interface ApiResponse<T = unknown> {
+  data: T;
+  status: number;
+}
+
+// T defaults to unknown if not specified
+const response: ApiResponse = { data: 'hello', status: 200 };
+```
+
+## The satisfies Operator
+
+TypeScript 4.9 added `satisfies`, which pairs nicely with generics. It lets you check a value matches a type while keeping its specific type:
+
+```typescript
+type Route = {
+  path: string;
+  component: string;
+};
+
+// Using satisfies, TypeScript knows routes.home.path is exactly '/home'
+const routes = {
+  home: { path: '/home', component: 'HomePage' },
+  about: { path: '/about', component: 'AboutPage' },
+} satisfies Record<string, Route>;
+
+// Without satisfies, you'd lose the specific string literal types
+```
+
+## Const Type Parameters
+
+TypeScript 5.0 added `const` type parameters. This is handy when you want to infer literal types:
+
+```typescript
+// Without const - T is inferred as string[]
+const createRoute = <T extends readonly string[]>(paths: T) => paths;
+const routes = createRoute(['home', 'about']); // string[]
+
+// With const - T is inferred as readonly ['home', 'about']
+const createRoute = <const T extends readonly string[]>(paths: T) => paths;
+const routes = createRoute(['home', 'about']); // readonly ['home', 'about']
+```
+
+## Utility Types
+
+TypeScript has built-in generic utility types that are worth knowing:
+
+```typescript
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+// Make all properties optional
+type PartialUser = Partial<User>;
+
+// Make all properties required
+type RequiredUser = Required<User>;
+
+// Pick specific properties
+type UserPreview = Pick<User, 'id' | 'name'>;
+
+// Omit specific properties
+type UserWithoutEmail = Omit<User, 'email'>;
+
+// Make properties readonly
+type ReadonlyUser = Readonly<User>;
+```
+
+## A Real Example
+
+Here's a pattern I use for API calls:
+
+```typescript
+async function fetchData<T>(url: string): Promise<T> {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  return response.json() as Promise<T>;
+}
+
+interface User {
+  id: number;
+  name: string;
+}
+
+// TypeScript knows users is User[]
+const users = await fetchData<User[]>('/api/users');
+```
+
+## Wrapping Up
+
+Generics are one of those features that seem complex at first but become second nature once you start using them. The key insight is that they're just type variables - placeholders that get filled in when you use the function or type.
+
+Start simple, and reach for more advanced patterns when you need them. The [TypeScript docs on generics](https://www.typescriptlang.org/docs/handbook/2/generics.html) are solid if you want to go deeper.
