@@ -9,8 +9,8 @@ const WorkItem = ({ item }: WorkItemProps): JSX.Element => {
   const { image, name, jobTitle, dateFrom, dateTo } = item;
   return (
     <li className="flex gap-6 [&:not(:first-child)]:mt-[2.25rem]">
-      <div className="bg-[rgb(39,39,42)] border border-[rgba(63,63,70,0.5)] rounded-full justify-center items-center w-[4.2rem] h-[4.2rem] flex">
-        <img src={image} alt="" className="w-[3.2rem] h-[3.2rem]" />
+      <div className="rounded-full overflow-hidden w-[4.2rem] h-[4.2rem] flex-shrink-0">
+        <img src={image} alt="" className="w-full h-full object-cover" />
       </div>
       <dl className="flex flex-auto flex-wrap gap-x-2">
         <dt className="sr-only">Company</dt>
