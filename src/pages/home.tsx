@@ -4,7 +4,7 @@ import { FooterSection } from '@/components/sections/footer-section';
 import { HeroSection } from '@/components/sections/hero-section';
 import { Subscribe } from '@/components/subscribe';
 import { Work } from '@/components/work';
-import { heroDescription, heroTitle, metaTitle } from '@/content/home';
+import { heroDescription, heroTitle, metaTitle } from '@/content/pages/home';
 import { Col, Grid, PageRow } from '@/styles/grid';
 
 export function Home() {

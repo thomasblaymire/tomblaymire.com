@@ -1,5 +1,5 @@
 import { TimeLine } from '@/components/timeline';
-import { uses } from '@/content/uses';
+import { uses } from '@/content/pages/uses';
 
 export function TimelineSection() {
   return (

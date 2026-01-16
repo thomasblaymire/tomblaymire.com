@@ -2,7 +2,7 @@ import { Meta } from '@/components/meta';
 import { FooterSection } from '@/components/sections/footer-section';
 import { ImageSection } from '@/components/sections/image-section';
 import { Socials } from '@/components/socials';
-import { heroTitle } from '@/content/about';
+import { heroTitle } from '@/content/pages/about';
 import { Col, Grid, PageRow } from '@/styles/grid';
 
 export function About() {
