@@ -12,18 +12,18 @@ const WorkItem = ({ item }: WorkItemProps): JSX.Element => {
       <div className="w-[4.2rem] h-[4.2rem] flex-shrink-0 flex items-center justify-center">
         <img src={image} alt="" className="w-full h-full rounded-full object-cover" />
       </div>
-      <dl className="flex flex-auto flex-wrap gap-x-2">
+      <dl className="flex flex-auto flex-col min-w-0">
         <dt className="sr-only">Company</dt>
-        <dd className="flex-none w-full text-[1.35rem] leading-[1.5rem] text-[rgb(244,244,245)] dark:text-[rgb(244,244,245)]">
+        <dd className="text-[1.35rem] leading-[1.5rem] text-[rgb(244,244,245)] dark:text-[rgb(244,244,245)] truncate">
           {name}
         </dd>
         <dt className="sr-only">Role</dt>
-        <dd className="text-[rgb(161,161,170)] text-[1.3rem] font-normal leading-[1.5rem]">
+        <dd className="text-[rgb(161,161,170)] text-[1.3rem] font-normal leading-[1.5rem] truncate">
           {jobTitle}
         </dd>
         <dt className="sr-only">Date</dt>
         <dd
-          className="ml-auto text-[rgb(161,161,170)] text-[1.3rem] font-normal leading-[1.5rem]"
+          className="text-[rgb(161,161,170)] text-[1.3rem] font-normal leading-[1.5rem]"
           aria-label={`${dateFrom} until ${dateTo}`}
         >
           <time dateTime={dateFrom}>{dateFrom}</time> <span aria-hidden="true">—</span>{' '}

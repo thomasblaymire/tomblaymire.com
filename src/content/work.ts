@@ -35,7 +35,7 @@ export const workExperiences: WorkExperienceItem[] = [
     slug: 'newday',
     jobTitle: 'Lead Frontend Engineer',
     shortDescription:
-      "Leading frontend development for one of the UK's largest credit card providers.",
+      "Architecting customer-facing applications and driving frontend initiatives for one of the UK's largest credit card providers.",
     link: 'https://www.newday.co.uk/',
     linkText: 'newday',
     dateFrom: '2022',
