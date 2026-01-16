@@ -10,6 +10,7 @@ import xcover from '@/assets/icons/xcover.svg';
 export interface WorkExperienceItem {
   image: string;
   name: string;
+  slug: string;
   jobTitle: string;
   link: string;
   linkText: string;
@@ -21,6 +22,7 @@ export interface WorkExperienceItem {
 export interface PersonalProjectItem {
   image: string;
   name: string;
+  slug: string;
   shortDescription?: string;
   link: string;
   linkText: string;
@@ -30,6 +32,7 @@ export const workExperiences: WorkExperienceItem[] = [
   {
     image: newday,
     name: 'NewDay',
+    slug: 'newday',
     jobTitle: 'Lead Frontend Engineer',
     shortDescription:
       "Leading frontend development for one of the UK's largest credit card providers.",
@@ -41,9 +44,10 @@ export const workExperiences: WorkExperienceItem[] = [
   {
     image: stan,
     name: 'Stan',
+    slug: 'stan',
     jobTitle: 'Software Engineer',
     shortDescription:
-      'Enhacing TV platforms and implementing live sports for one of the leading video streaming services in Australia.',
+      'Enhancing TV platforms and implementing live sports for one of the leading video streaming services in Australia.',
     link: 'https://www.stan.com.au/',
     linkText: 'stan',
     dateFrom: '2020',
@@ -52,6 +56,7 @@ export const workExperiences: WorkExperienceItem[] = [
   {
     image: xcover,
     name: 'Cover Genius',
+    slug: 'cover-genius',
     jobTitle: 'Front End Engineer',
     shortDescription:
       'Building the new XCover.com platform to allow customers to purchase insurance with ease.',
@@ -63,6 +68,7 @@ export const workExperiences: WorkExperienceItem[] = [
   {
     image: skybet,
     name: 'Sky Bet & Gaming',
+    slug: 'sky-bet',
     jobTitle: 'Software Engineer',
     shortDescription:
       'Re-building the new Betslip from the ground up for one of the UKs leading betting applications.',
@@ -74,6 +80,7 @@ export const workExperiences: WorkExperienceItem[] = [
   {
     image: evri,
     name: 'Evri',
+    slug: 'evri',
     jobTitle: 'UI Engineer',
     shortDescription:
       'Creating the careers and innovation websites along with enhancing the primary parcel service website.',
@@ -85,6 +92,7 @@ export const workExperiences: WorkExperienceItem[] = [
   {
     image: emis,
     name: 'Emis Health',
+    slug: 'emis-health',
     jobTitle: 'Web Developer',
     shortDescription:
       'Developing medical practice websites and enhancing online appointment booking services.',
@@ -99,6 +107,7 @@ export const personalProjects: PersonalProjectItem[] = [
   {
     image: crypto,
     name: 'Crypto Track',
+    slug: 'crypto-track',
     shortDescription:
       'An online crypto tracking application, featuring latest prices, watchlists and user authentication.',
     link: 'https://github.com/thomasblaymire/crypto-track',
@@ -107,9 +116,17 @@ export const personalProjects: PersonalProjectItem[] = [
   {
     image: learnstability,
     name: 'Learnstability',
+    slug: 'learnstability',
     shortDescription:
       'Building an online course review platform pulling in the best courses from popular course APIs.',
     link: 'https://www.learnstability.com/',
     linkText: 'learnstability',
   },
 ];
+
+export const getProjectBySlug = (
+  slug: string,
+): WorkExperienceItem | PersonalProjectItem | undefined => {
+  const allProjects = [...workExperiences, ...personalProjects];
+  return allProjects.find((project) => project.slug === slug);
+};

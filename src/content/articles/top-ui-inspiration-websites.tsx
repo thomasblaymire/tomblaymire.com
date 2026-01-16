@@ -24,6 +24,7 @@ export default function TopUiInspirationWebsites() {
       </blockquote>
 
       <h2>Website 1: Dribbble</h2>
+      <img src="/images/articles/dribbble.png" alt="Dribbble homepage screenshot" />
       <p>
         Dribbble is a fantastic website that showcases designers work from all over the
         world. It also comes with a great search that allows you to easily find resources
@@ -38,6 +39,7 @@ export default function TopUiInspirationWebsites() {
       </p>
 
       <h2>Website 2: Mobbin</h2>
+      <img src="/images/articles/mobbin.png" alt="Mobbin homepage screenshot" />
       <p>
         Mobbin is a fantastic resource for mobile and web design patterns. It contains
         thousands of screenshots from real apps, organised by screen type and user flow.
@@ -51,6 +53,7 @@ export default function TopUiInspirationWebsites() {
       </p>
 
       <h2>Website 3: UpLabs</h2>
+      <img src="/images/articles/uplabs.png" alt="UpLabs homepage screenshot" />
       <p>
         Another website for design inspiration is UpLabs. They specifically lead the way
         when it comes to inspiration you can actually interact with, they have a useful
@@ -66,6 +69,10 @@ export default function TopUiInspirationWebsites() {
       </p>
 
       <h2>Website 4: Figma Community</h2>
+      <img
+        src="/images/articles/figma-community.png"
+        alt="Figma Community homepage screenshot"
+      />
       <p>
         The Figma Community has become one of the best resources for design inspiration
         and free UI kits. You can find complete design systems, icon sets, and templates
@@ -80,6 +87,7 @@ export default function TopUiInspirationWebsites() {
       </p>
 
       <h2>Website 5: UI Patterns</h2>
+      <img src="/images/articles/ui-patterns.png" alt="UI Patterns homepage screenshot" />
       <p>
         Last but not least is UI Patterns, a fantastic website showcasing when to and when
         not to use a specific component/element within an application. The good thing
