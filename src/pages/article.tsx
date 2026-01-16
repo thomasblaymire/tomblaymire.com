@@ -60,7 +60,9 @@ export function Article(): JSX.Element {
                     className="w-6 h-6 tablet:w-[2.3rem] tablet:h-[2.3rem]"
                   />
                 </Button>
-                {post && <Time dateTime={post.meta.publishDate} className="mb-0" />}
+                {post && (
+                  <Time dateTime={post.meta.publishDate} className="mb-0 order-none" />
+                )}
               </div>
               {error && <ErrorMessage error={error} />}
               {post && renderPost()}
