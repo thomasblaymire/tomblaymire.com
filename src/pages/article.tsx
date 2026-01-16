@@ -1,7 +1,5 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-import backIcon from '@/assets/icons/left.svg';
-import { Button } from '@/components/button';
 import { ErrorMessage } from '@/components/error-message';
 import { Meta } from '@/components/meta';
 import { FooterSection } from '@/components/sections/footer-section';
@@ -10,8 +8,6 @@ import { usePost } from '@/hooks/usePost';
 import { Col, Grid, PageRow } from '@/styles/grid';
 
 export function Article(): JSX.Element {
-  const navigate = useNavigate();
-  const handleBack = () => navigate(-1);
   const { slug } = useParams();
   const { post, error } = usePost(slug);
 
@@ -48,17 +44,7 @@ export function Article(): JSX.Element {
       <Grid>
         <PageRow>
           <Col size={12}>
-            <div className="relative w-full max-w-[70rem] mx-auto px-4 tablet:px-0 overflow-x-hidden">
-              <Button
-                onClick={handleBack}
-                className="flex items-center justify-center bg-[rgb(39,39,42)] border border-[rgba(63,63,70,0.5)] w-12 h-12 tablet:w-[4.4rem] tablet:h-[4.4rem] rounded-full shrink-0 mb-4 tablet:mb-0 tablet:absolute tablet:left-[-7rem] tablet:top-0"
-              >
-                <img
-                  src={backIcon}
-                  alt="Back"
-                  className="w-6 h-6 tablet:w-[2.3rem] tablet:h-[2.3rem]"
-                />
-              </Button>
+            <div className="w-full max-w-[70rem] mx-auto px-4 tablet:px-0 overflow-x-hidden">
               {post && (
                 <Time dateTime={post.meta.publishDate} className="mb-0 order-none" />
               )}
