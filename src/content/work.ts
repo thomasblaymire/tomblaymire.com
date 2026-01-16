@@ -2,7 +2,7 @@ import crypto from '@/assets/icons/crypto.svg';
 import emis from '@/assets/icons/emis.svg';
 import evri from '@/assets/icons/evri.svg';
 import learnstability from '@/assets/icons/learnstability.svg';
-import newday from '@/assets/icons/newday.svg';
+import newday from '@/assets/icons/newday.jpeg';
 import skybet from '@/assets/icons/skybet.svg';
 import stan from '@/assets/icons/stan.svg';
 import xcover from '@/assets/icons/xcover.svg';
