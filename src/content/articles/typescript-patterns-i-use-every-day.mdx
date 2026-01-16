@@ -212,13 +212,56 @@ type ProfileFormData = Pick<User, 'name' | 'email'>;
 
 Keeps your types DRY and makes it obvious what each boundary expects.
 
-## What I've Stopped Doing
+## Why I Stopped Using Enums
 
-A few things I used to do that I've backed away from:
+This is a hot take that some people disagree with, but I've moved away from enums entirely. Here's why.
+
+Enums in TypeScript compile to actual JavaScript objects:
+
+```typescript
+enum Status {
+  Active = 'active',
+  Inactive = 'inactive',
+}
+
+// Compiles to:
+var Status;
+(function (Status) {
+  Status["Active"] = "active";
+  Status["Inactive"] = "inactive";
+})(Status || (Status = {}));
+```
+
+That's runtime code for something that should just be a type. With `as const`, you get the same benefits without the overhead:
+
+```typescript
+const Status = {
+  Active: 'active',
+  Inactive: 'inactive',
+} as const;
+
+type Status = typeof Status[keyof typeof Status];
+// type Status = 'active' | 'inactive'
+```
+
+Or even simpler, just use a union type directly:
+
+```typescript
+type Status = 'active' | 'inactive';
+```
+
+The union approach has some real advantages:
+
+- **No runtime code** - It's purely a compile-time construct
+- **Better inference** - Functions returning `'active'` automatically work, no need to return `Status.Active`
+- **Works with JSON** - API responses come in as strings, not enum members
+- **Simpler debugging** - You see `'active'` in logs, not `Status.Active`
+
+The only thing you lose is the namespace for grouping related values. If you need that, use `as const` with an object. I find myself reaching for plain unions 90% of the time though.
+
+## What Else I've Stopped Doing
 
 **Overly complex mapped types** - If a type requires more than a few seconds to understand, it's probably not worth it. A bit of duplication is fine.
-
-**Enums** - I use union types instead. `type Status = 'active' | 'inactive'` is simpler and works better with type inference.
 
 **Class-heavy code** - Functions and plain objects handle most things. Classes have their place but they're often overkill in frontend code.
 
