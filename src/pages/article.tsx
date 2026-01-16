@@ -52,7 +52,7 @@ export function Article(): JSX.Element {
             <div className="flex flex-col w-full max-w-[70rem] mx-auto px-4 tablet:px-0 overflow-x-hidden">
               <Button
                 onClick={handleBack}
-                className="flex items-center justify-center bg-[rgb(39,39,42)] border border-[rgba(63,63,70,0.5)] w-10 h-10 tablet:w-[4.4rem] tablet:h-[4.4rem] rounded-lg mb-6 tablet:mb-8 shrink-0"
+                className="flex items-center justify-center bg-[rgb(39,39,42)] border border-[rgba(63,63,70,0.5)] w-10 h-10 tablet:w-[4.4rem] tablet:h-[4.4rem] rounded-full mb-6 tablet:mb-8 shrink-0"
               >
                 <img
                   src={backIcon}
