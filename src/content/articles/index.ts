@@ -6,17 +6,17 @@ import GenericsInTypescript, {
 import GitCommandsForDevelopers, {
   meta as gitCommandsForDevelopersMeta,
 } from './git-commands-for-developers.mdx';
+import PracticalTypescriptPatterns, {
+  meta as practicalTypescriptPatternsMeta,
+} from './practical-typescript-patterns.mdx';
 import TopUiInspirationWebsites, {
   meta as topUiInspirationWebsitesMeta,
 } from './top-ui-inspiration-websites.mdx';
-import TypescriptPatternsIUseEveryDay, {
-  meta as typescriptPatternsIUseEveryDayMeta,
-} from './typescript-patterns-i-use-every-day.mdx';
 
 const articles: Article[] = [
   {
-    meta: typescriptPatternsIUseEveryDayMeta,
-    Content: TypescriptPatternsIUseEveryDay,
+    meta: practicalTypescriptPatternsMeta,
+    Content: PracticalTypescriptPatterns,
   },
   {
     meta: genericsInTypescriptMeta,
