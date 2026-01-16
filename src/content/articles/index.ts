@@ -2,13 +2,13 @@ import { Article } from '@/types/article';
 
 import GenericsInTypescript, {
   meta as genericsInTypescriptMeta,
-} from './generics-in-typescript';
+} from './generics-in-typescript.mdx';
 import GitCommandsForDevelopers, {
   meta as gitCommandsForDevelopersMeta,
-} from './git-commands-for-developers';
+} from './git-commands-for-developers.mdx';
 import TopUiInspirationWebsites, {
   meta as topUiInspirationWebsitesMeta,
-} from './top-ui-inspiration-websites';
+} from './top-ui-inspiration-websites.mdx';
 
 const articles: Article[] = [
   {
