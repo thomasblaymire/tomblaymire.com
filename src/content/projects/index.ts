@@ -1,13 +1,13 @@
 import { ComponentType } from 'react';
 
-import CoverGeniusProject from './cover-genius';
-import CryptoTrackProject from './crypto-track';
-import EmisHealthProject from './emis-health';
+import CryptoProject from './crypto';
+import EmisProject from './emis';
 import EvriProject from './evri';
 import LearnstabilityProject from './learnstability';
 import NewDayProject from './newday';
-import SkyBetProject from './sky-bet';
+import SkybetProject from './skybet';
 import StanProject from './stan';
+import XcoverProject from './xcover';
 
 export interface ProjectContent {
   slug: string;
@@ -17,11 +17,11 @@ export interface ProjectContent {
 const projectContents: ProjectContent[] = [
   { slug: 'newday', Content: NewDayProject },
   { slug: 'stan', Content: StanProject },
-  { slug: 'cover-genius', Content: CoverGeniusProject },
-  { slug: 'sky-bet', Content: SkyBetProject },
+  { slug: 'xcover', Content: XcoverProject },
+  { slug: 'skybet', Content: SkybetProject },
   { slug: 'evri', Content: EvriProject },
-  { slug: 'emis-health', Content: EmisHealthProject },
-  { slug: 'crypto-track', Content: CryptoTrackProject },
+  { slug: 'emis', Content: EmisProject },
+  { slug: 'crypto', Content: CryptoProject },
   { slug: 'learnstability', Content: LearnstabilityProject },
 ];
 

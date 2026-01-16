@@ -56,7 +56,7 @@ export const workExperiences: WorkExperienceItem[] = [
   {
     image: xcover,
     name: 'Cover Genius',
-    slug: 'cover-genius',
+    slug: 'xcover',
     jobTitle: 'Front End Engineer',
     shortDescription:
       'Building the new XCover.com platform to allow customers to purchase insurance with ease.',
@@ -68,7 +68,7 @@ export const workExperiences: WorkExperienceItem[] = [
   {
     image: skybet,
     name: 'Sky Bet & Gaming',
-    slug: 'sky-bet',
+    slug: 'skybet',
     jobTitle: 'Software Engineer',
     shortDescription:
       'Re-building the new Betslip from the ground up for one of the UKs leading betting applications.',
@@ -92,7 +92,7 @@ export const workExperiences: WorkExperienceItem[] = [
   {
     image: emis,
     name: 'Emis Health',
-    slug: 'emis-health',
+    slug: 'emis',
     jobTitle: 'Web Developer',
     shortDescription:
       'Developing medical practice websites and enhancing online appointment booking services.',
@@ -107,7 +107,7 @@ export const personalProjects: PersonalProjectItem[] = [
   {
     image: crypto,
     name: 'Crypto Track',
-    slug: 'crypto-track',
+    slug: 'crypto',
     shortDescription:
       'An online crypto tracking application, featuring latest prices, watchlists and user authentication.',
     link: 'https://github.com/thomasblaymire/crypto-track',
