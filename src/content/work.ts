@@ -2,7 +2,7 @@ import crypto from '@/assets/icons/crypto.svg';
 import emis from '@/assets/icons/emis.svg';
 import evri from '@/assets/icons/evri.svg';
 import learnstability from '@/assets/icons/learnstability.svg';
-import newday from '@/assets/icons/newday.svg';
+import newday from '@/assets/icons/newday.jpeg';
 import skybet from '@/assets/icons/skybet.svg';
 import stan from '@/assets/icons/stan.svg';
 import xcover from '@/assets/icons/xcover.svg';
@@ -35,7 +35,7 @@ export const workExperiences: WorkExperienceItem[] = [
     slug: 'newday',
     jobTitle: 'Lead Frontend Engineer',
     shortDescription:
-      "Leading frontend development for one of the UK's largest credit card providers.",
+      "Architecting customer-facing applications and driving frontend initiatives for one of the UK's largest credit card providers.",
     link: 'https://www.newday.co.uk/',
     linkText: 'newday',
     dateFrom: '2022',

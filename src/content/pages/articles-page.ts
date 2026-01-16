@@ -1,2 +1,2 @@
-export const heroTitle = `Writing on software development, tools, industry trends and more.`;
-export const heroDescription = `All of my longer posts primarily around software development (JavaScript, React, and CSS) where I share things I find interesting along with what I have learnt along the way.`;
+export const heroTitle = `Writing on software development, architecture, industry trends and more.`;
+export const heroDescription = `Long-form articles on frontend engineering, system design, and the evolving landscape of web development. I write about patterns, practices, and lessons learned from building production applications at scale.`;

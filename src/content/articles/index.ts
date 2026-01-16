@@ -6,11 +6,18 @@ import GenericsInTypescript, {
 import GitCommandsForDevelopers, {
   meta as gitCommandsForDevelopersMeta,
 } from './git-commands-for-developers.mdx';
+import PracticalTypescriptPatterns, {
+  meta as practicalTypescriptPatternsMeta,
+} from './practical-typescript-patterns.mdx';
 import TopUiInspirationWebsites, {
   meta as topUiInspirationWebsitesMeta,
 } from './top-ui-inspiration-websites.mdx';
 
 const articles: Article[] = [
+  {
+    meta: practicalTypescriptPatternsMeta,
+    Content: PracticalTypescriptPatterns,
+  },
   {
     meta: genericsInTypescriptMeta,
     Content: GenericsInTypescript,
