@@ -49,7 +49,7 @@ export function Article(): JSX.Element {
         <PageRow>
           <Col size={12}>
             <div className="flex flex-col w-full max-w-[70rem] mx-auto px-4 tablet:px-0 overflow-x-hidden">
-              <div className="flex items-center justify-between tablet:justify-start gap-4 mb-6 tablet:mb-8">
+              <div className="flex items-center justify-between gap-4 mb-6 tablet:mb-8">
                 <Button
                   onClick={handleBack}
                   className="flex items-center justify-center bg-[rgb(39,39,42)] border border-[rgba(63,63,70,0.5)] w-12 h-12 tablet:w-[4.4rem] tablet:h-[4.4rem] rounded-full shrink-0"
