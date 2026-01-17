@@ -17,17 +17,27 @@
 
 ## Built With
 
-- TypeScript
+- TypeScript 5
 - React 18
 - Vite 6
-- Tailwind CSS
+- Tailwind CSS 3
 - MDX for articles
-- React Router
-- Vitest for testing
+- Shiki for syntax highlighting
+- React Router 6
+- Vitest for unit testing
+- Playwright for E2E testing
+
+## Features
+
+- Responsive design optimised for mobile and desktop
+- Dark/light theme toggle
+- MDX-powered blog with syntax highlighted code blocks
+- SEO optimised with structured data
+- Accessible (WCAG compliant)
 
 ## How To Use
 
-To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) installed on your computer. From your command line:
+To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (v22+) installed on your computer. From your command line:
 
 ```bash
 # Clone this repository
@@ -45,9 +55,18 @@ $ yarn dev
 # Build the web app
 $ yarn build
 
-# Run tests
+# Run unit tests
 $ yarn test
+
+# Run E2E tests
+$ yarn test:e2e
+
+# Run E2E tests with UI
+$ yarn test:e2e:ui
 
 # Run ESLint
 $ yarn lint
+
+# Type check
+$ yarn type-check
 ```
