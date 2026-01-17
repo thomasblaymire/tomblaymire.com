@@ -10,3 +10,9 @@ MODERNIZATION_PLAN.md
 package.json.backup
 *.backup
 .vscode/settings.json
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
