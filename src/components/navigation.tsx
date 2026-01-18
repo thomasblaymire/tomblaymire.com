@@ -56,7 +56,7 @@ export function Navigation({ items, type }: NavigationProps): JSX.Element {
           <div className="pointer-events-auto flex flex-1 justify-end">
             <Button
               onClick={() => setToggle(!toggle)}
-              className="bg-[rgba(39,39,42,0.9)] border border-[hsla(0,0%,100%,0.1)] rounded-full pointer-events-auto px-8"
+              className="bg-[rgb(239,239,239)] dark:bg-[rgba(39,39,42,0.9)] text-black dark:text-white border border-[hsla(0,0%,0%,0.1)] dark:border-[hsla(0,0%,100%,0.1)] rounded-full pointer-events-auto px-8"
             >
               Menu
             </Button>
@@ -75,9 +75,11 @@ export function Navigation({ items, type }: NavigationProps): JSX.Element {
       ) : (
         <nav
           className={cn(
-            '[&_ul]:list-none [&_ul]:flex [&_ul]:bg-[rgba(39,39,42,0.9)] [&_ul]:border [&_ul]:border-[hsla(0,0%,100%,0.1)] [&_ul]:px-4 [&_ul]:rounded-full',
-            '[&_li]:leading-[1.5rem] [&_li]:font-normal [&_li]:text-[1.4rem] [&_li]:px-5 [&_li]:py-5 [&_li]:text-[rgb(212,212,216)] [&_li:hover]:text-[rgb(20,184,166)]',
-            type === 'basic' && '[&_ul]:bg-transparent [&_ul]:border-none [&_ul]:p-0',
+            '[&_ul]:list-none [&_ul]:flex',
+            '[&_li]:leading-[1.5rem] [&_li]:font-normal [&_li]:text-[1.4rem] [&_li:hover]:text-[rgb(20,184,166)] dark:[&_li:hover]:text-[rgb(20,184,166)]',
+            type === 'basic'
+              ? '[&_li]:text-[rgb(161,161,170)] [&_li]:px-3 [&_li]:py-0'
+              : '[&_ul]:bg-[rgb(239,239,239)] dark:[&_ul]:bg-[rgba(39,39,42,0.9)] [&_ul]:border [&_ul]:border-[hsla(0,0%,0%,0.1)] dark:[&_ul]:border-[hsla(0,0%,100%,0.1)] [&_ul]:px-4 [&_ul]:rounded-full [&_li]:px-5 [&_li]:py-5 [&_li]:text-[rgb(0,0,0)] dark:[&_li]:text-[rgb(212,212,216)]',
           )}
         >
           {renderNavItems(items, setToggle)}

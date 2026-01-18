@@ -19,7 +19,7 @@ export function Project({ project }: ProjectProps): JSX.Element {
         <div className="bg-[rgb(39,39,42)] border border-[rgba(63,63,70,0.5)] rounded-[50px] justify-center items-center w-[5rem] h-[5rem] flex z-10 relative right-[4px] [&_img]:w-[45px] [&_img]:h-[45px] [&_img]:rounded-[50px]">
           <img alt={name} src={image} decoding="async" data-nimg="1" loading="lazy" />
         </div>
-        <h2 className="text-[rgb(244,244,245)] dark:text-[rgb(244,244,245)]">
+        <h2 className="text-[rgb(0,0,0)] dark:text-[rgb(244,244,245)]">
           <span>{name}</span>
         </h2>
         <p>{shortDescription}</p>
