@@ -44,6 +44,7 @@ describe('ThemeToggle', () => {
     );
 
     const button = getByRole('button');
-    expect(button).toHaveClass('bg-[rgba(39,39,42,0.9)]');
+    expect(button).toHaveClass('bg-[rgb(239,239,239)]');
+    expect(button).toHaveClass('border-[rgba(0,0,0,0.15)]');
   });
 });

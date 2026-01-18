@@ -15,7 +15,7 @@ export function Socials() {
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center text-[rgb(228,228,231)] text-[1.25rem] hover:text-[rgb(20,184,166)] [&_img]:w-[2.5rem] [&_img]:h-[2.5rem]"
+                className="flex items-center text-[rgb(82,82,91)] dark:text-[rgb(228,228,231)] text-[1.25rem] hover:text-[rgb(20,184,166)] dark:hover:text-[rgb(20,184,166)] [&_img]:w-[2.5rem] [&_img]:h-[2.5rem]"
               >
                 <img src={icon} alt={alt} />
                 <span className="ml-8 text-[1.25rem] font-semibold">{text}</span>

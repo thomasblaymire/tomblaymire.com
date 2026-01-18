@@ -15,7 +15,7 @@ export function ThemeToggle({ toggleTheme, theme }: ThemeToggleProps) {
       <Button
         onClick={handleToggle}
         color="base"
-        className="flex bg-[rgba(39,39,42,0.9)] p-4"
+        className="flex bg-[rgb(239,239,239)] dark:bg-[rgba(39,39,42,0.9)] border border-[rgba(0,0,0,0.15)] dark:border-[hsla(0,0%,100%,0.1)] p-4"
       >
         {theme === THEME.DARK ? (
           <img src={sunIcon} alt="sun" className="w-[20px]" />

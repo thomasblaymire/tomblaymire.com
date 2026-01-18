@@ -21,7 +21,8 @@ describe('Card', () => {
     const { container } = renderWithProviders(<Card>Content</Card>);
 
     const card = container.firstChild as HTMLElement;
-    expect(card).toHaveClass('p-[2.5rem]');
+    expect(card).toHaveClass('p-6');
+    expect(card).toHaveClass('tablet:p-[2.5rem]');
     expect(card).toHaveClass('border');
     expect(card).toHaveClass('rounded-[1rem]');
   });
@@ -41,7 +42,7 @@ describe('Card', () => {
     );
 
     const card = container.firstChild as HTMLElement;
-    expect(card).toHaveClass('p-[2.5rem]'); // default style
+    expect(card).toHaveClass('p-6'); // default mobile style
     expect(card).toHaveClass('bg-blue-500'); // custom style
   });
 });
