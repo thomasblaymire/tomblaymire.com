@@ -39,7 +39,7 @@ function renderNavItems(
 function MobileNavigation({ children }: NavigationMobileProps) {
   return (
     <nav className="mt-6">
-      <div className="[&_ul]:flex [&_ul]:flex-col [&_ul]:text-[rgb(212,212,216)] [&_li:not(:first-child)]:border-t [&_li:not(:first-child)]:border-[hsla(240,5%,96%,0.05)] [&_li]:leading-[1.5rem] [&_li]:font-medium [&_li]:py-6 [&_a:hover]:text-[rgb(20,184,166)]">
+      <div className="[&_ul]:flex [&_ul]:flex-col [&_ul]:text-[rgb(212,212,216)] [&_li:not(:first-child)]:border-t [&_li:not(:first-child)]:border-[hsla(240,5%,96%,0.05)] [&_li]:leading-[1.5rem] [&_li]:font-medium [&_li]:py-6 [&_a]:block [&_a]:w-full [&_a:hover]:text-[rgb(20,184,166)]">
         {children}
       </div>
     </nav>
