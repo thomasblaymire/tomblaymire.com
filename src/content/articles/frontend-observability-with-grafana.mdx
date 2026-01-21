@@ -1,0 +1,214 @@
+export const meta = {
+  title: 'Frontend Observability with Grafana',
+  slug: 'frontend-observability-with-grafana',
+  description: 'Practical KQL queries and Grafana dashboards for frontend observability — tracking exceptions, deployments, and API health with Azure Application Insights.',
+  publishDate: '2026-01-18',
+  tags: ['observability', 'grafana', 'frontend', 'performance', 'devops'],
+};
+
+Most frontend teams I've worked with treat observability as an afterthought, but as applications grow more complex, understanding what's happening in production becomes essential. Over the past 2+ years at NewDay, I've built out several observability dashboards and visualizations that have fundamentally changed how we debug issues and measure quality. These dashboards have helped us catch release issues within minutes rather than hours, and have since been adopted by multiple frontend teams across the organisation.
+
+Keeping things simple, this is not intended to be a Grafana tutorial. Instead this post outlines queries and visualizations that have actually proved useful across frontend teams at NewDay, something that teams monitor every single day, along with why they matter in the first place.
+
+---
+**Contents**
+
+- [Why Frontend Observability Matters](#why-frontend-observability-matters)
+- [The Core Visualizations](#the-core-visualizations)
+  - [Availability Monitoring](#availability-monitoring)
+  - [Deployment vs Exceptions Correlation](#deployment-vs-exceptions-correlation)
+  - [Pageviews Including Unexpected Spikes / Drops](#pageviews-including-unexpected-spikes--drops)
+  - [Failing API Dependencies](#failing-api-dependencies)
+  - [SSL Certificate Expiry Monitoring](#ssl-certificate-expiry-monitoring)
+  - [Security Defects and Vulnerability Tracking](#security-defects-and-vulnerability-tracking)
+  - [Deployment Frequency](#deployment-frequency)
+  - [Pipeline Fitness](#pipeline-fitness)
+  - [Memory Leak Detection](#memory-leak-detection)
+- [Setting Up the Data Pipeline](#setting-up-the-data-pipeline)
+- [Wrapping Up](#wrapping-up)
+---
+
+## Why Frontend Observability Matters
+
+Memory leaks, slow page loads, post-deployment issues, third-party script failures — these are just a few examples of frontend issues that can seriously degrade user experience. Without proper observability, identifying and resolving these problems can be like finding a needle in a haystack.
+
+We aim to track everything that seems relevant to frontend health along with additionally tracking a few of our core downstream services that are owned by other API teams. This way we can quickly identify if an issue is on our end or further downstream.
+
+Dashboards are owned by individual teams, and teams continually enhance them based on incidents they encounter and feedback from developers. This aligns with the <a href="https://www.amazon.com/Accelerate-Software-Performing-Technology-Organizations/dp/1942788339">You Build It, You Own It</a> philosophy where the team that builds the product owns its observability, not a separate ops team. Another big area has been creating specialised dashboards for major features, new web applications or new flows that we launch, this gives us confidence that when go live events happen we have the right visibility to quickly identify and resolve any issues.
+
+
+## The Core Visualizations
+
+These are some of the core visualizations and tracking that we use within our dashboards, here's what each one tracks and why. Note we generally use <a href="https://learn.microsoft.com/en-us/kusto/query/?view=microsoft-fabric"> KQL (Kusto Query Language)</a> to query our Application Insights data but similar queries can be constructed in other systems.
+
+### Availability Monitoring
+
+![Grafana panel showing availability percentage for App Service health checks across P1 and P2 instances](/images/articles/observability/availability.png)
+
+Availability is monitored using Azure Health Check across both P1 and P2 instances to track successful page loads and API requests. This gives us a high-level view that our frontend is functioning correctly. Read more how to configure with <a href="https://learn.microsoft.com/en-us/azure/app-service/monitor-instances-health-check" target="_blank" rel="noreferrer">Azure Monitor</a>.
+
+
+```kusto
+AzureDiagnostics
+| where Category == "AppServiceHealthCheck"
+| where TimeGenerated > ago(5m)
+| summarize HealthyPercent = countif(healthCheckStatus_s == "Healthy") * 100.0 / count()
+```
+
+### Deployment vs Exceptions Correlation
+
+![Grafana timechart showing exception counts over time with vertical deployment markers for correlation](/images/articles/observability/deploy-vs-exceptions-2.png)
+
+This is one of the most valuable dashboards we have. It overlays deployment markers with exception rates, making it immediately obvious when a release introduces issues.
+
+The panel itself queries exceptions over time:
+
+```kusto
+exceptions
+| where timestamp > ago(7d)
+| summarize ExceptionCount = count() by bin(timestamp, 1h)
+```
+
+The deployment markers are added via <a href="https://grafana.com/docs/grafana/latest/visualizations/dashboards/build-dashboards/annotate-visualizations/">Grafana annotations</a>. In your dashboard settings under Annotations, create a new annotation that queries your deployment events:
+
+```kusto
+customEvents
+| where name == "Deployment"
+| where timestamp > ago(7d)
+| extend Version = tostring(customDimensions.version)
+| extend Environment = tostring(customDimensions.environment)
+| project timestamp, Version, Environment
+```
+
+Grafana renders these as vertical lines on the timechart. When you see an exception spike, you can immediately check if it lines up with a deployment marker — this beats trawling through release notes trying to figure out what went out when.
+
+### Pageviews Including Unexpected Spikes / Drops
+
+![Grafana timechart displaying page view counts over 24 hours grouped by page name](/images/articles/observability/page-views-over-time.png)
+
+Understanding what pages get the most hits is relatively trivial, but understanding unexpected spikes or drops can help identify issues or successes. It also helps us understand user behaviour and traffic patterns e.g. if a new marketing or social campaign has driven traffic to a specific page.
+
+```kusto
+pageViews
+| where timestamp > ago(24h)
+| summarize PageViewCount = count() by bin(timestamp, 15m), name
+| order by PageViewCount desc
+```
+
+### Failing API Dependencies
+
+![Grafana stacked area chart showing API request counts by endpoint and HTTP status code](/images/articles/observability/api-request-status.png)
+
+This panel tracks the health and performance of our internal APIs. Slow or failing services can significantly impact user experience, so monitoring them is crucial. The chart logs individual status codes and clearly shows when error codes spike, making it our first port of call when identifying which API is causing issues and what team may need to be alerted.
+
+```kusto
+dependencies
+| where timestamp > ago(24h)
+| extend StatusGroup = case(
+    resultCode startswith "2", "Success",
+    resultCode startswith "4", "Client Error",
+    resultCode startswith "5", "Server Error",
+    "Other")
+| summarize RequestCount = count() by bin(timestamp, 15m), target, StatusGroup
+| order by timestamp asc
+```
+
+### SSL Certificate Expiry Monitoring
+
+![Grafana table showing SSL certificate expiry dates by domain with days until expiry](/images/articles/observability/certificates.png)
+
+SSL Certificates are critical for securing user data and maintaining trust. This panel tracks certificate expiry dates to ensure we renew them before they expire, avoiding potential outages. This one is pivotal if your company does not have an automatic renewal process in place.
+
+```kusto
+customMetrics
+| where name == "SSLCertificateExpiry"
+| extend Domain = tostring(customDimensions.domain)
+| extend ExpiryDate = todatetime(customDimensions.expiryDate)
+| summarize ExpiryDate = max(ExpiryDate) by Domain
+| extend DaysUntilExpiry = datetime_diff('day', ExpiryDate, now())
+| order by DaysUntilExpiry asc
+```
+
+> **Note:** In Grafana, set value thresholds on the `DaysUntilExpiry` column: red for < 20 days, yellow for < 45, green otherwise.
+
+### Security Defects and Vulnerability Tracking
+
+![Grafana panel showing security vulnerability counts from Snyk grouped by severity](/images/articles/observability/security.png)
+
+Understanding what security vulnerabilities exist within your frontend dependencies is crucial. This panel tracks known vulnerabilities and their severity.
+
+> **Note:** This data is pulled from Snyk via their Grafana plugin rather than Application Insights. If you're using a different vulnerability scanner, check if they have a Grafana integration or REST API you can query.
+
+### Deployment Frequency
+
+![Grafana table listing recent deployments with app name, team, and environment columns](/images/articles/observability/deployment-frequency.png)
+
+If deployments are slowing down, then something could be going wrong — maybe the pipeline's flaky, PRs are sitting too long in review, or releases have become events. That's a major red flag. Tracking frequency makes these patterns visible before they become a bigger problem.
+
+```kusto
+customEvents
+| where name == "Deployment"
+| where timestamp > ago(30d)
+| extend AppName = tostring(customDimensions.appName)
+| extend Team = tostring(customDimensions.team)
+| extend Environment = tostring(customDimensions.environment)
+| project deployment_date = timestamp, Name = AppName, Team, Environment
+| order by deployment_date desc
+```
+
+### Pipeline Fitness
+
+![Grafana table showing days since last production deployment per pipeline with colour-coded status](/images/articles/observability/pipeline-fitness.png)
+
+This panel shows how long it's been since each pipeline last deployed to production. If an app hasn't deployed in a while, it's a sign something might be stuck — maybe a flaky test, a stale PR, or a team that's stopped shipping. We aim for our applications to be deployed regularly ensuring that they are stable and releasable at any point in time.
+
+```kusto
+customEvents
+| where name == "Deployment"
+| where tostring(customDimensions.environment) == "Production"
+| summarize LastDeployment = max(timestamp) by
+    Name = tostring(customDimensions.appName),
+    Team = tostring(customDimensions.team)
+| extend DaysSinceDeployment = datetime_diff('day', now(), LastDeployment)
+| extend Status = case(DaysSinceDeployment <= 14, "Good", DaysSinceDeployment <= 30, "Warning", "Stale")
+| project DaysSinceDeployment, Status, Name, Team
+| order by DaysSinceDeployment asc
+```
+
+> **Note:** In Grafana, set value thresholds on `DaysSinceDeployment`: green for ≤14 days, yellow for ≤30, red otherwise.
+
+### Memory Leak Detection
+
+![Grafana timechart showing App Service connection counts over 30 days to detect memory leaks](/images/articles/observability/memory-leak.png)
+
+If you have ever had to deal with a memory leak in a frontend application, you know how painful it can be. This panel tracks connection counts over time for our App Service instances. A steadily climbing connection count that doesn't drop back down is a classic sign of a leak. If one does occur we can quickly identify when it started and correlate with recent deployments.
+
+```kusto
+performanceCounters
+| where name == "Current Connections"
+| where timestamp > ago(30d)
+| summarize Connections = avg(value) by bin(timestamp, 1h), cloud_RoleName
+| render timechart
+```
+
+## Setting Up the Data Pipeline
+
+Our setup is generally straightforward, we use Azure Application Insights that captures the application-level data, things such as exceptions, page timings, and dependency calls that power most of these dashboards. We instrument via the <a href="https://learn.microsoft.com/en-us/azure/azure-monitor/app/javascript-sdk?tabs=javascriptwebsdkloaderscript">JavaScript SDK</a> which handles the heavy lifting.
+
+Front Door logs give us the edge layer view that especially comes in useful for catching things like blocked requests or latency issues that happen before traffic even hits our applications.
+
+Both connect to Grafana through the Azure Monitor data source. We query with KQL directly against the source data, no ETL step, no warehouse sync delays. When something breaks at 3pm, we're looking at data from 3pm, not last night's batch.
+
+
+## Wrapping Up
+
+What's made this sustainable is how we've built it into our routine. We focus on metrics we can actually act on, there's no point tracking something if it doesn't change how you respond.
+
+A few things that have worked for us:
+
+- **Daily checks after standup** - takes five minutes but catches anomalies before they become incidents and is a fantastic way for new starters to familiarise themselves with the system.
+- **Team ownership** - anyone can improve the dashboards when something isn't working, no single owner bottleneck, allowing freedom to adapt as needs change.
+- **Launch dashboards** - monitoring is baked directly into new feature development so that we get visibility from day one, not retrofitted after something breaks.
+- **User flows** - generic page views only get you so far, we additionally use customEvents to track particular user journeys to fill the gaps.
+
+As frontend applications grow in complexity and teams scale, observability becomes the difference between controlled releases and hoping for the best. What started as a few dashboards has become core infrastructure that multiple teams rely on today.
