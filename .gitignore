@@ -9,4 +9,4 @@ node_modules/*
 MODERNIZATION_PLAN.md
 package.json.backup
 *.backup
-.vscode/settings.json
+.vscode/settings.jsoncoverage/

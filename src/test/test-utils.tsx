@@ -1,5 +1,6 @@
 import { render, RenderOptions } from '@testing-library/react';
 import { ReactElement } from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 
 interface RenderWithProvidersOptions extends Omit<RenderOptions, 'wrapper'> {
@@ -18,7 +19,11 @@ export function renderWithProviders(
   const routerProps = useMemoryRouter ? { initialEntries: [route] } : {};
 
   return render(ui, {
-    wrapper: ({ children }) => <Router {...routerProps}>{children}</Router>,
+    wrapper: ({ children }) => (
+      <HelmetProvider>
+        <Router {...routerProps}>{children}</Router>
+      </HelmetProvider>
+    ),
     ...options,
   });
 }
