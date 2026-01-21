@@ -1,5 +1,8 @@
 import { Article } from '@/types/article';
 
+import FrontendObservabilityWithGrafana, {
+  meta as frontendObservabilityWithGrafanaMeta,
+} from './frontend-observability-with-grafana.mdx';
 import GenericsInTypescript, {
   meta as genericsInTypescriptMeta,
 } from './generics-in-typescript.mdx';
@@ -14,6 +17,10 @@ import TopUiInspirationWebsites, {
 } from './top-ui-inspiration-websites.mdx';
 
 const articles: Article[] = [
+  {
+    meta: frontendObservabilityWithGrafanaMeta,
+    Content: FrontendObservabilityWithGrafana,
+  },
   {
     meta: practicalTypescriptPatternsMeta,
     Content: PracticalTypescriptPatterns,

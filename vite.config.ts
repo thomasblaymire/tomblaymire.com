@@ -5,6 +5,7 @@ import { defineConfig } from 'vite';
 export default defineConfig(async () => {
   const mdx = await import('@mdx-js/rollup');
   const shikiRehype = await import('@shikijs/rehype');
+  const rehypeSlug = await import('rehype-slug');
 
   return {
     plugins: [
@@ -12,6 +13,7 @@ export default defineConfig(async () => {
         enforce: 'pre' as const,
         ...mdx.default({
           rehypePlugins: [
+            rehypeSlug.default,
             [
               shikiRehype.default,
               {
