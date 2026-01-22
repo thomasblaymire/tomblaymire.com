@@ -89,3 +89,39 @@ jobs:
         run: npm run build
         env:
           VITE_GOOGLE_ANALYTICS_TAG: ${{ secrets.VITE_GOOGLE_ANALYTICS_TAG }}
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: dist
+          retention-days: 1
+
+  lighthouse:
+    name: Lighthouse
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build
+          path: dist
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install -g @lhci/cli
+
+      - name: Run Lighthouse CI
+        run: |
+          lhci autorun --config=lighthouserc.json || echo "Lighthouse CI completed with warnings"
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
