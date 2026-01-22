@@ -1,12 +1,8 @@
-interface ErrorFallbackProps {
-  error?: Error;
-  resetErrorBoundary?: () => void;
-}
+import type { FallbackProps } from 'react-error-boundary';
 
-export function ErrorFallback({
-  error,
-  resetErrorBoundary,
-}: ErrorFallbackProps): JSX.Element {
+export function ErrorFallback({ error, resetErrorBoundary }: FallbackProps): JSX.Element {
+  const errorMessage = error instanceof Error ? error.message : String(error);
+
   return (
     <main className="min-h-screen flex items-center justify-center px-6">
       <div className="text-center max-w-[50rem]">
@@ -20,9 +16,9 @@ export function ErrorFallback({
           We&apos;re sorry, but something unexpected happened. Our team has been notified
           and we&apos;re working to fix the issue.
         </p>
-        {error && (
+        {errorMessage && (
           <p className="text-[1.2rem] text-[rgb(113,113,122)] dark:text-[rgb(113,113,122)] mb-10 font-mono bg-[rgba(0,0,0,0.05)] dark:bg-[rgba(255,255,255,0.05)] p-4 rounded-lg">
-            {error.message}
+            {errorMessage}
           </p>
         )}
         <div className="flex flex-col tablet:flex-row gap-4 justify-center">
