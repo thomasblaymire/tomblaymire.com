@@ -5,14 +5,19 @@ import { renderWithProviders, screen, userEvent } from '@/test/test-utils';
 import { ErrorFallback } from '../error-fallback';
 
 describe('ErrorFallback (500 page)', () => {
+  const defaultProps = {
+    error: new Error('Test error'),
+    resetErrorBoundary: vi.fn(),
+  };
+
   it('should display 500 error code', () => {
-    renderWithProviders(<ErrorFallback />);
+    renderWithProviders(<ErrorFallback {...defaultProps} />);
 
     expect(screen.getByText('500')).toBeInTheDocument();
   });
 
   it('should display a helpful heading', () => {
-    renderWithProviders(<ErrorFallback />);
+    renderWithProviders(<ErrorFallback {...defaultProps} />);
 
     expect(
       screen.getByRole('heading', { name: /something went wrong/i }),
@@ -20,7 +25,7 @@ describe('ErrorFallback (500 page)', () => {
   });
 
   it('should display an explanation message', () => {
-    renderWithProviders(<ErrorFallback />);
+    renderWithProviders(<ErrorFallback {...defaultProps} />);
 
     expect(
       screen.getByText(/we.re sorry, but something unexpected happened/i),
@@ -29,42 +34,39 @@ describe('ErrorFallback (500 page)', () => {
 
   it('should display the error message when provided', () => {
     const error = new Error('Database connection failed');
-    renderWithProviders(<ErrorFallback error={error} />);
+    renderWithProviders(<ErrorFallback error={error} resetErrorBoundary={vi.fn()} />);
 
     expect(screen.getByText('Database connection failed')).toBeInTheDocument();
   });
 
-  it('should not display error message section when no error provided', () => {
-    renderWithProviders(<ErrorFallback />);
+  it('should handle non-Error objects gracefully', () => {
+    renderWithProviders(
+      <ErrorFallback error="String error message" resetErrorBoundary={vi.fn()} />,
+    );
 
-    expect(screen.queryByText(/database/i)).not.toBeInTheDocument();
+    expect(screen.getByText('String error message')).toBeInTheDocument();
   });
 
   it('should provide a link to go back home', () => {
-    renderWithProviders(<ErrorFallback />);
+    renderWithProviders(<ErrorFallback {...defaultProps} />);
 
     const homeLink = screen.getByRole('link', { name: /go back home/i });
     expect(homeLink).toBeInTheDocument();
     expect(homeLink).toHaveAttribute('href', '/');
   });
 
-  it('should show try again button when resetErrorBoundary is provided', () => {
-    const mockReset = vi.fn();
-    renderWithProviders(<ErrorFallback resetErrorBoundary={mockReset} />);
+  it('should show try again button', () => {
+    renderWithProviders(<ErrorFallback {...defaultProps} />);
 
     expect(screen.getByRole('button', { name: /try again/i })).toBeInTheDocument();
-  });
-
-  it('should not show try again button when resetErrorBoundary is not provided', () => {
-    renderWithProviders(<ErrorFallback />);
-
-    expect(screen.queryByRole('button', { name: /try again/i })).not.toBeInTheDocument();
   });
 
   it('should call resetErrorBoundary when try again is clicked', async () => {
     const mockReset = vi.fn();
     const user = userEvent.setup();
-    renderWithProviders(<ErrorFallback resetErrorBoundary={mockReset} />);
+    renderWithProviders(
+      <ErrorFallback error={new Error('Test')} resetErrorBoundary={mockReset} />,
+    );
 
     await user.click(screen.getByRole('button', { name: /try again/i }));
 
