@@ -6,9 +6,6 @@
   The default border color has changed to `currentcolor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still
   looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
 */
 @layer base {
   *,
@@ -21,9 +18,8 @@
 }
 
 @layer base {
-  /* Set base font size to 10px to match existing html { font-size: 10px } */
   html {
-    font-size: 62.5%; /* 62.5% of 16px = 10px */
+    font-size: 62.5%;
     line-height: 1.5;
     tab-size: 4;
     height: 100vh;
@@ -57,38 +53,34 @@
     max-width: 100vw;
   }
 
-  /* Ensure text wraps properly on mobile */
   * {
     word-wrap: break-word;
     overflow-wrap: break-word;
   }
 
-  /* Light mode (default) - Exact colors from lightTheme */
   :root {
-    --color-bg: 246 246 246; /* rgb(246, 246, 246) */
-    --color-text: 161 161 170; /* #a1a1aa */
-    --color-primary: 255 255 255; /* #FFFFFF */
-    --color-secondary: 0 0 0; /* #000 */
-    --color-tertiary: 255 255 255; /* rgb(255, 255, 255, 1) */
-    --color-quaternary: 100 107 128; /* rgb(100, 107, 128) */
-    --color-text-sub: 82 82 91; /* rgb(82, 82, 91, 1) */
-    --color-text-heading: 39 39 42; /* rgb(39, 39, 42, 1) */
-    --color-border-primary: 34 37 49; /* rgb(34, 37, 49) */
+    --color-bg: 246 246 246;
+    --color-text: 161 161 170;
+    --color-primary: 255 255 255;
+    --color-secondary: 0 0 0;
+    --color-tertiary: 255 255 255;
+    --color-quaternary: 100 107 128;
+    --color-text-sub: 82 82 91;
+    --color-text-heading: 39 39 42;
+    --color-border-primary: 34 37 49;
   }
 
-  /* Dark mode - Exact colors from darkTheme */
   .dark {
-    --color-bg: 0 0 0; /* rgb(0, 0, 0, 1) */
-    --color-text: 161 161 170; /* rgb(161, 161, 170, 1) */
-    --color-primary: 24 24 27; /* #18181b */
-    --color-secondary: 0 0 0; /* #000 */
-    --color-tertiary: 24 24 27; /* rgb(24, 24, 27, 1) */
-    --color-quaternary: 100 107 128; /* rgb(100, 107, 128) */
-    --color-text-heading: 244 244 245; /* rgb(244, 244, 245, 1) */
-    --color-border-primary: 34 37 49; /* rgb(34, 37, 49) */
+    --color-bg: 0 0 0;
+    --color-text: 161 161 170;
+    --color-primary: 24 24 27;
+    --color-secondary: 0 0 0;
+    --color-tertiary: 24 24 27;
+    --color-quaternary: 100 107 128;
+    --color-text-heading: 244 244 245;
+    --color-border-primary: 34 37 49;
   }
 
-  /* Preserve exact typography styles from GlobalStyle */
   h1 {
     @apply text-h1-mobile tablet:text-h1-desktop;
   }
@@ -125,7 +117,6 @@
     margin: 0;
   }
 
-  /* Preserve exact box-sizing and border defaults */
   *,
   *::after,
   *::before {
