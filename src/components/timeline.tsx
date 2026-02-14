@@ -34,7 +34,7 @@ export function TimeLineItem({ items }: TimeLineItemProps) {
 export function TimeLine({ use }: TimeLineProps) {
   const { items } = use;
   return (
-    <div className="grid grid-cols-1 gap-y-8 items-baseline max-w-[68rem] tablet:grid-cols-4 [&_h2]:text-[rgb(39,39,42)] dark:[&_h2]:text-[rgb(244,244,245)] [&_h2]:font-semibold [&_h2]:leading-[1.5rem] [&_h2]:m-0">
+    <div className="grid grid-cols-1 gap-y-8 items-baseline max-w-272 tablet:grid-cols-4 [&_h2]:text-[rgb(39,39,42)] dark:[&_h2]:text-[rgb(244,244,245)] [&_h2]:font-semibold [&_h2]:leading-6 [&_h2]:m-0">
       <h2>{use.name}</h2>
       <TimeLineItem items={items} />
     </div>

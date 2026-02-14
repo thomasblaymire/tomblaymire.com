@@ -5,7 +5,7 @@ export function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
 
   return (
     <main className="min-h-screen flex items-center justify-center px-6">
-      <div className="text-center max-w-[50rem]">
+      <div className="text-center max-w-200">
         <p className="text-[8rem] tablet:text-[12rem] font-bold text-[rgb(239,68,68)] leading-none mb-4">
           500
         </p>

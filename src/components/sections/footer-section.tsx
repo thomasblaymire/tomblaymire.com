@@ -8,7 +8,7 @@ export function FooterSection() {
   return (
     <section className="pb-14 mt-40 border-t pt-14 border-[rgba(63,63,70,0.4)] flex items-center justify-between">
       {isTablet ? <Navigation items={navLinks} type="basic" /> : null}
-      <p className="text-[rgb(113,113,122)] dark:text-[rgb(161,161,170)] leading-[1.5rem] text-[1.4rem]">
+      <p className="text-[rgb(113,113,122)] dark:text-[rgb(161,161,170)] leading-6 text-[1.4rem]">
         {`© Tom Blaymire ${new Date().getFullYear()}`}. All rights reserved.
       </p>
     </section>
