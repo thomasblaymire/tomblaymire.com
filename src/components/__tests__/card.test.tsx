@@ -22,9 +22,9 @@ describe('Card', () => {
 
     const card = container.firstChild as HTMLElement;
     expect(card).toHaveClass('p-6');
-    expect(card).toHaveClass('tablet:p-[2.5rem]');
+    expect(card).toHaveClass('tablet:p-10');
     expect(card).toHaveClass('border');
-    expect(card).toHaveClass('rounded-[1rem]');
+    expect(card).toHaveClass('rounded-2xl');
   });
 
   it('should apply custom className', () => {

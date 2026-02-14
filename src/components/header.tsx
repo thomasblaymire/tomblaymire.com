@@ -15,7 +15,7 @@ export function Header({ toggleTheme, theme }: HeaderProps) {
   const isHomepage = location.pathname === '/';
   return (
     <header className="pt-14 text-[1.5rem] flex justify-center flex-1">
-      <div className="flex items-center flex-1 [&_img]:w-[4.5rem] [&_img]:flex">
+      <div className="flex items-center flex-1 [&_img]:w-18 [&_img]:flex">
         {!isHomepage ? (
           <Link to="/">
             <Logo />

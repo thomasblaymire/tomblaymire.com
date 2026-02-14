@@ -13,8 +13,8 @@ export function Time({ dateTime, className }: TimeProps) {
     <time
       dateTime={formattedDate}
       className={cn(
-        'relative flex items-center pl-[1.5rem] mb-8 text-[1.4rem] leading-[1.5rem]',
-        'text-[rgb(113,113,122)] dark:text-[rgb(161,161,170)] order-[-9999]',
+        'relative flex items-center pl-6 mb-8 text-[1.4rem] leading-6',
+        'text-[rgb(113,113,122)] dark:text-[rgb(161,161,170)] order-first',
         className,
       )}
     >

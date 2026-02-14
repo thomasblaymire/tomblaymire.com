@@ -1,0 +1,300 @@
+export const meta = {
+  title: 'Feature Flags for Frontend: Progressive Rollouts Without Fear',
+  slug: 'feature-flags-frontend-progressive-rollouts',
+  description: 'A practical guide to feature flags in frontend applications — covering progressive rollouts, flag hygiene, testing strategies, and the organisational discipline needed to avoid flag debt.',
+  publishDate: '2026-01-25',
+  tags: ['feature-flags', 'frontend', 'architecture', 'devops', 'testing'],
+};
+
+{/* DRAFT - Build upon this outline */}
+
+It's 4pm Friday, and you need to ship a feature that touches checkout. The old you would have waited until Monday, scheduled a release window, and hoped nothing broke. The new you wraps it in a flag, ships it dark, and rolls it out to 5% of users while watching the dashboard. Here's how we do it without sweating.
+
+---
+
+**Contents**
+
+- [Why Feature Flags Matter](#why-feature-flags-matter)
+- [Choosing a Provider](#choosing-a-provider)
+- [The Part Nobody Talks About: Flag Hygiene](#the-part-nobody-talks-about-flag-hygiene)
+- [Testing with Flags](#testing-with-flags)
+- [Progressive Rollout Patterns](#progressive-rollout-patterns)
+- [Flags in Code: Patterns That Scale](#flags-in-code-patterns-that-scale)
+- [When Flags Go Wrong](#when-flags-go-wrong)
+- [Organisational Discipline](#organisational-discipline)
+
+---
+
+## Why Feature Flags Matter
+
+{/*
+TODO: Write intro section
+- Deployment vs release separation
+- Risk reduction
+- Faster iteration cycles
+- A/B testing foundation
+*/}
+
+---
+
+## Choosing a Provider
+
+{/*
+TODO: Compare options with your experience
+- LaunchDarkly (enterprise, expensive, full-featured)
+- Unleash (open source, self-hosted option)
+- Flagsmith (open source, good middle ground)
+- Roll your own (when it makes sense, when it doesn't)
+
+Your recommendation and why - be opinionated
+*/}
+
+---
+
+## The Part Nobody Talks About: Flag Hygiene
+
+This is where most teams fail. Flags are easy to add and easy to forget. I've seen codebases with 200+ stale flags where nobody knows what half of them do or if they're safe to remove.
+
+### Naming Conventions That Scale
+
+{/*
+TODO: Your naming convention
+Example: [team]-[feature]-[type]
+- checkout-new-payment-flow-release
+- growth-signup-variant-experiment
+- platform-dark-mode-ops (operational flag)
+
+Types:
+- release: temporary, for shipping
+- experiment: A/B test, has metrics attached
+- ops: kill switches, long-lived
+*/}
+
+### Ownership and Expiry
+
+{/*
+TODO: How you track ownership
+- Every flag has an owner
+- Every flag has an expiry date (or explicit "permanent" justification)
+- What happens when someone leaves?
+*/}
+
+### The Flag Removal PR Template
+
+{/*
+TODO: Share your actual template or process
+- Checklist for safe removal
+- Required sign-offs
+- How to verify the flag is no longer evaluated
+*/}
+
+---
+
+## Testing with Flags
+
+The combinatorial explosion is real. If you have 10 flags, you technically have 1,024 possible states. You can't test them all. Here's the pragmatic approach.
+
+### The Strategy
+
+{/*
+TODO: Explain your testing philosophy
+- Test both paths, but not exhaustively
+- Critical paths get full coverage
+- New code path gets more attention than old (it's being removed anyway)
+*/}
+
+### Test Structure
+
+```typescript
+describe('CheckoutFlow', () => {
+  describe('with newPaymentFlow enabled', () => {
+    beforeEach(() => {
+      mockFlag('checkout-new-payment-flow-release', true);
+    });
+
+    it('renders the new payment form', () => {
+      // full test coverage for new path
+    });
+
+    it('submits payment successfully', () => {
+      // ...
+    });
+  });
+
+  describe('with newPaymentFlow disabled', () => {
+    beforeEach(() => {
+      mockFlag('checkout-new-payment-flow-release', false);
+    });
+
+    it('renders the legacy payment form', () => {
+      // critical path only - this code is being removed
+    });
+  });
+});
+```
+
+### CI Integration
+
+{/*
+TODO: How flags integrate with your CI
+- Do you run tests with flags on/off?
+- Matrix testing?
+- Which environments have which flag states?
+*/}
+
+---
+
+## Progressive Rollout Patterns
+
+### The Rollout Ladder
+
+{/*
+TODO: Your typical rollout progression
+1. Internal only (dogfooding)
+2. Beta users / opt-in
+3. 5% of traffic
+4. 25% of traffic
+5. 50% of traffic
+6. 100%
+7. Flag removal
+
+How long at each stage? What metrics do you watch?
+*/}
+
+### Sticky Sessions
+
+{/*
+TODO: The gotcha most people hit
+- User sees new feature, refreshes, sees old
+- How to ensure consistent experience
+- User ID based vs session based
+*/}
+
+### The Kill Switch Pattern
+
+```typescript
+// Operational flag - always ready to disable
+const CHECKOUT_ENABLED = useFlag('checkout-kill-switch', {
+  defaultValue: true,
+});
+
+if (!CHECKOUT_ENABLED) {
+  return <CheckoutDisabledMessage />;
+}
+```
+
+{/*
+TODO: How fast can you turn it off?
+- Propagation delay
+- Cache invalidation
+- Your actual numbers
+*/}
+
+### Monitoring During Rollout
+
+{/*
+TODO: Tie back to your observability article
+- What dashboards do you watch?
+- Error rates by flag state
+- Performance metrics split by variant
+*/}
+
+---
+
+## Flags in Code: Patterns That Scale
+
+### The Flag Boundary Pattern
+
+Flags should live at feature boundaries, not scattered throughout components.
+
+**Bad: Flags buried everywhere**
+
+```typescript
+function PriceDisplay({ price }) {
+  const showTax = useFlag('show-tax-breakdown');
+  const newFormat = useFlag('new-price-format');
+  // Flags buried deep - hard to find, hard to remove
+}
+
+function CartItem({ item }) {
+  const showDiscount = useFlag('show-discount-badge');
+  // Another buried flag...
+}
+```
+
+**Good: Flag boundary at the feature level**
+
+```typescript
+export function PaymentSection() {
+  const useNewFlow = useFlag('checkout-new-payment-flow-release');
+  return useNewFlow ? <NewPaymentFlow /> : <LegacyPaymentFlow />;
+}
+
+// Components below don't know about flags - they're just components
+function NewPaymentFlow() {
+  // Clean code, no flag checks
+}
+```
+
+### The Feature Folder Pattern
+
+{/*
+TODO: How you structure code for easy flag removal
+
+src/
+  features/
+    checkout/
+      components/
+        PaymentSection.tsx      # flag boundary here
+        NewPaymentFlow/         # delete when flag removed
+        LegacyPaymentFlow/      # or delete this one
+*/}
+
+---
+
+## When Flags Go Wrong
+
+{/*
+TODO: Real war stories (anonymised)
+- Flag evaluated at build time instead of runtime
+- SSR hydration mismatch
+- Caching issues
+- The "it works for me" debugging nightmare
+- Flag dependency chains
+*/}
+
+---
+
+## Organisational Discipline
+
+### Flag Review in PRs
+
+{/*
+TODO: Questions to ask in PR review
+- Does this flag have an owner?
+- What's the removal timeline?
+- Is the flag at a clean boundary?
+- Are both paths tested?
+*/}
+
+### The Monthly Flag Audit
+
+{/*
+TODO: Your ritual for cleaning up flags
+*/}
+
+---
+
+## Closing Thoughts
+
+Feature flags are a deployment tool, not an architecture. They let you separate deployment from release, reduce risk, and ship faster. But they come with overhead — every flag is technical debt until it's removed.
+
+The teams that succeed with flags treat removal as seriously as creation. Ship fast, but clean up after yourself.
+
+{/*
+WRITING NOTES:
+- Use real examples from your experience (anonymised)
+- Be opinionated - staff engineers have opinions
+- The messy reality > the happy path
+- Tie back to observability article where relevant
+*/}

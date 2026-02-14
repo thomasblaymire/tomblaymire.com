@@ -10,7 +10,7 @@ export function NotFound() {
         description="Sorry, we could not find the page you are looking for."
       />
       <main className="min-h-screen flex items-center justify-center px-6">
-        <div className="text-center max-w-[50rem]">
+        <div className="text-center max-w-200">
           <p className="text-[8rem] tablet:text-[12rem] font-bold text-[rgb(45,212,191)] leading-none mb-4">
             404
           </p>

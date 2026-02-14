@@ -39,7 +39,7 @@ function renderNavItems(
 function MobileNavigation({ children }: NavigationMobileProps) {
   return (
     <nav className="mt-6">
-      <div className="[&_ul]:flex [&_ul]:flex-col [&_ul]:text-[rgb(212,212,216)] [&_li:not(:first-child)]:border-t [&_li:not(:first-child)]:border-[hsla(240,5%,96%,0.05)] [&_li]:leading-[1.5rem] [&_li]:font-medium [&_li]:py-6 [&_a]:block [&_a]:w-full [&_a:hover]:text-[rgb(20,184,166)]">
+      <div className="[&_ul]:flex [&_ul]:flex-col [&_ul]:text-[rgb(212,212,216)] [&_li:not(:first-child)]:border-t [&_li:not(:first-child)]:border-[hsla(240,5%,96%,0.05)] [&_li]:leading-6 [&_li]:font-medium [&_li]:py-6 [&_a]:block [&_a]:w-full [&_a:hover]:text-[rgb(20,184,166)]">
         {children}
       </div>
     </nav>
@@ -76,7 +76,7 @@ export function Navigation({ items, type }: NavigationProps) {
         <nav
           className={cn(
             '[&_ul]:list-none [&_ul]:flex',
-            '[&_li]:leading-[1.5rem] [&_li]:font-normal [&_li]:text-[1.4rem] [&_li:hover]:text-[rgb(20,184,166)] dark:[&_li:hover]:text-[rgb(20,184,166)]',
+            '[&_li]:leading-6 [&_li]:font-normal [&_li]:text-[1.4rem] [&_li:hover]:text-[rgb(20,184,166)] dark:[&_li:hover]:text-[rgb(20,184,166)]',
             type === 'basic'
               ? '[&_li]:text-[rgb(161,161,170)] [&_li]:px-3 [&_li]:py-0'
               : '[&_ul]:bg-[rgb(239,239,239)] dark:[&_ul]:bg-[rgba(39,39,42,0.9)] [&_ul]:border [&_ul]:border-[hsla(0,0%,0%,0.1)] dark:[&_ul]:border-[hsla(0,0%,100%,0.1)] [&_ul]:px-4 [&_ul]:rounded-full [&_li]:px-5 [&_li]:py-5 [&_li]:text-[rgb(0,0,0)] dark:[&_li]:text-[rgb(212,212,216)]',

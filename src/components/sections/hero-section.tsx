@@ -11,7 +11,7 @@ export type HeroSectionProps = {
 function HeroSection({ title, description, socials, logo }: HeroSectionProps) {
   return (
     <section className="mt-24 pl-0 pb-24 border-b border-[rgba(63,63,70,0.4)] tablet:mt-32 tablet:border-none tablet:pb-0">
-      <div className="max-w-[70rem]">
+      <div className="max-w-280">
         <Grid>
           <Row>
             <Col size={1}>{logo ? <Logo /> : null}</Col>

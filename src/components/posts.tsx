@@ -21,5 +21,5 @@ export function Posts({ limit }: PostsProps) {
     return null;
   };
 
-  return <div className="gap-[8rem] flex flex-col">{renderPosts()}</div>;
+  return <div className="gap-32 flex flex-col">{renderPosts()}</div>;
 }

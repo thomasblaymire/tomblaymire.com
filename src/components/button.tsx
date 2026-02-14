@@ -21,11 +21,10 @@ export const Button = ({
       disabled={disabled}
       className={cn(
         // Base styles
-        'cursor-pointer border-none rounded-[50px] font-medium outline-none transition-all duration-200',
+        'cursor-pointer border-none rounded-[50px] font-medium outline-hidden transition-all duration-200',
         // Color variants
         color === 'primary' && 'text-white',
-        color === 'secondary' &&
-          'text-black bg-gradient-to-r from-[#c7c7d2] to-[#bcbaba]',
+        color === 'secondary' && 'text-black bg-linear-to-r from-[#c7c7d2] to-[#bcbaba]',
         color === 'base' &&
           'bg-[rgba(39,39,42,0.9)] border border-solid border-[hsla(0,0%,100%,0.1)] flex',
         color === 'link' && 'bg-transparent',

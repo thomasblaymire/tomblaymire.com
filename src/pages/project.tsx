@@ -34,7 +34,7 @@ export function Project() {
     const Content = projectContent.Content;
 
     return (
-      <div className="max-w-[70rem] mx-auto [&_h1]:text-[5rem] [&_h1]:leading-[4.5rem] [&_h1]:mt-12 [&_h1]:text-[rgb(244,244,245)] [&_h2]:text-[1.75rem] [&_h2]:leading-[1.75rem] [&_h2]:mt-32 [&_h2]:mb-4 [&_h2]:text-[#e4e4e7] [&_h2]:font-semibold [&_a]:text-[#2dd4bf] [&_a]:font-semibold [&_a]:underline [&_a]:decoration-[rgba(45,212,191,0.3)] [&_a]:transition-[color,text-decoration-color] [&_a]:duration-150 [&_p]:my-[2.5rem] [&_p]:text-[#a1a1aa] [&_p]:text-[1.65rem] [&_ul]:list-[initial] [&_ul]:pl-6 [&_li]:text-[#a1a1aa] [&_li]:list-[initial] [&_li]:text-[1.65rem] [&_li]:mb-2 [&_img]:rounded-[1.5rem] [&_img]:max-w-full [&_img]:h-auto [&_img]:my-[2.5rem]">
+      <div className="max-w-280 mx-auto [&_h1]:text-[5rem] [&_h1]:leading-18 [&_h1]:mt-12 [&_h1]:text-[rgb(244,244,245)] [&_h2]:text-[1.75rem] [&_h2]:leading-7 [&_h2]:mt-32 [&_h2]:mb-4 [&_h2]:text-[#e4e4e7] [&_h2]:font-semibold [&_a]:text-[#2dd4bf] [&_a]:font-semibold [&_a]:underline [&_a]:decoration-[rgba(45,212,191,0.3)] [&_a]:transition-[color,text-decoration-color] [&_a]:duration-150 [&_p]:my-10 [&_p]:text-[#a1a1aa] [&_p]:text-[1.65rem] [&_ul]:list-[initial] [&_ul]:pl-6 [&_li]:text-[#a1a1aa] [&_li]:list-[initial] [&_li]:text-[1.65rem] [&_li]:mb-2 [&_img]:rounded-3xl [&_img]:max-w-full [&_img]:h-auto [&_img]:my-10">
         <div className="flex mb-8 justify-between items-center">
           {isWorkExperience(project) && (
             <span className="text-[1.5rem] text-[rgb(161,161,170)]">
@@ -52,7 +52,7 @@ export function Project() {
         </div>
         <h1>{name}</h1>
         {isWorkExperience(project) && (
-          <p className="text-[rgb(45,212,191)] !mt-4 !text-[1.5rem]">
+          <p className="text-[rgb(45,212,191)] mt-4! text-[1.5rem]!">
             {project.jobTitle}
           </p>
         )}

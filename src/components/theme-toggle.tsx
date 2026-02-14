@@ -11,7 +11,7 @@ interface ThemeToggleProps {
 export function ThemeToggle({ toggleTheme, theme }: ThemeToggleProps) {
   const handleToggle = () => toggleTheme();
   return (
-    <div className="flex justify-end items-center leading-[1.5rem] pl-[1.5rem] tablet:flex-1 tablet:pl-0">
+    <div className="flex justify-end items-center leading-6 pl-6 tablet:flex-1 tablet:pl-0">
       <Button
         onClick={handleToggle}
         color="base"
