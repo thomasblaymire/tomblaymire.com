@@ -9,4 +9,7 @@ node_modules/*
 MODERNIZATION_PLAN.md
 package.json.backup
 *.backup
-.vscode/settings.jsoncoverage/
+.vscode/settings.json
+coverage/
+test-results/
+playwright-report/
