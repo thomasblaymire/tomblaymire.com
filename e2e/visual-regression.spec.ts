@@ -19,7 +19,6 @@ for (const { name, path } of pages) {
     await page.waitForTimeout(500);
 
     await expect(page).toHaveScreenshot(`${name}.png`, {
-      fullPage: true,
       maxDiffPixelRatio: 0.01,
     });
   });
