@@ -5,7 +5,7 @@ interface WorkItemProps {
   item: WorkExperienceItem;
 }
 
-const WorkItem = ({ item }: WorkItemProps): JSX.Element => {
+const WorkItem = ({ item }: WorkItemProps) => {
   const { image, name, jobTitle, dateFrom, dateTo } = item;
   return (
     <li className="flex gap-6 [&:not(:first-child)]:mt-[2.25rem]">

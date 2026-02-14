@@ -10,7 +10,7 @@ import { getProjectContentBySlug } from '@/content/projects';
 import { getProjectBySlug, WorkExperienceItem } from '@/content/work';
 import { Col, Grid, PageRow } from '@/styles/grid';
 
-export function Project(): JSX.Element {
+export function Project() {
   const navigate = useNavigate();
   const handleBack = () => navigate(-1);
   const { slug } = useParams();

@@ -12,7 +12,7 @@ interface BaseAppProps {
   theme: string;
 }
 
-export function BaseApp({ toggleTheme, theme }: BaseAppProps): JSX.Element {
+export function BaseApp({ toggleTheme, theme }: BaseAppProps) {
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <main

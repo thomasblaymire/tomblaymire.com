@@ -19,7 +19,7 @@ export const Modal = ({
   title,
   handleClose,
   className,
-}: ModalProps): JSX.Element => {
+}: ModalProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
   // handle what happens on click outside of modal

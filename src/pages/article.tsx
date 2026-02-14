@@ -7,7 +7,7 @@ import { Time } from '@/components/time';
 import { usePost } from '@/hooks/usePost';
 import { Col, Grid, PageRow } from '@/styles/grid';
 
-export function Article(): JSX.Element {
+export function Article() {
   const { slug } = useParams();
   const { post, error } = usePost(slug);
 

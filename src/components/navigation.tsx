@@ -46,7 +46,7 @@ function MobileNavigation({ children }: NavigationMobileProps) {
   );
 }
 
-export function Navigation({ items, type }: NavigationProps): JSX.Element {
+export function Navigation({ items, type }: NavigationProps) {
   const [toggle, setToggle] = useState(false);
   const isTablet = useMediaQuery(device.tablet);
   return (
