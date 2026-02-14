@@ -6,7 +6,7 @@ interface ProjectProps {
   project: WorkExperienceItem | PersonalProjectItem;
 }
 
-export function Project({ project }: ProjectProps): JSX.Element {
+export function Project({ project }: ProjectProps) {
   const { image, name, shortDescription } = project;
   const slug = 'slug' in project ? project.slug : name.toLowerCase().replace(/\s+/g, '-');
 

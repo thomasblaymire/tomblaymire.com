@@ -7,7 +7,7 @@ interface TimeProps {
   className?: string;
 }
 
-export function Time({ dateTime, className }: TimeProps): JSX.Element {
+export function Time({ dateTime, className }: TimeProps) {
   const formattedDate = formatDate(dateTime);
   return (
     <time

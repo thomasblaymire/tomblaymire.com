@@ -1,6 +1,6 @@
 import type { FallbackProps } from 'react-error-boundary';
 
-export function ErrorFallback({ error, resetErrorBoundary }: FallbackProps): JSX.Element {
+export function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
   const errorMessage = error instanceof Error ? error.message : String(error);
 
   return (

@@ -7,7 +7,7 @@ interface PostProps {
   article: Article;
 }
 
-export function Post({ article }: PostProps): JSX.Element {
+export function Post({ article }: PostProps) {
   const { title, description, slug, publishDate } = article.meta;
 
   return (
